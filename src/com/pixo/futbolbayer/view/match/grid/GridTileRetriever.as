@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.view.match.terrain
+package com.pixo.futbolbayer.view.match.grid
 {
 	import flash.display.Sprite;
 	import flash.geom.Point;
@@ -30,6 +30,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		
 		public function retrieve(lPoint:Point):Tile 
 		{
+			lPoint.offset(_canvas.x, _canvas.y);
 			var lXMouseOffset:Number = _canvas.x + _xCenterOffset - _hexWidth / 2;
 			
 			var lX:Number = (lPoint.x - lXMouseOffset) / _columnOffset;
@@ -65,20 +66,20 @@ package com.pixo.futbolbayer.view.match.terrain
 				return null;
 		}
 		
-		public function findAdjacentTiles(tile:Tile):Array
+		public function findAdjacentTiles(tile:Tile):AdjacentTiles
 		{
-			var adjacentTiles:Array = new Array();
+			var adjacentTiles:AdjacentTiles = new AdjacentTiles();
 			
-			adjacentTiles.push(retrieve(new Point(tile.x, tile.y + _hexHeight)));
-			adjacentTiles.push(retrieve(new Point(tile.x, tile.y - _hexHeight)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x, tile.y + _hexHeight)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x, tile.y - _hexHeight)));
 			
 			var _xTileOffset:int = _columnOffset;
 			var _ytileOffset:int = (Math.tan(30 * Math.PI / 180) * _xTileOffset);
 			
-			adjacentTiles.push(retrieve(new Point(tile.x + _xTileOffset, tile.y + _ytileOffset)));
-			adjacentTiles.push(retrieve(new Point(tile.x + _xTileOffset, tile.y - _ytileOffset)));
-			adjacentTiles.push(retrieve(new Point(tile.x - _xTileOffset, tile.y + _ytileOffset)));
-			adjacentTiles.push(retrieve(new Point(tile.x - _xTileOffset, tile.y - _ytileOffset)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x + _xTileOffset, tile.y + _ytileOffset)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x + _xTileOffset, tile.y - _ytileOffset)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x - _xTileOffset, tile.y + _ytileOffset)));
+			adjacentTiles.addTile(retrieve(new Point(tile.x - _xTileOffset, tile.y - _ytileOffset)));
 			
 			return adjacentTiles;
 		}

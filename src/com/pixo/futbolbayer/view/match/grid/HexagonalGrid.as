@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.view.match.terrain
+package com.pixo.futbolbayer.view.match.grid
 {
 	import com.pixo.futbolbayer.view.events.GridEvent;
 	
@@ -17,7 +17,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		private var _canvas:Sprite = null;
 		private var _hexagons:Vector.<Tile>;
 		
-		private var _adjacentTiles:Array = new Array();
+		private var _adjacentTiles:AdjacentTiles;
 		private var _current:Tile = null;
 		
 		private var retriever:GridTileRetriever;
@@ -33,7 +33,7 @@ package com.pixo.futbolbayer.view.match.terrain
 			_canvas = new Sprite();
 			addChild(_canvas);
 			buildGrid();
-			selectTile(getTileInPoint(new Point(_canvas.x, _canvas.y)));
+			selectTile(getTileInPoint(new Point(0, 0)));
 		}
 		
 		private function buildGrid():void 
@@ -55,7 +55,27 @@ package com.pixo.futbolbayer.view.match.terrain
 			dispatchEvent(new GridEvent(GridEvent.SELECTED_POINT, new Point(_canvas.x + tile.x, _canvas.y + tile.y)));
 		}
 		
+		public function startMovement():void
+		{
+			_adjacentTiles.turnOn();
+			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+		}
 		
+		private function handleMouseDown(e:Event):void
+		{
+			var mousePoint:Point = new Point(stage.mouseX, stage.mouseY);
+			mousePoint.offset(-_canvas.x, -_canvas.y);
+			var tile:Tile = getTileInPoint(mousePoint);
+			if (tile != null && _adjacentTiles.contains(tile))
+				completeMovement(tile);
+		}
+		
+		private function completeMovement(tile:Tile):void
+		{
+			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+			_adjacentTiles.turnOff();
+			selectTile(tile);
+		}
 		
 		/*public function startMovement():void
 		{

@@ -1,6 +1,7 @@
-package com.pixo.futbolbayer.view.match.terrain 
+package com.pixo.futbolbayer.view.match 
 {
 	import com.pixo.futbolbayer.view.events.GridEvent;
+	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -31,26 +32,22 @@ package com.pixo.futbolbayer.view.match.terrain
 		{
 			ball.x = e.point.x;
 			ball.y = e.point.y;
-		}
-		
-		/*
-		
-		public function move(movements:int):void
-		{
-			_movements = movements;
 			checkMovements();
 		}
 		
-		
+		public function move(movements:int):void
+		{
+			this.movements = movements;
+			checkMovements();
+		}
 		
 		private function checkMovements():void 
 		{
-			if (_movements > 0)
+			if (movements > 0)
 			{
-				_movements --;
-				_grid.startMovement();
+				movements --;
+				grid.startMovement();
 			}
-			trace(_movements);
-		}*/
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.view.match.terrain
+package com.pixo.futbolbayer.view.match.grid
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;

@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.view.match.terrain
+package com.pixo.futbolbayer.view.match.grid
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -18,7 +18,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		
 		public function Tile (pRadius:int) 
 		{
-			_bmpdOn = new TileBitmapData (pRadius/2, 0x00ff00, 0.5);
+			_bmpdOn = new TileBitmapData (pRadius/2, 0x00ff00, 1);
 			_bmpdOff = new TileBitmapData (pRadius/2, 0x000000, 0);
 			_bmp = new Bitmap (_bmpdOff, PixelSnapping.AUTO, true);
 			_bmp.x -= _bmp.width/2;
@@ -29,6 +29,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		public function on():void 
 		{
 			_bmp.bitmapData = _bmpdOn;
+			_bmp.alpha = 0.5;
 		}
 		
 		public function off():void 

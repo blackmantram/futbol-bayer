@@ -1,9 +1,10 @@
 package com.pixo.futbolbayer.view
 {
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchDTO;
-	import com.pixo.futbolbayer.view.match.terrain.Pitch;
+	import com.pixo.futbolbayer.view.match.Pitch;
 	
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
 	import skins.GameSkin;
@@ -16,7 +17,7 @@ package com.pixo.futbolbayer.view
 		private var time:TextField;
 		private var team1Name:TextField;
 		private var team2Name:TextField;
-		private var pitch:Pitch;
+		private var pitch:com.pixo.futbolbayer.view.match.Pitch;
 		
 		public function MatchView()
 		{
