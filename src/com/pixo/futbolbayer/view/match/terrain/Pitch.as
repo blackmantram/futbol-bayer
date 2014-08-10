@@ -11,7 +11,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		private var currentPoint:Point;
 		private var movements:int;
 		
-		private var grid:HexagonalGrid = new HexagonalGrid();
+		private var grid:HexagonalGrid;
 		private var ball:Sprite;
 		
 		public function Pitch(ballSkin:Sprite)
@@ -22,6 +22,7 @@ package com.pixo.futbolbayer.view.match.terrain
 		
 		private function init():void
 		{
+			grid = new HexagonalGrid();
 			grid.addEventListener(GridEvent.SELECTED_POINT, handleSelectedPoint);
 			addChild(grid);
 		}

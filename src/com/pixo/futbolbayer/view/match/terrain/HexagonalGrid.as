@@ -1,37 +1,26 @@
 package com.pixo.futbolbayer.view.match.terrain
 {
+	import com.pixo.futbolbayer.view.events.GridEvent;
+	
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.utils.getTimer;
-	import com.pixo.futbolbayer.view.events.GridEvent;
 	
 	//most of this class functionality was taken from 
 	//http://www.innerdrivestudios.com/blog/as3-tile-based-gaming/hexagon-tile-grids-in-actionscript-3
 	public class HexagonalGrid extends Sprite 
 	{
 		private var _canvas:Sprite = null;
+		private var _hexagons:Vector.<Tile>;
 		
 		private var _adjacentTiles:Array = new Array();
-		
-		private var _hexagons:Vector.<Tile> = null;
-
-		private var _gridWidth:int = 21;
-		private var _gridHeight:int = 11;
-		
-		private var _hexWidth:Number 		= 48;
-		
-		private var _hexHeight:Number 		= _hexWidth * Math.sin (60 * Math.PI / 180);
-		
-		private var _columnOffset:Number	= _hexWidth * 3 / 4;
-		private var _rowOffset:Number		= _hexHeight >> 1;
-		
-		private var _xCenterOffset:Number = -(_columnOffset * (_gridWidth - 1)) >> 1;
-		
-		private var _yCenterOffset:Number = -(_hexHeight * (_gridHeight-1)) >> 1;
-		
 		private var _current:Tile = null;
+		
+		private var retriever:GridTileRetriever;
 		
 		public function HexagonalGrid():void 
 		{
@@ -39,77 +28,34 @@ package com.pixo.futbolbayer.view.match.terrain
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
-		private function init(e:Event = null):void 
+		private function init(e:Event=null):void
 		{
 			_canvas = new Sprite();
-			_canvas.x = stage.stageWidth >> 1;
-			_canvas.y = stage.stageHeight >> 1;
-			addChild (_canvas);
-			
-			_hexagons = new Vector.<Tile>();
-
-			var lHexCount:int = _gridWidth * _gridHeight;
-			var lX:int = 0;
-			var lY:int = 0;
-			var lHex:Tile = null;
-
-			for (var i:int = 0; i < lHexCount; i++) 
-			{
-				lX = i % _gridWidth;
-				lY = i / _gridWidth;
-			
-				lHex = new Tile(_hexWidth);
-				lHex.x = _xCenterOffset + (lX * _columnOffset);
-				lHex.y = + _yCenterOffset + (lY * _hexHeight) + ((lX%2)*_rowOffset);
-				_hexagons.push (lHex);
-				_canvas.addChild (lHex);			
-			}
-			
+			addChild(_canvas);
+			buildGrid();
 			selectTile(getTileInPoint(new Point(_canvas.x, _canvas.y)));
+		}
+		
+		private function buildGrid():void 
+		{
+			var gridBuilder:GridBuilder = new GridBuilder(_canvas);
+			_hexagons = gridBuilder.build();
+			retriever = new GridTileRetriever(_canvas, _hexagons);
 		}
 		
 		private function getTileInPoint(lPoint:Point):Tile 
 		{
-			var lXMouseOffset:Number = _canvas.x + _xCenterOffset - _hexWidth / 2;
-			
-			var lX:Number = (lPoint.x - lXMouseOffset) / _columnOffset;
-			if (lX < 0 || lX >= _gridWidth) return null;
-			lX = int (lX);
-			
-			var lYMouseOffset:Number = _canvas.y + _yCenterOffset - _rowOffset 
-			
-			var lY:Number = (lPoint.y - lYMouseOffset - lX%2*_rowOffset) / _hexHeight;
-			if (lY < 0 || lY >= _gridHeight) return null;
-			lY = int (lY);
-			
-			var x:Number = (lX * _columnOffset) + lXMouseOffset;
-			var y:Number = (_hexHeight * lY) + ((lX % 2) * _rowOffset) + lYMouseOffset + _rowOffset;
-			var lQuart:Number = 1 / 4 * _hexWidth;
-			var lDeltaX:Number = lPoint.x - x;
-			var lDeltaY:Number = lPoint.y - y;
-			var lBreak:Number = (lDeltaX / lQuart) * _rowOffset;
-			
-			if (lDeltaX < lQuart) {
-				if (lDeltaY < -lBreak) {
-					lX -= 1;
-					lY -= (lX%2==0)?0:1;
-				} else if (lDeltaY > lBreak) {
-					lX -= 1;
-					lY += (lX%2==0)?1:0;
-				}
-			} 
-			
-			if (lX >= 0 && lX < _gridWidth && lY >= 0 && lY < _gridHeight)
-				return _hexagons[lY * _gridWidth + lX];
-			else
-				return null;
+			return retriever.retrieve(lPoint);
 		}
 		
 		private function selectTile(tile:Tile):void
 		{
 			_current = tile;
+			_adjacentTiles = retriever.findAdjacentTiles(tile);
 			dispatchEvent(new GridEvent(GridEvent.SELECTED_POINT, new Point(_canvas.x + tile.x, _canvas.y + tile.y)));
 		}
+		
+		
 		
 		/*public function startMovement():void
 		{
