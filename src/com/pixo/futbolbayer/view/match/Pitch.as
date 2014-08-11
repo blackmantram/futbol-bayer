@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.view.match 
 {
 	import com.pixo.futbolbayer.view.events.GridEvent;
+	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
 	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
 	
 	import flash.display.Sprite;
@@ -14,6 +15,11 @@ package com.pixo.futbolbayer.view.match
 		
 		private var grid:HexagonalGrid;
 		private var ball:Sprite;
+		
+		public function get movementsLeft():int
+		{
+			return movements;
+		}
 		
 		public function Pitch(ballSkin:Sprite)
 		{
@@ -43,6 +49,7 @@ package com.pixo.futbolbayer.view.match
 		
 		private function checkMovements():void 
 		{
+			dispatchEvent(new MatchProgressEvent(MatchProgressEvent.PROGRESS, true));
 			if (movements > 0)
 			{
 				movements --;

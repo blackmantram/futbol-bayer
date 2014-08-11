@@ -1,5 +1,6 @@
 package com.pixo.futbolbayer.view
 {
+	import com.pixo.futbolbayer.model.MatchModel;
 	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
 	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
@@ -22,9 +23,13 @@ package com.pixo.futbolbayer.view
 		[Inject]
 		public var settingsModel:SettingsModel;
 		
+		[Inject]
+		public var matchModel:MatchModel;
+		
 		override public function onRegister():void
 		{
 			setStartMatchData();
+			this.eventMap.mapListener(view, MatchProgressEvent.PROGRESS, handleMatchProgress);
 			this.eventMap.mapListener(view.dice.clip, MouseEvent.CLICK, handleDiceRolled);
 			this.eventMap.mapListener(view.dice, DiceEvent.ROLL_FINISHED, handleRollFinished);
 		}
@@ -45,18 +50,20 @@ package com.pixo.futbolbayer.view
 		private function handleRollFinished(e:DiceEvent):void
 		{
 			this.eventMap.mapListener(view.dice.clip, MouseEvent.CLICK, handleDiceRolled);
-			dispatch(new MatchProgressEvent(MatchProgressEvent.PROGRESS, createMatchProgressDTO()));
 			view.move();
 		}
 		
-		protected function createMatchProgressDTO():MatchProgressDTO
+		private function handleMatchProgress(e:MatchProgressEvent):void
 		{
-			var dto:MatchProgressDTO = new MatchProgressDTO();
-			dto.teamAGoals = 0;
-			dto.teamBGoals = 0;
-			dto.movementsLeft = 0;
-			dto.currentTurn = 0;
-			return dto;
+			updateModel();
+			this.dispatch(e);
+		}
+		
+		private function updateModel():void
+		{
+			matchModel.movementsLeft = view.pitch.movementsLeft;
+			matchModel.team1Goals = 0;
+			matchModel.team2Goals = 0;
 		}
 	}
 }

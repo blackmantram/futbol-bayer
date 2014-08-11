@@ -8,12 +8,14 @@ package com.pixo.futbolbayer.view.events
 	{
 		public static const PROGRESS:String = "MatchProgressEvent.Progress";
 		
-		public var matchProgressDTO:MatchProgressDTO;
-		
-		public function MatchProgressEvent(type:String, matchProgressDTO:MatchProgressDTO, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function MatchProgressEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-			this.matchProgressDTO = matchProgressDTO;
 			super(type, bubbles, cancelable);
+		}
+		
+		override public function clone() : Event 
+		{
+			return new MatchProgressEvent(type, bubbles, cancelable);
 		}
 	}
 }
