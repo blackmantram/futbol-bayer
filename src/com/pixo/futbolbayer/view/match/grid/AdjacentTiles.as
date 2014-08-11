@@ -19,13 +19,15 @@ package com.pixo.futbolbayer.view.match.grid
 		public function turnOn():void
 		{
 			for each(var tile:Tile in tilesArray)
-				tile.on();
+				if (tile != null)
+					tile.on();
 		}
 		
 		public function turnOff():void
 		{
 			for each(var tile:Tile in tilesArray)
-				tile.off();
+				if (tile != null)
+					tile.off();
 		}
 		
 		public function contains(tile:Tile):Boolean

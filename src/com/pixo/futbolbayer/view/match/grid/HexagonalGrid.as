@@ -76,64 +76,6 @@ package com.pixo.futbolbayer.view.match.grid
 			_adjacentTiles.turnOff();
 			selectTile(tile);
 		}
-		
-		/*public function startMovement():void
-		{
-			findAdjacentTiles();
-			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
-		}
-		
-		private function handleMouseDown(e:Event):void
-		{
-			var tile:Tile = getTileInPoint(new Point(stage.mouseX, stage.mouseY));
-			if (tile != null)
-				for each(var adjacentTile:Tile in _adjacentTiles)
-					if (tile == adjacentTile)
-						completeMovement(tile);
-		}
-		
-		private function completeMovement(tile:Tile):void
-		{
-			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
-			selectTile(tile);
-		}
-		
-		private function turnAdjacentTilesOff():void
-		{
-			for each(var adjacentTile:Tile in _adjacentTiles)
-				adjacentTile.off();
-		}
-		
-		private function findAdjacentTiles():void
-		{
-			_adjacentTiles = new Array();
-			
-			setAdjacentTile (new Point(_current.x, _current.y + _hexHeight));
-			
-			setAdjacentTile (new Point(_current.x, _current.y - _hexHeight));
-			
-			var _xTileOffset:int = _columnOffset;
-			var _ytileOffset:int = (Math.tan(30 * Math.PI / 180) * _xTileOffset);
-			
-			setAdjacentTile (new Point(_current.x + _xTileOffset, _current.y + _ytileOffset));
-			
-			setAdjacentTile (new Point(_current.x + _xTileOffset, _current.y - _ytileOffset));
-			
-			setAdjacentTile (new Point(_current.x - _xTileOffset, _current.y + _ytileOffset));
-			
-			setAdjacentTile (new Point(_current.x - _xTileOffset, _current.y - _ytileOffset));
-		}
-		
-		private function setAdjacentTile(point:Point):void
-		{
-			point.offset(_canvas.x, _canvas.y);
-			var tile:Tile = getTileInPoint(point);
-			if (tile != null)
-			{
-				tile.on();
-				_adjacentTiles.push(tile);
-			}
-		}*/
 	}
 	
 }
