@@ -2,9 +2,7 @@ package com.pixo.futbolbayer.model
 {
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchSettingsDTO;
 	
-	import org.robotlegs.mvcs.Actor;
-	
-	public class MatchSettingsModel extends Actor
+	public class MatchSettings
 	{
 		public var time:int;
 		

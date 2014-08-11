@@ -1,6 +1,6 @@
 package com.pixo.futbolbayer.controller.commands
 {
-	import com.pixo.futbolbayer.model.MatchSettingsModel;
+	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchSettingsDTO;
 	import com.pixo.futbolbayer.view.events.SettingsEvent;
 	
@@ -12,11 +12,11 @@ package com.pixo.futbolbayer.controller.commands
 		public var event:SettingsEvent;
 		
 		[Inject]
-		public var matchSettings:MatchSettingsModel;
+		public var settingModel:SettingsModel;
 		
 		override public function execute():void
 		{
-			matchSettings.update(event.settings as MatchSettingsDTO);
+			settingModel.matchSettings.update(event.settings as MatchSettingsDTO);
 		}
 	}
 }

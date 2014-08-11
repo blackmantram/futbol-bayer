@@ -1,7 +1,6 @@
 package com.pixo.futbolbayer.controller.commands.boostrap
 {
-	import com.pixo.futbolbayer.model.MatchSettingsModel;
-	import com.pixo.futbolbayer.model.TeamSettingsModel;
+	import com.pixo.futbolbayer.model.SettingsModel;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -9,8 +8,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	{
 		override public function execute():void
 		{
-			injector.mapSingleton(MatchSettingsModel);
-			injector.mapSingleton(TeamSettingsModel);
+			injector.mapSingleton(SettingsModel);
 		}
 	} 
 

@@ -1,7 +1,7 @@
 package com.pixo.futbolbayer.view
 {
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchSettingsDTO;
-	import com.pixo.futbolbayer.model.datatransferobjects.MatchDTO;
+	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
 	import com.pixo.futbolbayer.model.datatransferobjects.TeamSettingsDTO;
 	
 	import flash.display.Sprite;
@@ -50,15 +50,15 @@ package com.pixo.futbolbayer.view
 			dispatchEvent(new Event(Event.DISPLAYING));
 		}
 		
-		public function setPreviewData(matchSettings:MatchDTO):void
+		public function setPreviewData(startMatchDTO:StartMatchDTO):void
 		{
-			team1Preview.addChild(matchSettings.team1Uniform);
-			team2Preview.addChild(matchSettings.team2Uniform);
-			stadiumPreview.text = matchSettings.stadiumName;
-			refereePreview.text = matchSettings.refereeName;
-			timePreview.text = matchSettings.matchTime;
-			team1NamePreview.text = matchSettings.team1Name;
-			team2NamePreview.text = matchSettings.team2Name;
+			team1Preview.addChild(startMatchDTO.team1Uniform);
+			team2Preview.addChild(startMatchDTO.team2Uniform);
+			stadiumPreview.text = startMatchDTO.stadiumName;
+			refereePreview.text = startMatchDTO.refereeName;
+			timePreview.text = startMatchDTO.matchTime;
+			team1NamePreview.text = startMatchDTO.team1Name;
+			team2NamePreview.text = startMatchDTO.team2Name;
 		}
 	}
 }

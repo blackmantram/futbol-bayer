@@ -22,12 +22,12 @@ package com.pixo.futbolbayer.view.match
 		public function Dice(clip:MovieClip)
 		{
 			this.clip = clip;
-			clip.stop();
+			clip.gotoAndStop("idle");
 		}
 		
 		public function roll():void
 		{
-			clip.gotoAndPlay("animation");
+			clip.gotoAndStop("animation");
 			timer = new Timer(1500);
 			timer.addEventListener(TimerEvent.TIMER, handleRollFinished);
 			timer.start();

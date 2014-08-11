@@ -2,9 +2,7 @@ package com.pixo.futbolbayer.model
 {
 	import com.pixo.futbolbayer.model.datatransferobjects.TeamSettingsDTO;
 	
-	import org.robotlegs.mvcs.Actor;
-
-	public class TeamSettingsModel extends Actor
+	public class TeamSettings
 	{
 		public var team1:Team = new Team();
 		public var team2:Team = new Team();

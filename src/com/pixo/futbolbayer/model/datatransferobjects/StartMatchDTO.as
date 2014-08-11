@@ -2,7 +2,7 @@ package com.pixo.futbolbayer.model.datatransferobjects
 {
 	import flash.display.DisplayObject;
 
-	public class MatchDTO
+	public class StartMatchDTO
 	{
 		public var stadiumName:String;
 		public var refereeName:String;

@@ -18,5 +18,8 @@ package skins {
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="match")]
 		public static var MatchSkin:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="hud")]
+		public static var HudSkin:Class;
 	}
 }

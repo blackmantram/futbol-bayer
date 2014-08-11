@@ -1,10 +1,12 @@
 package com.pixo.futbolbayer.view
 {
-	import com.pixo.futbolbayer.model.MatchSettingsModel;
-	import com.pixo.futbolbayer.model.TeamSettingsModel;
-	import com.pixo.futbolbayer.model.datatransferobjects.MatchDTO;
+	import com.pixo.futbolbayer.model.SettingsModel;
+	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
+	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
 	import com.pixo.futbolbayer.service.IAssetsServiceResponse;
 	import com.pixo.futbolbayer.view.events.DiceEvent;
+	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
+	import com.pixo.futbolbayer.view.events.StartMatchDataEvent;
 	
 	import common.AssetType;
 	
@@ -12,23 +14,26 @@ package com.pixo.futbolbayer.view
 	
 	import org.robotlegs.mvcs.Mediator;
 	
-	public class MatchViewMediator extends BaseMatchMediator
+	public class MatchViewMediator extends Mediator
 	{
 		[Inject]
 		public var view:MatchView;
 		
+		[Inject]
+		public var settingsModel:SettingsModel;
+		
 		override public function onRegister():void
 		{
-			view.setData(createPreviewDTO());
+			setStartMatchData();
 			this.eventMap.mapListener(view.dice.clip, MouseEvent.CLICK, handleDiceRolled);
 			this.eventMap.mapListener(view.dice, DiceEvent.ROLL_FINISHED, handleRollFinished);
 		}
 		
-		override protected function createPreviewDTO():MatchDTO
+		private function setStartMatchData():void
 		{
-			var dto:MatchDTO = super.createPreviewDTO();
-			dto.stadium = getAsset(matchSettingsModel.stadiumId, AssetType.STADIUMS);
-			return dto; 
+			var startMatchDTO:StartMatchDTO = settingsModel.createStartMatchDTO();
+			view.setData(startMatchDTO);
+			dispatch(new StartMatchDataEvent(StartMatchDataEvent.DATA_READY, startMatchDTO));
 		}
 		
 		private function handleDiceRolled(e:MouseEvent):void
@@ -40,7 +45,18 @@ package com.pixo.futbolbayer.view
 		private function handleRollFinished(e:DiceEvent):void
 		{
 			this.eventMap.mapListener(view.dice.clip, MouseEvent.CLICK, handleDiceRolled);
+			dispatch(new MatchProgressEvent(MatchProgressEvent.PROGRESS, createMatchProgressDTO()));
 			view.move();
+		}
+		
+		protected function createMatchProgressDTO():MatchProgressDTO
+		{
+			var dto:MatchProgressDTO = new MatchProgressDTO();
+			dto.teamAGoals = 0;
+			dto.teamBGoals = 0;
+			dto.movementsLeft = 0;
+			dto.currentTurn = 0;
+			return dto;
 		}
 	}
 }
