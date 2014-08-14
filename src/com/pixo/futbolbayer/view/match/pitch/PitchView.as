@@ -1,7 +1,7 @@
 package com.pixo.futbolbayer.view.match.pitch 
 {
 	import com.pixo.futbolbayer.view.events.GridEvent;
-	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
+	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
 	
 	import flash.display.DisplayObject;
@@ -63,7 +63,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function checkMovements():void 
 		{
-			dispatchEvent(new MatchProgressEvent(MatchProgressEvent.MOVEMENT, true));
+			dispatchEvent(new MatchEvent(MatchEvent.MOVEMENT, true));
 			if (movements > 0)
 			{
 				movements --;

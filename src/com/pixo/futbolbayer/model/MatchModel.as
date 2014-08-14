@@ -1,7 +1,13 @@
 package com.pixo.futbolbayer.model
 {
+	import com.pixo.futbolbayer.controller.events.MatchClockEvent;
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
 	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
+	import org.hamcrest.mxml.collection.InArray;
+	import org.osmf.events.TimeEvent;
 	import org.robotlegs.mvcs.Actor;
 
 	public class MatchModel extends Actor
@@ -12,6 +18,20 @@ package com.pixo.futbolbayer.model
 		public var movementsLeft:int;
 		public var currentTurn:int;
 		
+		private var clockTimer:Timer = new Timer(1000);
+		
+		public function MatchModel() 
+		{
+			super();
+			this.clockTimer.addEventListener(TimerEvent.TIMER, handleTimer);
+		}
+		
+		private function handleTimer(e:TimerEvent):void
+		{
+			currentTime--;
+			this.dispatch(new MatchClockEvent(MatchClockEvent.TICK, currentTime));
+		}
+		
 		public function createMatchProgressDTO():MatchProgressDTO
 		{
 			var dto:MatchProgressDTO = new MatchProgressDTO();
@@ -20,6 +40,12 @@ package com.pixo.futbolbayer.model
 			dto.movementsLeft = movementsLeft;
 			dto.currentTurn = currentTime;
 			return dto;
+		}
+		
+		public function start(setTime:int):void
+		{
+			currentTime = setTime;
+			this.clockTimer.start();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.pixo.futbolbayer.view.match
 {
+	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
 	import com.pixo.futbolbayer.view.tweens.ShowRefereeTween;
 	import com.pixo.futbolbayer.view.tweens.events.TweenEvent;
 	
@@ -43,7 +44,7 @@ package com.pixo.futbolbayer.view.match
 			popup.visible = false;
 		}
 		
-		public function start():void
+		public function playIntro():void
 		{
 			refereeTween.tween(popup);
 			refereeTween.addEventListener(TweenEvent.COMPLETED, handleStartComplete);
@@ -51,7 +52,7 @@ package com.pixo.futbolbayer.view.match
 		
 		private function handleStartComplete(e:TweenEvent):void
 		{
-			trace("handleStartComplete");
+			dispatchEvent(new RefereeingViewEvent(RefereeingViewEvent.INTRO_COMPLETED));
 		}
 	}
 }

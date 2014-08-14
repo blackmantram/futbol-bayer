@@ -77,5 +77,10 @@ package com.pixo.futbolbayer.view.match
 			movementsLeft.text = movements.toString();
 		}
 		
+		public function setCurrentTime(currentTime:String):void
+		{
+			time.text = currentTime;	
+		}
+		
 	}
 }

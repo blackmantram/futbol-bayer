@@ -1,5 +1,7 @@
 package com.pixo.futbolbayer.service.trivia
 {
+	import common.utils.MathUtils;
+
 	public class QuestionsParser implements IQuestionsParser
 	{
 		public var questions:Array = new Array();
@@ -17,6 +19,11 @@ package com.pixo.futbolbayer.service.trivia
 				question.incorrectAnswerC = questionObject["incorrectAnswerC"];
 				questions.push(question);
 			}
+		}
+		
+		public function getQuestion():Question
+		{
+			return questions[MathUtils.randomRange(0, questions.length-1)];
 		}
 	}
 }

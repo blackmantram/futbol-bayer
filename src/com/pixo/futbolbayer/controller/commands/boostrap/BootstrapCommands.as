@@ -1,8 +1,11 @@
 package com.pixo.futbolbayer.controller.commands.boostrap
 {
+	import com.pixo.futbolbayer.controller.commands.ShowQuestionCommand;
+	import com.pixo.futbolbayer.controller.commands.StartMatchCommand;
 	import com.pixo.futbolbayer.controller.commands.UpdateMatchSettingsCommant;
 	import com.pixo.futbolbayer.controller.commands.UpdateTeamSettingsCommand;
 	import com.pixo.futbolbayer.controller.events.GameEvent;
+	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.SettingsEvent;
 	
 	import org.robotlegs.mvcs.Command;
@@ -13,6 +16,8 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 		{
 			commandMap.mapEvent(SettingsEvent.MATCH_SETTINGS_CHANGED, UpdateMatchSettingsCommant, SettingsEvent);
 			commandMap.mapEvent(SettingsEvent.TEAM_SETTINGS_CHANGED, UpdateTeamSettingsCommand, SettingsEvent);
+			commandMap.mapEvent(MatchEvent.START, StartMatchCommand);
+			commandMap.mapEvent(MatchEvent.START, ShowQuestionCommand);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.pixo.futbolbayer.view.match
 {
+	import com.pixo.futbolbayer.view.events.MatchEvent;
+	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
+	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -8,27 +11,33 @@ package com.pixo.futbolbayer.view.match
 	
 	public class RefereeingViewMediator extends Mediator
 	{
-		private var startTimer:Timer;
+		private var delayTimer:Timer;
 		
 		[Inject]
 		public var view:RefereeingView;
 		
 		override public function onRegister():void
 		{
-			start();
+			delay();
+			this.eventMap.mapListener(view, RefereeingViewEvent.INTRO_COMPLETED, handleStartComplete);
 		}
 		
-		private function start():void
+		private function delay():void
 		{	
-			startTimer = new Timer(2000);
-			startTimer.start();
-			startTimer.addEventListener(TimerEvent.TIMER, handleStartTimer);
+			delayTimer = new Timer(2000);
+			delayTimer.start();
+			delayTimer.addEventListener(TimerEvent.TIMER, handleDelayTimer);
 		}
 		
-		private function handleStartTimer(e:Event):void
+		private function handleDelayTimer(e:Event):void
 		{
-			startTimer.stop();
-			view.start();
+			delayTimer.stop();
+			view.playIntro();
+		}
+		
+		private function handleStartComplete(e:RefereeingViewEvent):void
+		{
+			this.dispatch(new MatchEvent(MatchEvent.START));
 		}
 	}
 }

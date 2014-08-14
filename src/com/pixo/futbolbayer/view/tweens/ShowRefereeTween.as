@@ -24,6 +24,7 @@ package com.pixo.futbolbayer.view.tweens
 		{
 			timer.stop();
 			_object.visible = false;
+			fireTweenCompleteEvent();
 		}
 	}
 }

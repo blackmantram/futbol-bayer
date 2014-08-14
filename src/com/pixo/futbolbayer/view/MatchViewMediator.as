@@ -5,12 +5,14 @@ package com.pixo.futbolbayer.view
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
 	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	import com.pixo.futbolbayer.view.events.DiceEvent;
-	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
+	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.StartMatchDataEvent;
 	
 	import common.AssetType;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.sampler.NewObjectSample;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
@@ -34,13 +36,7 @@ package com.pixo.futbolbayer.view
 			//this.eventMap.mapListener(view.dice, DiceEvent.ROLL_FINISHED, handleRollFinished);
 		}
 		
-		/*private function setStartMatchData():void
-		{
-			var startMatchDTO:StartMatchDTO = settingsModel.createStartMatchDTO();
-			view.setData(startMatchDTO);
-			dispatch(new StartMatchDataEvent(StartMatchDataEvent.DATA_READY, startMatchDTO));
-		}
-		
+		/*
 		private function handleDiceRolled(e:MouseEvent):void
 		{
 			this.eventMap.unmapListener(view.dice.clip, MouseEvent.CLICK, handleDiceRolled);
