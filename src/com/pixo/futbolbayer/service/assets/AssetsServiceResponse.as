@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.service
+package com.pixo.futbolbayer.service.assets
 {
 	import flash.utils.Dictionary;
 

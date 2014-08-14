@@ -1,8 +1,9 @@
 package com.pixo.futbolbayer.view
 {
 	import com.pixo.futbolbayer.controller.events.GameEvent;
-	import com.pixo.futbolbayer.service.IAssetsLoadService;
+	import com.pixo.futbolbayer.service.assets.IAssetsLoadService;
 	import com.pixo.futbolbayer.service.events.AssetsLoadedEvent;
+	import com.pixo.futbolbayer.service.trivia.IQuestionsLoadService;
 	
 	import flash.events.MouseEvent;
 	
@@ -14,7 +15,10 @@ package com.pixo.futbolbayer.view
 		public var view:StartView;
 		
 		[Inject]
-		public var service:IAssetsLoadService;
+		public var assetsService:IAssetsLoadService;
+		
+		[Inject]
+		public var questionsService:IQuestionsLoadService;
 		
 		public function StartViewMediator()
 		{
@@ -24,7 +28,8 @@ package com.pixo.futbolbayer.view
 		override public function onRegister():void 
 		{
 			this.addContextListener(AssetsLoadedEvent.COMPLETE, handleAssetsLoaded);
-			service.loadAssets();
+			assetsService.loadAssets();
+			questionsService.loadQuestions();
 		}
 		
 		private function handleAssetsLoaded(e:AssetsLoadedEvent):void

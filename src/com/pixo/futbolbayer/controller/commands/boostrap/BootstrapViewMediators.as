@@ -14,6 +14,8 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.view.TeamSettingsViewMediator;
 	import com.pixo.futbolbayer.view.match.HudView;
 	import com.pixo.futbolbayer.view.match.HudViewMediator;
+	import com.pixo.futbolbayer.view.trivia.TriviaView;
+	import com.pixo.futbolbayer.view.trivia.TriviaViewMediator;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -29,6 +31,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			mediatorMap.mapView(MatchPreview, MatchPreviewMediator);
 			mediatorMap.mapView(HudView, HudViewMediator);
 			mediatorMap.mapView(MatchView, MatchViewMediator);
+			mediatorMap.mapView(TriviaView, TriviaViewMediator);
 		}
 	
 	}

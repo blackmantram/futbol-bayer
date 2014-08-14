@@ -3,12 +3,12 @@ package
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 
-	public class AssetsLoader
+	public class TriviaLoader
 	{
 		private var xml:String;
 		private var jsonFileLocation:String =  = "/config/gameassets.json";
 		
-		public function AssetsLoader()
+		public function TriviaLoader()
 		{
 			
 		}

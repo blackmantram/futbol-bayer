@@ -4,7 +4,7 @@ package com.pixo.futbolbayer.view
 	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
 	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
-	import com.pixo.futbolbayer.service.IAssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	import com.pixo.futbolbayer.view.events.DiceEvent;
 	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
 	import com.pixo.futbolbayer.view.events.StartMatchDataEvent;

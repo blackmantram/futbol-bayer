@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.service
+package com.pixo.futbolbayer.service.assets
 {
 	import com.pixo.futbolbayer.service.events.AssetsLoadedEvent;
 	

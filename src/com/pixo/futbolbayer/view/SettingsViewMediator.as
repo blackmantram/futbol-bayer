@@ -1,7 +1,7 @@
 package com.pixo.futbolbayer.view
 {
 	import com.pixo.futbolbayer.controller.events.GameEvent;
-	import com.pixo.futbolbayer.service.IAssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	import com.pixo.futbolbayer.view.events.SettingsEvent;
 	
 	import flash.display.DisplayObject;

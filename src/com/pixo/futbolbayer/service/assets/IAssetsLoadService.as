@@ -1,4 +1,4 @@
-package com.pixo.futbolbayer.service
+package com.pixo.futbolbayer.service.assets
 {
 	public interface IAssetsLoadService
 	{

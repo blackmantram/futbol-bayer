@@ -1,8 +1,8 @@
 package com.pixo.futbolbayer.model
 {
 	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
-	import com.pixo.futbolbayer.service.AssetsServiceResponse;
-	import com.pixo.futbolbayer.service.IAssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.AssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	
 	import common.AssetType;
 	import common.utils.TimeUtils;

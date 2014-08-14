@@ -1,6 +1,6 @@
 package com.pixo.futbolbayer.service.events
 {
-	import com.pixo.futbolbayer.service.IAssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	
 	import flash.events.Event;
 

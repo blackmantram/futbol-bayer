@@ -21,5 +21,8 @@ package skins {
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="hud")]
 		public static var HudSkin:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="trivia")]
+		public static var TriviaSkin:Class;
 	}
 }
