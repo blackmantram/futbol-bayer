@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.model
 {
-	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
+	import com.pixo.futbolbayer.model.datatransferobjects.HudDTO;
+	import com.pixo.futbolbayer.model.datatransferobjects.PreviewMatchDTO;
 	import com.pixo.futbolbayer.service.assets.AssetsServiceResponse;
 	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
 	
@@ -21,18 +22,29 @@ package com.pixo.futbolbayer.model
 		[Inject]
 		public var assetsServiceResponse:IAssetsServiceResponse;
 		
-		public function createStartMatchDTO():StartMatchDTO
+		public function createPreviewDTO():PreviewMatchDTO
 		{
-			var dto:StartMatchDTO = new StartMatchDTO();
+			var dto:PreviewMatchDTO = new PreviewMatchDTO();
 			dto.stadiumName = matchSettings.stadiumId.toString();
 			dto.refereeName = matchSettings.refereeId.toString();
+			dto.hudData = createHudDTO();
+			return dto;
+		}
+		
+		public function createHudDTO():HudDTO
+		{
+			var dto:HudDTO = new HudDTO();
 			dto.matchTime = TimeUtils.convertToTimeStamp(matchSettings.time);
 			dto.team1Name = teamSettings.team1.teamName;
 			dto.team1Uniform = getAsset(teamSettings.team1.uniformIndex, AssetType.UNIFORMS);
 			dto.team2Name = teamSettings.team2.teamName;
 			dto.team2Uniform = getAsset(teamSettings.team2.uniformIndex, AssetType.UNIFORMS);
-			dto.stadium = getAsset(matchSettings.stadiumId, AssetType.STADIUMS);
 			return dto;
+		}
+		
+		public function getStadiumAsset():DisplayObject
+		{
+			return getAsset(matchSettings.stadiumId, AssetType.STADIUMS);
 		}
 		
 		private function getAsset(uniformIndex:int, assetType:String):DisplayObject

@@ -22,8 +22,9 @@ package com.pixo.futbolbayer.view.match.grid
 		
 		private var retriever:GridTileRetriever;
 		
-		public function HexagonalGrid():void 
+		public function HexagonalGrid(container:Sprite):void 
 		{
+			container.addChild(this);
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}

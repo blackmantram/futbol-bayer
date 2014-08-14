@@ -1,7 +1,10 @@
 package com.pixo.futbolbayer.view.match
 {
+	import com.pixo.futbolbayer.model.Team;
+	import com.pixo.futbolbayer.model.datatransferobjects.HudDTO;
 	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
-	import com.pixo.futbolbayer.model.datatransferobjects.StartMatchDTO;
+	import com.pixo.futbolbayer.view.tweens.ShowTeam1Tween;
+	import com.pixo.futbolbayer.view.tweens.ShowTeam2Tween;
 	
 	import flash.display.Sprite;
 	import flash.text.TextField;
@@ -15,15 +18,16 @@ package com.pixo.futbolbayer.view.match
 		private var time:TextField;
 		private var team1Name:TextField;
 		private var team2Name:TextField;
-		private var activeTeam:TextField;
+		private var activeTeam:Sprite;
 		private var movementsLeft:TextField;
 		
 		public function HudView()
 		{
-			init();
+			addSkin();
+			playIntro();
 		}
 		
-		private function init():void
+		private function addSkin():void
 		{
 			var skin:Sprite = new GameSkin.HudSkin() as Sprite;
 			addChild(skin);
@@ -32,22 +36,45 @@ package com.pixo.futbolbayer.view.match
 			time = skin.getChildByName("time") as TextField;
 			team1Name = skin.getChildByName("team1_name") as TextField;
 			team2Name = skin.getChildByName("team2_name") as TextField;
-			activeTeam = skin.getChildByName("active_team") as TextField;
+			activeTeam = skin.getChildByName("active_team") as Sprite;
 			movementsLeft = skin.getChildByName("movements_left") as TextField;
 		}
 		
-		public function setData(startMatchDTO:StartMatchDTO):void
+		private function playIntro():void
 		{
-			team1Uniform.addChild(startMatchDTO.team1Uniform);
-			team2Uniform.addChild(startMatchDTO.team2Uniform);
-			time.text = startMatchDTO.matchTime;
-			team1Name.text = startMatchDTO.team1Name;
-			team2Name.text = startMatchDTO.team2Name;
+			var team1Tween:ShowTeam1Tween = new ShowTeam1Tween();
+			team1Tween.tween(team1Uniform);
+			var team2Tween:ShowTeam2Tween = new ShowTeam2Tween();
+			team2Tween.tween(team2Uniform);
 		}
 		
-		public function setMatchProgress(matchProgressDTO:MatchProgressDTO):void
+		public function setData(hudDTO:HudDTO):void
 		{
-			movementsLeft.text = matchProgressDTO.movementsLeft.toString();
+			team1Uniform.addChild(hudDTO.team1Uniform);
+			team2Uniform.addChild(hudDTO.team2Uniform);
+			time.text = hudDTO.matchTime;
+			team1Name.text = hudDTO.team1Name;
+			team2Name.text = hudDTO.team2Name;
+			setCurrentTurn(1);
+		}
+		
+		public function setCurrentTurn(turn:int):void
+		{
+			if (turn==1)
+			{
+				activeTeam.getChildByName("turn1").visible = true;
+				activeTeam.getChildByName("turn2").visible = false;
+			}
+			else
+			{
+				activeTeam.getChildByName("turn1").visible = false;
+				activeTeam.getChildByName("turn2").visible = true;
+			}
+		}
+		
+		public function setMovements(movements:int):void
+		{
+			movementsLeft.text = movements.toString();
 		}
 		
 	}

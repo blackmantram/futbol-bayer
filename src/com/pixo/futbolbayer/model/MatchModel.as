@@ -10,6 +10,7 @@ package com.pixo.futbolbayer.model
 		public var team1Goals:int;
 		public var team2Goals:int;
 		public var movementsLeft:int;
+		public var currentTurn:int;
 		
 		public function createMatchProgressDTO():MatchProgressDTO
 		{

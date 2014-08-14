@@ -9,7 +9,7 @@ package com.pixo.futbolbayer.controller.events
 		public static const MATCH_SETTINGS:String = "GameEvent.matchSettings";
 		public static const TEAM_SETTINGS:String = "GameEvent.teamSettings";
 		public static const PREVIEW:String = "GameEvent.preview";
-		public static const START_MATCH:String = "GameEvent.startMatch";
+		public static const GOTO_MATCH:String = "GameEvent.gotoMatch";
 				
 		/**
 		 *	@constructor

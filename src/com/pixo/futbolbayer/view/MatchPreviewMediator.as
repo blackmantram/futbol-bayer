@@ -20,12 +20,12 @@ package com.pixo.futbolbayer.view
 		{
 			this.eventMap.mapListener(view, Event.DISPLAYING, handleViewShown);
 			this.eventMap.mapListener(view.backButton, MouseEvent.CLICK, handleGoToTeamSetting);
-			this.eventMap.mapListener(view.startButton, MouseEvent.CLICK, handleStartMatch);
+			this.eventMap.mapListener(view.startButton, MouseEvent.CLICK, handleGoToMatch);
 		}
 		
 		private function handleViewShown(e:Event):void
 		{
-			view.setPreviewData(settingsModel.createStartMatchDTO());
+			view.setPreviewData(settingsModel.createPreviewDTO());
 		}
 		
 		private function handleGoToTeamSetting(e:MouseEvent):void
@@ -33,9 +33,9 @@ package com.pixo.futbolbayer.view
 			dispatch(new GameEvent(GameEvent.TEAM_SETTINGS));
 		}
 		
-		private function handleStartMatch(e:MouseEvent):void
+		private function handleGoToMatch(e:MouseEvent):void
 		{
-			dispatch(new GameEvent(GameEvent.START_MATCH));
+			dispatch(new GameEvent(GameEvent.GOTO_MATCH));
 		}
 	}
 }

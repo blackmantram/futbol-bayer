@@ -15,10 +15,10 @@ package com.pixo.futbolbayer.view.trivia
 		
 		public function TriviaView()
 		{
-			init();
+			addSkin();
 		}
 		
-		private function init():void
+		private function addSkin():void
 		{
 			var skin:Sprite = new GameSkin.TriviaSkin() as Sprite;
 			addChild(skin);

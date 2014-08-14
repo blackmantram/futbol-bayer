@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.view.match
 {
 	import com.pixo.futbolbayer.model.MatchModel;
+	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.view.events.MatchProgressEvent;
 	import com.pixo.futbolbayer.view.events.StartMatchDataEvent;
 	
@@ -12,22 +13,31 @@ package com.pixo.futbolbayer.view.match
 		public var view:HudView;
 		
 		[Inject]
+		public var settingsModel:SettingsModel;
+		
+		[Inject]
 		public var matchModel:MatchModel;
 		
 		override public function onRegister():void
 		{
-			this.eventMap.mapListener(eventDispatcher, StartMatchDataEvent.DATA_READY, handleStartMatchDataReady);
-			this.eventMap.mapListener(eventDispatcher, MatchProgressEvent.PROGRESS, handleMatchProgress);
+			setInitialData();
+			this.eventMap.mapListener(eventDispatcher, MatchProgressEvent.MOVEMENT, handleMovement);
+			this.eventMap.mapListener(eventDispatcher, MatchProgressEvent.TURN, handleMovement);
 		}
 		
-		private function handleStartMatchDataReady(e:StartMatchDataEvent):void
+		private function setInitialData():void
 		{
-			view.setData(e.startMatchDTO);
+			view.setData(settingsModel.createHudDTO());
 		}
 		
-		private function handleMatchProgress(e:MatchProgressEvent):void
+		private function handleMovement(e:MatchProgressEvent):void
 		{
-			view.setMatchProgress(matchModel.createMatchProgressDTO());
+			view.setMovements(matchModel.movementsLeft);
+		}
+		
+		private function handleTurn(e:MatchProgressEvent):void
+		{
+			view.setCurrentTurn(matchModel.currentTurn);
 		}
 	}
 }

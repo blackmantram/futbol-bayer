@@ -15,7 +15,7 @@ package com.pixo.futbolbayer.view.trivia
 		
 		override public function onRegister():void
 		{
-			
+			view.visible = false;
 		}
 	}
 }

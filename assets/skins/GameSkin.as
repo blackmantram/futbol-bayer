@@ -16,13 +16,19 @@ package skins {
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="match_preview")]
 		public static var MatchPreviewSkin:Class;
 		
-		[Embed(source="FutbolBayer/GameSkins.swf", symbol="match")]
-		public static var MatchSkin:Class;
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="pitch")]
+		public static var PitchSkin:Class;
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="hud")]
 		public static var HudSkin:Class;
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="trivia")]
 		public static var TriviaSkin:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="refereeing")]
+		public static var Refereeing:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="card")]
+		public static var Card:Class;
 	}
 }

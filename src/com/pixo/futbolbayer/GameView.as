@@ -16,9 +16,7 @@ package com.pixo.futbolbayer
 		private var _matchSettingsView:MatchSettingsView;
 		private var _teamSettingsView:TeamSettingsView;
 		private var _matchPreview:MatchPreview;
-		private var _matchHud:HudView;
 		private var _match:MatchView;
-		private var _trivia:TriviaView;
 		
 		public function get matchSettingsView():MatchSettingsView
 		{
@@ -46,20 +44,6 @@ package com.pixo.futbolbayer
 			if(_match == null)
 				_match = new MatchView();
 			return _match;
-		}
-		
-		public function get hud():HudView
-		{
-			if(_matchHud == null)
-				_matchHud = new HudView();
-			return _matchHud;
-		}
-		
-		public function get trivia():TriviaView
-		{
-			if(_trivia == null)
-				_trivia = new TriviaView();
-			return _trivia;
 		}
 		
 		public function GameView(startInMatch:Boolean = false)
@@ -99,13 +83,11 @@ package com.pixo.futbolbayer
 			matchPreview.show();
 		}
 		
-		public function startMatch():void
+		public function showMatch():void
 		{
 			if(contains(matchPreview))
 				removeChild(matchPreview);
-			addChildAt(trivia, 0);
-			addChildAt(hud, 0);
-			addChildAt(match, 0);
+			addChild(match);
 		}
 	}
 }
