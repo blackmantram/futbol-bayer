@@ -28,7 +28,7 @@ package com.pixo.futbolbayer.view.match.refereeing
 		
 		public function clear():void
 		{
-			for each(var card:Sprite in cards)
+			for each(var card:DisplayObject in cards)
 				container.removeChild(card);
 			cards = new Array();
 		}

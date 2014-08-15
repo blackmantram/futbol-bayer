@@ -43,14 +43,25 @@ package com.pixo.futbolbayer.view.match
 			popup.show(PopUp.START, handlePopUpShown);
 		}
 		
-		public function showPenalti():void
+		public function showPenalty():void
 		{
-			popup.show(PopUp.START, handlePopUpShown);
+			popup.show(PopUp.PENALTY, handlePopUpShown);
+		}
+		
+		public function showEnd():void
+		{
+			popup.show(PopUp.END, handlePopUpShown);
 		}
 		
 		private function handlePopUpShown():void
 		{
 			dispatchEvent(new RefereeingViewEvent(RefereeingViewEvent.POPUP_COMPLETED));
+		}
+		
+		public function reset():void
+		{
+			(teamCards[0] as CardDeck).clear();
+			(teamCards[1] as CardDeck).clear();
 		}
 		
 		public function showYellowCard(turn:int):void

@@ -26,6 +26,8 @@ package com.pixo.futbolbayer.view.trivia
 		
 		private var wasLastAnswerCorrect:Boolean;
 		
+		private var isSelectingAnswer:Boolean = false;
+		
 		override public function onRegister():void
 		{
 			view.visible = false;
@@ -34,19 +36,25 @@ package com.pixo.futbolbayer.view.trivia
 			eventMap.mapListener(view.answerBText, TriviaEvent.SELECTED_ANSWER, handleAnswerSelected);
 			eventMap.mapListener(view.answerCText, TriviaEvent.SELECTED_ANSWER, handleAnswerSelected);
 			eventMap.mapListener(view.answerDText, TriviaEvent.SELECTED_ANSWER, handleAnswerSelected);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
 		}
 		
 		private function handleShowQuestion(e:MatchEvent):void
 		{
+			isSelectingAnswer = true;
 			view.visible = true;
 			view.showQuestion(questionsParser.getQuestion());
 		}
 		
 		private function handleAnswerSelected(e:TriviaEvent):void
 		{
-			wasLastAnswerCorrect = e.isCorrect;
-			validateAnswer(wasLastAnswerCorrect);
-			startDelayTime();
+			if (isSelectingAnswer)
+			{
+				isSelectingAnswer = false;
+				wasLastAnswerCorrect = e.isCorrect;
+				validateAnswer(wasLastAnswerCorrect);
+				startDelayTime();	
+			}
 		}
 		
 		private function validateAnswer(isCorrect:Boolean):void
@@ -67,6 +75,12 @@ package com.pixo.futbolbayer.view.trivia
 			TimerUtils.stopTimer(delayTimer, handleDelayComplete);
 			view.visible = false;
 			dispatch(new TriviaEvent(TriviaEvent.SELECTED_ANSWER, wasLastAnswerCorrect));
+		}
+		
+		private function handleEnd(e:MatchEvent):void
+		{
+			view.visible = false;
+			eventMap.unmapListeners();
 		}
 	}
 }

@@ -1,14 +1,18 @@
 package com.pixo.futbolbayer.controller.commands.boostrap
 {
 	import com.pixo.futbolbayer.controller.commands.CheckAnswerCommand;
+	import com.pixo.futbolbayer.controller.commands.PauseCommand;
 	import com.pixo.futbolbayer.controller.commands.ExecutePenaltyCommand;
 	import com.pixo.futbolbayer.controller.commands.MovementCommand;
 	import com.pixo.futbolbayer.controller.commands.NextStepCommand;
+	import com.pixo.futbolbayer.controller.commands.ResumeMatchCommand;
+	import com.pixo.futbolbayer.controller.commands.ScoreCommand;
 	import com.pixo.futbolbayer.controller.commands.ShowQuestionCommand;
 	import com.pixo.futbolbayer.controller.commands.StartMatchCommand;
 	import com.pixo.futbolbayer.controller.commands.UpdateMatchSettingsCommant;
 	import com.pixo.futbolbayer.controller.commands.UpdateTeamSettingsCommand;
 	import com.pixo.futbolbayer.controller.events.GameEvent;
+	import com.pixo.futbolbayer.view.events.AnimationEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.MovementEvent;
 	import com.pixo.futbolbayer.view.events.RefereeingEvent;
@@ -29,6 +33,10 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			
 			commandMap.mapEvent(MatchEvent.START, ShowQuestionCommand);
 			commandMap.mapEvent(MatchEvent.STEP_FINISHED, ShowQuestionCommand);
+			commandMap.mapEvent(MatchEvent.SCORE, ScoreCommand);
+			commandMap.mapEvent(MatchEvent.SCORE, PauseCommand);
+			
+			commandMap.mapEvent(AnimationEvent.ANIMATION_FINISHED, ResumeMatchCommand);
 			
 			commandMap.mapEvent(MovementEvent.MOVEMENT, MovementCommand);
 			commandMap.mapEvent(TriviaEvent.SELECTED_ANSWER, CheckAnswerCommand, TriviaEvent);

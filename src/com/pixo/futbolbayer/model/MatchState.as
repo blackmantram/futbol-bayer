@@ -6,5 +6,6 @@ package com.pixo.futbolbayer.model
 		public static const RUNNING:String = "MatchState.running";
 		public static const SHOWING_PENALTY:String = "MatchState.showingPenalty";
 		public static const PENALTY:String = "MatchState.penalty";
+		public static const SCORED:String = "MatchState.scored";
 	}
 }

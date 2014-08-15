@@ -1,5 +1,6 @@
 package com.pixo.futbolbayer.view
 {
+	import com.greensock.core.Animation;
 	import com.pixo.futbolbayer.view.match.HudView;
 	import com.pixo.futbolbayer.view.match.RefereeingView;
 	import com.pixo.futbolbayer.view.match.pitch.PitchView;
@@ -15,6 +16,7 @@ package com.pixo.futbolbayer.view
 		private var _matchHud:HudView;
 		private var _trivia:TriviaView;
 		private var _refereeing:RefereeingView;
+		private var _animations:AnimationsView;
 		
 		private function get pitch():PitchView
 		{
@@ -44,12 +46,20 @@ package com.pixo.futbolbayer.view
 			return _refereeing;
 		}
 		
+		private function get animations():AnimationsView
+		{
+			if (_animations == null)
+				_animations = new AnimationsView();
+			return _animations;
+		}
+		
 		public function MatchView()
 		{
 			addChild(pitch);
 			addChild(matchHud);
 			addChild(trivia);
 			addChild(refereeing);
+			addChild(animations);
 		}
 	}
 }

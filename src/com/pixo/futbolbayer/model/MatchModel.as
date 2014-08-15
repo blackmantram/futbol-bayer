@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.model
 {
 	import com.pixo.futbolbayer.controller.events.MatchClockEvent;
+	import com.pixo.futbolbayer.view.events.MatchEvent;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -29,16 +30,33 @@ package com.pixo.futbolbayer.model
 			state = MatchState.READY_TO_START;
 		}
 		
+		public function reset():void
+		{
+			teamsCards = [0, 0];
+			state = MatchState.READY_TO_START;
+		}
+		
 		private function handleTimer(e:TimerEvent):void
 		{
 			currentTime--;
-			this.dispatch(new MatchClockEvent(MatchClockEvent.TICK, currentTime));
+			if (currentTime>0)
+				this.dispatch(new MatchClockEvent(MatchClockEvent.TICK, currentTime));
+			else
+			{
+				clockTimer.stop();
+				this.dispatch(new MatchEvent(MatchEvent.END));
+			}
 		}
 		
 		public function start(setTime:int):void
 		{
 			currentTime = setTime;
 			this.clockTimer.start();
+		}
+		
+		public function pause():void
+		{
+			this.clockTimer.stop();
 		}
 		
 		public function changeTurn():void
@@ -50,6 +68,13 @@ package com.pixo.futbolbayer.model
 		{
 			teamsCards[currentTurn-1]++;
 			return teamsCards[currentTurn-1];
+		}
+		
+		public function score():int
+		{
+			changeTurn();
+			teamsGoals[currentTurn-1]++;
+			return teamsGoals[currentTurn-1];
 		}
 	}
 }

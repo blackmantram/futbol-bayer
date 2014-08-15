@@ -17,6 +17,7 @@ package com.pixo.futbolbayer.view.match
 		private var time:TextField;
 		private var team1Name:TextField;
 		private var team2Name:TextField;
+		private var teamGoals:Array;
 		private var activeTeam:Sprite;
 		private var movementsLeft:TextField;
 		
@@ -35,6 +36,8 @@ package com.pixo.futbolbayer.view.match
 			time = skin.getChildByName("time") as TextField;
 			team1Name = skin.getChildByName("team1_name") as TextField;
 			team2Name = skin.getChildByName("team2_name") as TextField;
+			teamGoals = [skin.getChildByName("team1_score") as TextField,
+						skin.getChildByName("team2_score") as TextField];
 			activeTeam = skin.getChildByName("active_team") as Sprite;
 			movementsLeft = skin.getChildByName("movements_left") as TextField;
 		}
@@ -79,6 +82,11 @@ package com.pixo.futbolbayer.view.match
 		public function setCurrentTime(currentTime:String):void
 		{
 			time.text = currentTime;	
+		}
+		
+		public function setGoals(team:int, goals:int):void
+		{
+			(teamGoals[team-1] as TextField).text = goals.toString();
 		}
 		
 	}

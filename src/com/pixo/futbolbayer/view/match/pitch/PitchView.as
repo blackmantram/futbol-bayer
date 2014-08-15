@@ -54,7 +54,13 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			ball.x = e.point.x;
 			ball.y = e.point.y;
-			checkMovements();
+			checkGoal();
+		}
+		
+		public function reset():void
+		{
+			movements = 0;
+			grid.restart();
 		}
 		
 		public function roll():void
@@ -66,6 +72,15 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			this.movements = movements;
 			checkMovements();
+		}
+		
+		private function checkGoal():void
+		{
+			var scoredTeam:int = grid.checkGoal();
+			if (scoredTeam > 0)
+				dispatchEvent(new PitchEvent(PitchEvent.GOAL, scoredTeam));
+			else
+				checkMovements();
 		}
 		
 		private function checkMovements():void 

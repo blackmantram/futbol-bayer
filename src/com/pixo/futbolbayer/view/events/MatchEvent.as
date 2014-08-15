@@ -4,6 +4,7 @@ package com.pixo.futbolbayer.view.events
 	
 	public class MatchEvent extends Event
 	{
+		public static const READY:String = "MatchEvent.Ready";
 		public static const NEXT_STEP:String = "MatchEvent.NextStep";
 		public static const STEP_FINISHED:String = "MatchEvent.StepFinished";
 		public static const START:String = "MatchEvent.Start";
@@ -13,6 +14,8 @@ package com.pixo.futbolbayer.view.events
 		public static const YELLOW_CARD:String = "MatchEvent.YellowCard";
 		public static const PENALTY:String = "MatchEvent.Penalty";
 		public static const EXECUTE_PENALTY:String = "MatchEvent.ExecutePenalty";
+		public static const SCORE:String = "MatchEvent.Score";
+		public static const END:String = "MatchEvent.End";
 		
 		public var currentTurn:int;
 		

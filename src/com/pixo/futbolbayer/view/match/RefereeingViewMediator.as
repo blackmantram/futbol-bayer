@@ -25,6 +25,8 @@ package com.pixo.futbolbayer.view.match
 			this.eventMap.mapListener(view, RefereeingViewEvent.POPUP_COMPLETED, handlePopUpComplete);
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.YELLOW_CARD, handleYellowCard);
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.PENALTY, handlePenalty);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.READY, handleReady);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
 		}
 		
 		private function delay():void
@@ -45,12 +47,23 @@ package com.pixo.futbolbayer.view.match
 		
 		private function handlePenalty(e:MatchEvent):void
 		{
-			view.showPenalti();
+			view.showPenalty();
 		}
 		
 		private function handleYellowCard(e:MatchEvent):void
 		{
 			view.showYellowCard(e.currentTurn);
+		}
+		
+		private function handleEnd(e:MatchEvent):void
+		{
+			view.showEnd();
+		}
+		
+		private function handleReady(e:Event):void
+		{
+			view.reset();
+			delay();
 		}
 	}
 }

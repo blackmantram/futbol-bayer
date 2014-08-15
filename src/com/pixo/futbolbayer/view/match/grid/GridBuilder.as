@@ -50,8 +50,26 @@ package com.pixo.futbolbayer.view.match.grid
 				hexagons.push (lHex);
 				_canvas.addChild (lHex);			
 			}
-			
 			return hexagons;
+		}
+		
+		public function addGoalTiles(invert:int=1):Array
+		{
+			var array:Array = new Array();
+			var posX:int = (_xCenterOffset - _columnOffset) * invert;
+			var posY:int = _rowOffset;
+			array.push(addGoalTile(posX, posY*-1));
+			array.push(addGoalTile(posX, posY));
+			return array;
+		}
+		
+		private function addGoalTile(x:int, y:int):Tile
+		{
+			var goalTile:Tile = new Tile(_hexWidth);
+			goalTile.x = x;
+			goalTile.y =y;
+			_canvas.addChild (goalTile);
+			return goalTile;
 		}
 	}
 }

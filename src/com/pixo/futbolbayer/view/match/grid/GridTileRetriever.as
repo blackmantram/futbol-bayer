@@ -22,25 +22,27 @@ package com.pixo.futbolbayer.view.match.grid
 		
 		private var _yCenterOffset:Number = -(_hexHeight * (_gridHeight-1)) >> 1;
 		
+		private var _sensitiveArea:Number 		= 26;
+		
 		public function GridTileRetriever(canvas:Sprite, hexagons:Vector.<Tile>)
 		{
 			_canvas = canvas;
 			_hexagons = hexagons;
 		}
-		
+		/*
 		public function retrieve(lPoint:Point):Tile 
 		{
 			lPoint.offset(_canvas.x, _canvas.y);
 			var lXMouseOffset:Number = _canvas.x + _xCenterOffset - _hexWidth / 2;
 			
 			var lX:Number = (lPoint.x - lXMouseOffset) / _columnOffset;
-			if (lX < 0 || lX >= _gridWidth) return null;
+			//if (lX < 0 || lX >= _gridWidth) return null;
 			lX = int (lX);
 			
 			var lYMouseOffset:Number = _canvas.y + _yCenterOffset - _rowOffset 
 			
 			var lY:Number = (lPoint.y - lYMouseOffset - lX%2*_rowOffset) / _hexHeight;
-			if (lY < 0 || lY >= _gridHeight) return null;
+			//if (lY < 0 || lY >= _gridHeight) return null;
 			lY = int (lY);
 			
 			var x:Number = (lX * _columnOffset) + lXMouseOffset;
@@ -64,6 +66,19 @@ package com.pixo.futbolbayer.view.match.grid
 				return _hexagons[lY * _gridWidth + lX];
 			else
 				return null;
+		}*/
+		
+		public function retrieve(lPoint:Point):Tile 
+		{
+			for each(var tile:Tile in _hexagons)
+				if ( lPoint.x-_sensitiveArea < tile.x && 
+					lPoint.x+_sensitiveArea > tile.x && 
+					lPoint.y-_sensitiveArea < tile.y && 
+					lPoint.y+_sensitiveArea > tile.y)
+				{
+					return tile;
+				}
+			return null;
 		}
 		
 		public function findAdjacentTiles(tile:Tile):AdjacentTiles

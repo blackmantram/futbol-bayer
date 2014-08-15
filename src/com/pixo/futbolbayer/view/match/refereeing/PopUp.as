@@ -10,6 +10,7 @@ package com.pixo.futbolbayer.view.match.refereeing
 	{
 		public static const START:String = "Popup.Start";
 		public static const PENALTY:String = "PopUp.Penalty";
+		public static const END:String = "PopUp.End";
 		
 		private var popUpArray:Array;
 		
@@ -21,9 +22,17 @@ package com.pixo.futbolbayer.view.match.refereeing
 		{
 			popUpArray = [
 				new PopUpState(skin.getChildByName("start") as Sprite, PopUp.START),
-				new PopUpState(skin.getChildByName("penalty") as Sprite, PopUp.PENALTY)
+				new PopUpState(skin.getChildByName("penalty") as Sprite, PopUp.PENALTY),
+				new PopUpState(skin.getChildByName("end") as Sprite, PopUp.END)
 			];
 			hide();
+		}
+		
+		public function showAndStay(type:String):void
+		{
+			for each(var popupState:PopUpState in popUpArray)
+				if (popupState.type == type)
+					popupState.sprite.visible = true;
 		}
 		
 		public function show(type:String, callBack:Function):void
