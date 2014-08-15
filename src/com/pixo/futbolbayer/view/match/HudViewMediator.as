@@ -19,9 +19,6 @@ package com.pixo.futbolbayer.view.match
 		[Inject]
 		public var settingsModel:SettingsModel;
 		
-		[Inject]
-		public var matchModel:MatchModel;
-		
 		override public function onRegister():void
 		{
 			setInitialData();
@@ -42,7 +39,7 @@ package com.pixo.futbolbayer.view.match
 		
 		private function handleTurn(e:MatchEvent):void
 		{
-			view.setCurrentTurn(matchModel.currentTurn);
+			view.setCurrentTurn(e.currentTurn);
 		}
 		
 		private function handleTick(e:MatchClockEvent):void

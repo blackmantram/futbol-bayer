@@ -15,7 +15,7 @@ package com.pixo.futbolbayer.controller.commands
 			if(event.isCorrect)
 				dispatch(new MatchEvent(MatchEvent.NEXT_STEP));
 			else
-				dispatch(new MatchEvent(MatchEvent.SHOW_QUESTION));
+				dispatch(new MatchEvent(MatchEvent.STEP_FINISHED));
 		}
 	}
 }

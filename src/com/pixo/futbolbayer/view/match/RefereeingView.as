@@ -1,6 +1,8 @@
 package com.pixo.futbolbayer.view.match
 {
 	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
+	import com.pixo.futbolbayer.view.match.refereeing.CardDeck;
+	import com.pixo.futbolbayer.view.match.refereeing.PopUp;
 	import com.pixo.futbolbayer.view.tweens.ShowRefereeTween;
 	import com.pixo.futbolbayer.view.tweens.events.TweenEvent;
 	
@@ -11,48 +13,49 @@ package com.pixo.futbolbayer.view.match
 	
 	public class RefereeingView extends Sprite
 	{
-		private var team1Cards:Sprite;
-		private var team2Cards:Sprite;
-		private var popup:Sprite;
-		private var card:Sprite;
-		
-		private var refereeTween:ShowRefereeTween = new ShowRefereeTween();
+		private var teamCards:Array;
+		private var popup:PopUp;
 		
 		public function RefereeingView()
 		{
 			addSkin();
-			init();
 		}
 		
 		private function addSkin():void
 		{
 			var skin:Sprite = new GameSkin.Refereeing() as Sprite;
 			addChild(skin);
-			team1Cards = skin.getChildByName("team1_cards") as Sprite;
-			team2Cards = skin.getChildByName("team2_cards") as Sprite;
-			popup = skin.getChildByName("popup") as Sprite;
-			obtainCardSkin();
+			initializeDecks(skin);
+			popup = new PopUp(skin.getChildByName("popup") as Sprite);
 		}
 		
-		public function obtainCardSkin():void
+		private function initializeDecks(skin:Sprite):void
 		{
-			card = new GameSkin.Card() as Sprite;
+			var team1_cards:Sprite = skin.getChildByName("cards_team1") as Sprite;
+			var team2_cards:Sprite = skin.getChildByName("cards_team2") as Sprite;
+			team2_cards.scaleX = -1;
+			var card:Sprite = new GameSkin.Card() as Sprite;
+			teamCards = [new CardDeck(team1_cards, card), new CardDeck(team2_cards, card)];
 		}
 		
-		private function init():void
+		public function showStart():void
 		{
-			popup.visible = false;
+			popup.show(PopUp.START, handlePopUpShown);
 		}
 		
-		public function playIntro():void
+		public function showPenalti():void
 		{
-			refereeTween.tween(popup);
-			refereeTween.addEventListener(TweenEvent.COMPLETED, handleStartComplete);
+			popup.show(PopUp.START, handlePopUpShown);
 		}
 		
-		private function handleStartComplete(e:TweenEvent):void
+		private function handlePopUpShown():void
 		{
-			dispatchEvent(new RefereeingViewEvent(RefereeingViewEvent.INTRO_COMPLETED));
+			dispatchEvent(new RefereeingViewEvent(RefereeingViewEvent.POPUP_COMPLETED));
+		}
+		
+		public function showYellowCard(turn:int):void
+		{
+			(teamCards[turn-1] as CardDeck).addCard();
 		}
 	}
 }

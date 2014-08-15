@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.view.match
 {
 	import com.pixo.futbolbayer.view.events.MatchEvent;
+	import com.pixo.futbolbayer.view.events.RefereeingEvent;
 	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
 	
 	import common.utils.TimerUtils;
@@ -21,7 +22,9 @@ package com.pixo.futbolbayer.view.match
 		override public function onRegister():void
 		{
 			delay();
-			this.eventMap.mapListener(view, RefereeingViewEvent.INTRO_COMPLETED, handleStartComplete);
+			this.eventMap.mapListener(view, RefereeingViewEvent.POPUP_COMPLETED, handlePopUpComplete);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.YELLOW_CARD, handleYellowCard);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.PENALTY, handlePenalty);
 		}
 		
 		private function delay():void
@@ -32,12 +35,22 @@ package com.pixo.futbolbayer.view.match
 		private function handleDelayTimer(e:Event):void
 		{
 			TimerUtils.stopTimer(delayTimer, handleDelayTimer);
-			view.playIntro();
+			view.showStart();
 		}
 		
-		private function handleStartComplete(e:RefereeingViewEvent):void
+		private function handlePopUpComplete(e:RefereeingViewEvent):void
 		{
-			this.dispatch(new MatchEvent(MatchEvent.START));
+			this.dispatch(new RefereeingEvent(RefereeingEvent.REFEREE));
+		}
+		
+		private function handlePenalty(e:MatchEvent):void
+		{
+			view.showPenalti();
+		}
+		
+		private function handleYellowCard(e:MatchEvent):void
+		{
+			view.showYellowCard(e.currentTurn);
 		}
 	}
 }

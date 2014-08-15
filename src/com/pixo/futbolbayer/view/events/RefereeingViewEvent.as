@@ -4,7 +4,7 @@ package com.pixo.futbolbayer.view.events
 
 	public class RefereeingViewEvent extends Event
 	{
-		public static const INTRO_COMPLETED:String = "RefereeingViewEvent.StartComplete";
+		public static const POPUP_COMPLETED:String = "RefereeingViewEvent.PopupCompleted";
 		
 		public function RefereeingViewEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

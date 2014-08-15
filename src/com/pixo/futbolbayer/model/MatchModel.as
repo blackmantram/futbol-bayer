@@ -12,17 +12,21 @@ package com.pixo.futbolbayer.model
 	public class MatchModel extends Actor
 	{
 		public var currentTime:int;
-		public var team1Goals:int;
-		public var team2Goals:int;
+		public var teamsGoals:Array;
+		public var teamsCards:Array;
 		public var movementsLeft:int;
 		public var currentTurn:int;
-		
+		public var state:String;
 		private var clockTimer:Timer = new Timer(1000);
 		
 		public function MatchModel() 
 		{
 			super();
 			this.clockTimer.addEventListener(TimerEvent.TIMER, handleTimer);
+			currentTurn = 1;
+			teamsGoals = [0, 0];
+			teamsCards = [0, 0];
+			state = MatchState.READY_TO_START;
 		}
 		
 		private function handleTimer(e:TimerEvent):void
@@ -40,6 +44,12 @@ package com.pixo.futbolbayer.model
 		public function changeTurn():void
 		{
 			currentTurn = (currentTurn % 2) + 1;
+		}
+		
+		public function tellPlayerOff():int
+		{
+			teamsCards[currentTurn-1]++;
+			return teamsCards[currentTurn-1];
 		}
 	}
 }

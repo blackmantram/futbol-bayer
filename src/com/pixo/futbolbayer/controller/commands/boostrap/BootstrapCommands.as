@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.controller.commands.boostrap
 {
-	import com.pixo.futbolbayer.controller.commands.CheckTurnCommand;
+	import com.pixo.futbolbayer.controller.commands.CheckAnswerCommand;
+	import com.pixo.futbolbayer.controller.commands.ExecutePenaltyCommand;
 	import com.pixo.futbolbayer.controller.commands.MovementCommand;
 	import com.pixo.futbolbayer.controller.commands.NextStepCommand;
 	import com.pixo.futbolbayer.controller.commands.ShowQuestionCommand;
@@ -10,6 +11,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.controller.events.GameEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.MovementEvent;
+	import com.pixo.futbolbayer.view.events.RefereeingEvent;
 	import com.pixo.futbolbayer.view.events.SettingsEvent;
 	import com.pixo.futbolbayer.view.trivia.evemts.TriviaEvent;
 	
@@ -21,11 +23,15 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 		{
 			commandMap.mapEvent(SettingsEvent.MATCH_SETTINGS_CHANGED, UpdateMatchSettingsCommant, SettingsEvent);
 			commandMap.mapEvent(SettingsEvent.TEAM_SETTINGS_CHANGED, UpdateTeamSettingsCommand, SettingsEvent);
-			commandMap.mapEvent(MatchEvent.START, StartMatchCommand);
+			
+			commandMap.mapEvent(RefereeingEvent.REFEREE, StartMatchCommand);
+			commandMap.mapEvent(RefereeingEvent.REFEREE, ExecutePenaltyCommand);
+			
 			commandMap.mapEvent(MatchEvent.START, ShowQuestionCommand);
 			commandMap.mapEvent(MatchEvent.STEP_FINISHED, ShowQuestionCommand);
+			
 			commandMap.mapEvent(MovementEvent.MOVEMENT, MovementCommand);
-			commandMap.mapEvent(TriviaEvent.SELECTED_ANSWER, CheckTurnCommand, TriviaEvent);
+			commandMap.mapEvent(TriviaEvent.SELECTED_ANSWER, CheckAnswerCommand, TriviaEvent);
 			commandMap.mapEvent(TriviaEvent.SELECTED_ANSWER, NextStepCommand, TriviaEvent);
 		}
 	}
