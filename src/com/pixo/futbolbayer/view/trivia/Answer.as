@@ -22,7 +22,7 @@ package com.pixo.futbolbayer.view.trivia
 		
 		private function handleSelected(e:MouseEvent):void
 		{
-			dispatchEvent(new TriviaEvent(TriviaEvent.SELECTED_ANSWER, this));
+			dispatchEvent(new TriviaEvent(TriviaEvent.SELECTED_ANSWER, _isCorrect));
 		}
 		
 		public function get isCorrect():Boolean

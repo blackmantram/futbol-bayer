@@ -6,14 +6,17 @@ package com.pixo.futbolbayer.view.events
 	{
 		public static const ROLL_FINISHED:String = "DiceEvent.RollFinished";
 		
-		public function DiceEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public var movements:int;
+		
+		public function DiceEvent(type:String, movements:int, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
+			this.movements = movements;
 			super(type, bubbles, cancelable);
 		}
 		
 		override public function clone() : Event 
 		{
-			return new DiceEvent(type, bubbles, cancelable);
+			return new DiceEvent(type, movements, bubbles, cancelable);
 		}
 	}
 }

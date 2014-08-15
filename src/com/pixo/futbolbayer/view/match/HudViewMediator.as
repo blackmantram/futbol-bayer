@@ -4,6 +4,7 @@ package com.pixo.futbolbayer.view.match
 	import com.pixo.futbolbayer.model.MatchModel;
 	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
+	import com.pixo.futbolbayer.view.events.MovementEvent;
 	import com.pixo.futbolbayer.view.events.StartMatchDataEvent;
 	
 	import common.utils.TimeUtils;
@@ -24,8 +25,8 @@ package com.pixo.futbolbayer.view.match
 		override public function onRegister():void
 		{
 			setInitialData();
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.MOVEMENT, handleMovement);
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.TURN, handleMovement);
+			this.eventMap.mapListener(eventDispatcher, MovementEvent.MOVEMENT, handleMovement);
+			this.eventMap.mapListener(eventDispatcher, MatchEvent.TURN, handleTurn);
 			this.eventMap.mapListener(eventDispatcher, MatchClockEvent.TICK, handleTick);
 		}
 		
@@ -34,9 +35,9 @@ package com.pixo.futbolbayer.view.match
 			view.setData(settingsModel.createHudDTO());
 		}
 		
-		private function handleMovement(e:MatchEvent):void
+		private function handleMovement(e:MovementEvent):void
 		{
-			view.setMovements(matchModel.movementsLeft);
+			view.setMovements(e.movements);
 		}
 		
 		private function handleTurn(e:MatchEvent):void

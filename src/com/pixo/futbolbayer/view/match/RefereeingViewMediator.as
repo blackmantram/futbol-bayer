@@ -3,6 +3,8 @@ package com.pixo.futbolbayer.view.match
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
 	
+	import common.utils.TimerUtils;
+	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -23,15 +25,13 @@ package com.pixo.futbolbayer.view.match
 		}
 		
 		private function delay():void
-		{	
-			delayTimer = new Timer(2000);
-			delayTimer.start();
-			delayTimer.addEventListener(TimerEvent.TIMER, handleDelayTimer);
+		{
+			delayTimer = TimerUtils.startTimer(delayTimer, 2000, handleDelayTimer);
 		}
 		
 		private function handleDelayTimer(e:Event):void
 		{
-			delayTimer.stop();
+			TimerUtils.stopTimer(delayTimer, handleDelayTimer);
 			view.playIntro();
 		}
 		

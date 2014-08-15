@@ -2,7 +2,6 @@ package com.pixo.futbolbayer.view.match
 {
 	import com.pixo.futbolbayer.model.Team;
 	import com.pixo.futbolbayer.model.datatransferobjects.HudDTO;
-	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
 	import com.pixo.futbolbayer.view.tweens.ShowTeam1Tween;
 	import com.pixo.futbolbayer.view.tweens.ShowTeam2Tween;
 	

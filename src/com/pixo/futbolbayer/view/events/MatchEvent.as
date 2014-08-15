@@ -1,11 +1,11 @@
 package com.pixo.futbolbayer.view.events
 {
-	import com.pixo.futbolbayer.model.datatransferobjects.MatchProgressDTO;
-	
 	import flash.events.Event;
 	
 	public class MatchEvent extends Event
 	{
+		public static const NEXT_STEP:String = "MatchEvent.NextStep";
+		public static const STEP_FINISHED:String = "MatchEvent.StepFinished";
 		public static const START:String = "MatchEvent.Start";
 		public static const MOVEMENT:String = "MatchEvent.Movement";
 		public static const TURN:String = "MatchEvent.TUrn";

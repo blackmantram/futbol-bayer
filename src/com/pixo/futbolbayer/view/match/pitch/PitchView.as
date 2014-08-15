@@ -1,8 +1,10 @@
 package com.pixo.futbolbayer.view.match.pitch 
 {
+	import com.pixo.futbolbayer.view.events.DiceEvent;
 	import com.pixo.futbolbayer.view.events.GridEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
+	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -15,9 +17,9 @@ package com.pixo.futbolbayer.view.match.pitch
 	public class PitchView extends Sprite
 	{
 		private var currentPoint:Point;
-		private var movements:int;
+		public var movements:int;
 		
-		private var dice:Dice;
+		public var dice:Dice;
 		private var grid:HexagonalGrid;
 		private var ball:Sprite;
 		private var stadium:Sprite;
@@ -55,6 +57,11 @@ package com.pixo.futbolbayer.view.match.pitch
 			checkMovements();
 		}
 		
+		public function roll():void
+		{
+			dice.roll();
+		}
+		
 		public function move(movements:int):void
 		{
 			this.movements = movements;
@@ -63,7 +70,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function checkMovements():void 
 		{
-			dispatchEvent(new MatchEvent(MatchEvent.MOVEMENT, true));
+			dispatchEvent(new PitchEvent(PitchEvent.MOVEMENT_COMPLETE));
 			if (movements > 0)
 			{
 				movements --;

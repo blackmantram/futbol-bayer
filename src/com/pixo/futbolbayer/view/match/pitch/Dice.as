@@ -3,6 +3,7 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.DiceEvent;
 	
 	import common.utils.MathUtils;
+	import common.utils.TimerUtils;
 	
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
@@ -10,15 +11,9 @@ package com.pixo.futbolbayer.view.match.pitch
 
 	public class Dice extends MovieClip
 	{
-		public var clip:MovieClip;
+		private var clip:MovieClip;
 		private var timer:Timer;
-		private var _value:int;
-		
-		public function get value():int
-		{
-			return _value;
-		}
-		
+				
 		public function Dice(clip:MovieClip)
 		{
 			this.clip = clip;
@@ -30,17 +25,24 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			clip.visible = true;
 			clip.gotoAndStop("animation");
-			timer = new Timer(1500);
-			timer.addEventListener(TimerEvent.TIMER, handleRollFinished);
-			timer.start();
+			timer = TimerUtils.startTimer(timer, 1500, handleRollFinished);
 		}
 		
 		private function handleRollFinished(e:TimerEvent):void
 		{
-			timer.removeEventListener(TimerEvent.TIMER, handleRollFinished);
-			_value = MathUtils.randomRange(1, 6);
+			TimerUtils.stopTimer(timer, handleRollFinished);
+			timer = TimerUtils.startTimer(timer, 1000, handleDiceDelay);
+			var _value:int = MathUtils.randomRange(1, 6);
 			clip.gotoAndStop(_value);
-			dispatchEvent(new DiceEvent(DiceEvent.ROLL_FINISHED));
+			dispatchEvent(new DiceEvent(DiceEvent.ROLL_FINISHED, _value, true));
 		}
+		
+		private function handleDiceDelay(e:TimerEvent):void
+		{
+			TimerUtils.stopTimer(timer, handleDiceDelay);
+			clip.visible = false;
+		}
+		
+		
 	}
 }
