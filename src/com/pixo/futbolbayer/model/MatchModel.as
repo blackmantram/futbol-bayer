@@ -62,12 +62,14 @@ package com.pixo.futbolbayer.model
 		public function changeTurn():void
 		{
 			currentTurn = (currentTurn % 2) + 1;
+			dispatchEvent(MatchEvent.TURN);
 		}
 		
-		public function tellPlayerOff():int
+		public function tellPlayerOff():void
 		{
 			teamsCards[currentTurn-1]++;
-			return teamsCards[currentTurn-1];
+			dispatchEvent(MatchEvent.YELLOW_CARD);
+			checkCards();
 		}
 		
 		public function score():int
@@ -75,6 +77,22 @@ package com.pixo.futbolbayer.model
 			changeTurn();
 			teamsGoals[currentTurn-1]++;
 			return teamsGoals[currentTurn-1];
+		}
+		
+		private function checkCards():void
+		{
+			if (teamsCards[currentTurn-1] == 4)
+			{
+				state = MatchState.SHOWING_PENALTY;
+				dispatchEvent(MatchEvent.PENALTY);
+			}
+		}
+		
+		private function dispatchEvent(type:String):void
+		{
+			var event:MatchEvent = new MatchEvent(type);
+			event.currentTurn = currentTurn;
+			dispatch(event);
 		}
 	}
 }

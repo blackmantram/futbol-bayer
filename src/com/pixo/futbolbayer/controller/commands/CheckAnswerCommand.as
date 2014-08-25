@@ -19,27 +19,9 @@ package com.pixo.futbolbayer.controller.commands
 		{
 			if(!event.isCorrect)
 			{
-				checkCards(matchModel.tellPlayerOff());
+				matchModel.tellPlayerOff()
 				matchModel.changeTurn();
-				dispatchEvent(MatchEvent.TURN);
 			}
-		}
-		
-		private function checkCards(cardsNumber:int):void
-		{
-			dispatchEvent(MatchEvent.YELLOW_CARD);
-			if (cardsNumber == 4)
-			{
-				matchModel.state = MatchState.SHOWING_PENALTY;
-				dispatchEvent(MatchEvent.PENALTY);
-			}
-		}
-		
-		private function dispatchEvent(type:String):void
-		{
-			var event:MatchEvent = new MatchEvent(type);
-			event.currentTurn = matchModel.currentTurn;
-			dispatch(event);
 		}
 	}
 }

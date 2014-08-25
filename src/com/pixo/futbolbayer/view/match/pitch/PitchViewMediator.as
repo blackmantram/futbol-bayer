@@ -4,6 +4,8 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.DiceEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.MovementEvent;
+	import com.pixo.futbolbayer.view.events.ReverseEvent;
+	import com.pixo.futbolbayer.view.events.SpecialActionEvent;
 	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
 	
 	import flash.sampler.NewObjectSample;
@@ -19,7 +21,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		public var settingsModel:SettingsModel;
 		
 		private var isMoving:Boolean = false;
-		
+		private var isReversing:Boolean = false;
 		private var isPenalty:Boolean = false;
 		
 		override public function onRegister():void
@@ -33,7 +35,9 @@ package com.pixo.futbolbayer.view.match.pitch
 			eventMap.mapListener(view, PitchEvent.MOVEMENT_COMPLETE, handleMovementComplete);
 			eventMap.mapListener(view.dice, DiceEvent.ROLL_FINISHED, rollFinished);
 			
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
+			eventMap.mapListener(eventDispatcher, ReverseEvent.REVERSE, handleReverse);
+			eventMap.mapListener(eventDispatcher, SpecialActionEvent.SPECIAL_ACTION_COMPLETED, handleSpecialActionCompleted);
+			eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
 		}
 		
 		private function handleNextStep(e:MatchEvent):void
@@ -56,26 +60,68 @@ package com.pixo.futbolbayer.view.match.pitch
 			view.move(movements);
 		}
 		
+		private function handleReverse(event:ReverseEvent):void
+		{
+			isMoving = true;
+			isReversing = true;
+			view.move(4, event.direction);	
+		}
+		
 		private function shootPenalty(movements:int):void
 		{
-			//if (movements > 3)
+			if (movements > 3)
 				dispatch(new MatchEvent(MatchEvent.SCORE));
-			//else
-				//finishStep();
+			else
+				finishStep();
 			isPenalty = false;
 		}
 		
 		private function handleMovementComplete(e:PitchEvent):void
 		{
+			completeMovement();
+		}
+		
+		private function completeMovement():void
+		{
 			dispatch(new MovementEvent(MovementEvent.MOVEMENT, view.movements));
 			if (isMoving && view.movements == 0)
-				finishStep();
+			{
+				if (isReversing)
+					finishReverse();
+				else
+					finishStep();
+			}
+		}
+		
+		private function finishReverse():void
+		{
+			isReversing = false;
+			dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_FINISHED));
 		}
 		
 		private function finishStep():void
 		{
+			checkSpecialTile();
 			isMoving = false;
+		}
+		
+		private function checkSpecialTile():void
+		{
+			var specialTile:int = view.checkSpecialTile();
+			if (specialTile>0)
+				dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_TRIGGERED, specialTile));
+			else
+				triggerStepFinished();
+		}
+		
+		private function triggerStepFinished():void
+		{
 			dispatch(new MatchEvent(MatchEvent.STEP_FINISHED));
+		}
+		
+		private function handleSpecialActionCompleted(e:SpecialActionEvent):void
+		{
+			triggerStepFinished();
 		}
 		
 		private function handleExecutePenalty(e:MatchEvent):void
@@ -93,9 +139,9 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			isMoving = false;
 			var matchEvent:MatchEvent = new MatchEvent(MatchEvent.SCORE);
-			matchEvent.currentTurn = (e.scoredTeam % 2) + 1;
+			matchEvent.currentTurn = (e.team % 2) + 1;
 			dispatch(matchEvent);
-		}		
+		}
 		
 		private function handleEnd(e:MatchEvent):void
 		{

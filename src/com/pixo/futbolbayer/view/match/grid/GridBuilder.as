@@ -1,5 +1,7 @@
 package com.pixo.futbolbayer.view.match.grid
 {
+	import com.pixo.futbolbayer.view.match.grid.tiles.GoalTiles;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -53,14 +55,14 @@ package com.pixo.futbolbayer.view.match.grid
 			return hexagons;
 		}
 		
-		public function addGoalTiles(invert:int=1):Array
+		public function addGoalTiles(invert:int=1):GoalTiles
 		{
-			var array:Array = new Array();
+			var tiles:GoalTiles = new GoalTiles();
 			var posX:int = (_xCenterOffset - _columnOffset) * invert;
 			var posY:int = _rowOffset;
-			array.push(addGoalTile(posX, posY*-1));
-			array.push(addGoalTile(posX, posY));
-			return array;
+			tiles.addTile(addGoalTile(posX, posY*-1));
+			tiles.addTile(addGoalTile(posX, posY));
+			return tiles;
 		}
 		
 		private function addGoalTile(x:int, y:int):Tile

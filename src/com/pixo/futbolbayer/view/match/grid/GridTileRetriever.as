@@ -2,6 +2,8 @@ package com.pixo.futbolbayer.view.match.grid
 {
 	import flash.display.Sprite;
 	import flash.geom.Point;
+	import com.pixo.futbolbayer.view.match.grid.tiles.AdjacentTiles;
+	import com.pixo.futbolbayer.view.match.grid.tiles.SpecialTiles;
 
 	public class GridTileRetriever
 	{
@@ -85,18 +87,38 @@ package com.pixo.futbolbayer.view.match.grid
 		{
 			var adjacentTiles:AdjacentTiles = new AdjacentTiles();
 			
-			adjacentTiles.addTile(retrieve(new Point(tile.x, tile.y + _hexHeight)));
-			adjacentTiles.addTile(retrieve(new Point(tile.x, tile.y - _hexHeight)));
+			adjacentTiles.addCenter(retrieve(new Point(tile.x, tile.y + _hexHeight)));
+			adjacentTiles.addCenter(retrieve(new Point(tile.x, tile.y - _hexHeight)));
 			
-			var _xTileOffset:int = _columnOffset;
-			var _ytileOffset:int = (Math.tan(30 * Math.PI / 180) * _xTileOffset);
+			adjacentTiles.addRight(retrieve(new Point(tile.x + _columnOffset, tile.y + _rowOffset)));
+			adjacentTiles.addRight(retrieve(new Point(tile.x + _columnOffset, tile.y - _rowOffset)));
 			
-			adjacentTiles.addTile(retrieve(new Point(tile.x + _xTileOffset, tile.y + _ytileOffset)));
-			adjacentTiles.addTile(retrieve(new Point(tile.x + _xTileOffset, tile.y - _ytileOffset)));
-			adjacentTiles.addTile(retrieve(new Point(tile.x - _xTileOffset, tile.y + _ytileOffset)));
-			adjacentTiles.addTile(retrieve(new Point(tile.x - _xTileOffset, tile.y - _ytileOffset)));
+			adjacentTiles.addLeft(retrieve(new Point(tile.x - _columnOffset, tile.y - _rowOffset)));
+			adjacentTiles.addLeft(retrieve(new Point(tile.x - _columnOffset, tile.y + _rowOffset)));
 			
 			return adjacentTiles;
+		}
+		
+		public function findSpecialTiles(reflect:Boolean=false):SpecialTiles
+		{
+			var reflection:int = reflect ? -1 : 1;
+			var tiles:SpecialTiles = new SpecialTiles();
+			tiles.addTiles(retrieveColumSegment(6*reflection, -4, 9));
+			tiles.addTiles(retrieveColumSegment(7*reflection, -3, 8, -_rowOffset));
+			tiles.addTiles(retrieveColumSegment(5*reflection, -3, 8, -_rowOffset));
+			return tiles;
+		}
+		
+		private function retrieveColumSegment(index:int, from:int, lenght:int, offset:int=0):Array
+		{
+			var  tiles:Array = new Array();
+			var row:int = from;
+			for(var i:int=0; i<lenght; i++)
+			{
+				tiles.push(retrieve(new Point(_columnOffset*index, (_hexHeight*row)+offset)));
+				row++;
+			}
+			return tiles;
 		}
 	}
 }

@@ -18,6 +18,7 @@ package com.pixo.futbolbayer.view.match.pitch
 	{
 		private var currentPoint:Point;
 		public var movements:int;
+		private var direction:int;
 		
 		public var dice:Dice;
 		private var grid:HexagonalGrid;
@@ -68,9 +69,10 @@ package com.pixo.futbolbayer.view.match.pitch
 			dice.roll();
 		}
 		
-		public function move(movements:int):void
+		public function move(movements:int, direction:int=0):void
 		{
 			this.movements = movements;
+			this.direction = direction;
 			checkMovements();
 		}
 		
@@ -83,13 +85,18 @@ package com.pixo.futbolbayer.view.match.pitch
 				checkMovements();
 		}
 		
+		public function checkSpecialTile():int
+		{
+			return grid.checkSpecialTile();
+		}
+		
 		private function checkMovements():void 
 		{
 			dispatchEvent(new PitchEvent(PitchEvent.MOVEMENT_COMPLETE));
 			if (movements > 0)
 			{
 				movements --;
-				grid.startMovement();
+				grid.startMovement(direction);
 			}
 		}
 		

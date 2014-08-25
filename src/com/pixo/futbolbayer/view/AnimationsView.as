@@ -21,6 +21,26 @@ package com.pixo.futbolbayer.view
 			playAnimation(new GameAnimations.Goal() as MovieClip, 10000);
 		}
 		
+		public function playOffSide():void
+		{
+			playAnimation(new GameAnimations.OffSide() as MovieClip, 3000);
+		}
+		
+		public function playFault():void
+		{
+			playAnimation(new GameAnimations.Fault() as MovieClip, 5000);
+		}
+		
+		public function playHandBall():void
+		{
+			playAnimation(new GameAnimations.HandBall() as MovieClip, 3000);
+		}
+		
+		public function playFreeKick():void
+		{
+			playAnimation(new GameAnimations.FreeKick() as MovieClip, 3000);
+		}
+		
 		private function playAnimation(clip:MovieClip, duration:int):void
 		{
 			addChild(clip);

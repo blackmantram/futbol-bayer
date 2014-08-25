@@ -1,6 +1,10 @@
 package com.pixo.futbolbayer.view.match.grid
 {
 	import com.pixo.futbolbayer.view.events.GridEvent;
+	import com.pixo.futbolbayer.view.match.grid.tiles.AdjacentTiles;
+	import com.pixo.futbolbayer.view.match.grid.tiles.GoalTiles;
+	import com.pixo.futbolbayer.view.match.grid.tiles.SpecialTiles;
+	import com.pixo.futbolbayer.view.match.grid.tiles.TileList;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -20,8 +24,11 @@ package com.pixo.futbolbayer.view.match.grid
 		private var _adjacentTiles:AdjacentTiles;
 		private var _current:Tile = null;
 		
-		private var _goal1Tiles:Array = new Array();
-		private var _goal2Tiles:Array = new Array();
+		private var _goal1Tiles:GoalTiles;
+		private var _goal2Tiles:GoalTiles;
+		
+		private var _specialTiles1:SpecialTiles;
+		private var _specialTiles2:SpecialTiles;
 		
 		private var retriever:GridTileRetriever;
 		
@@ -37,6 +44,7 @@ package com.pixo.futbolbayer.view.match.grid
 			_canvas = new Sprite();
 			addChild(_canvas);
 			buildGrid();
+			retrieveSpecialTiles();
 			selectTile(getTileInPoint(new Point(0, 0)));
 		}
 		
@@ -50,11 +58,17 @@ package com.pixo.futbolbayer.view.match.grid
 			retriever = new GridTileRetriever(_canvas, _hexagons);
 		}
 		
+		private function retrieveSpecialTiles():void
+		{
+			_specialTiles1 = retriever.findSpecialTiles();
+			_specialTiles2 = retriever.findSpecialTiles(true);
+		}
+		
 		private function addGoalTilesToVector():void
 		{
-			for each(var tile:Tile in _goal1Tiles)
+			for each(var tile:Tile in _goal1Tiles.getTiles())
 				_hexagons.push(tile);
-			for each(tile in _goal2Tiles)
+			for each(tile in _goal2Tiles.getTiles())
 				_hexagons.push(tile);
 		}
 		
@@ -73,13 +87,13 @@ package com.pixo.futbolbayer.view.match.grid
 		public function restart():void
 		{
 			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
-			_adjacentTiles.turnOff();
+			_adjacentTiles.turnAllOff();
 			selectTile(getTileInPoint(new Point(0, 0)));
 		}
 		
-		public function startMovement():void
+		public function startMovement(direction:int):void
 		{
-			_adjacentTiles.turnOn();
+			_adjacentTiles.turnOn(direction);
 			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 		}
 		
@@ -95,25 +109,26 @@ package com.pixo.futbolbayer.view.match.grid
 		private function completeMovement(tile:Tile):void
 		{
 			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
-			_adjacentTiles.turnOff();
+			_adjacentTiles.turnAllOff();
 			selectTile(tile);
 		}
 		
 		public function checkGoal():int
 		{
-			if(isTileInGoal(_goal1Tiles))
+			if(_goal1Tiles.contains(_current) )
 				return 1;
-			if(isTileInGoal(_goal2Tiles))
+			if(_goal2Tiles.contains(_current))
 				return 2;
 			return 0;
 		}
 		
-		private function isTileInGoal(array:Array):Boolean
+		public function checkSpecialTile():int
 		{
-			for each(var tile:Tile in array)
-				if (_current == tile)
-					return true;
-			return false;
+			if(_specialTiles1.contains(_current))
+				return 1;
+			if(_specialTiles2.contains(_current))
+				return 2;
+			return 0;
 		}
 	}
 	
