@@ -10,7 +10,7 @@ package com.pixo.futbolbayer.view
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	public class MatchView extends Sprite
+	public class MatchView extends Slider
 	{
 		private var _pitch:PitchView;
 		private var _matchHud:HudView;
@@ -60,6 +60,16 @@ package com.pixo.futbolbayer.view
 			addChild(trivia);
 			addChild(refereeing);
 			addChild(animations);
+		}
+		
+		override protected function hideContent():void
+		{
+			matchHud.hideContent();
+		}
+		
+		override public function showContent():void
+		{
+			matchHud.showContent();
 		}
 	}
 }

@@ -22,6 +22,12 @@ package com.pixo.futbolbayer.view
 		{
 			eventMap.mapListener(teamSettingsView.matchSectionButton,  MouseEvent.CLICK, handleGoToMatchSettings);
 			eventMap.mapListener(teamSettingsView.previewButton, MouseEvent.CLICK, handleGoToPreview);
+			eventMap.mapListener(eventDispatcher, GameEvent.TEAM_SETTINGS, handleTeamSettings);
+		}
+		
+		private function handleTeamSettings(e:GameEvent):void
+		{
+			
 		}
 		
 		override protected function initSelectors():void

@@ -8,11 +8,9 @@ package com.pixo.futbolbayer.view
 	import flash.events.Event;
 	import flash.text.TextField;
 	
-	import org.osmf.elements.ManifestLoaderBase;
-	
 	import skins.GameSkin;
 	
-	public class MatchPreview extends Sprite
+	public class MatchPreview extends Slider
 	{
 		private var team1Preview:Sprite;
 		private var team2Preview:Sprite;
@@ -59,6 +57,14 @@ package com.pixo.futbolbayer.view
 			timePreview.text = previewMatchDTO.hudData.matchTime;
 			team1NamePreview.text = previewMatchDTO.hudData.team1Name;
 			team2NamePreview.text = previewMatchDTO.hudData.team2Name;
+		}
+		
+		override protected function hideContent():void
+		{
+		}
+		
+		override public function showContent():void
+		{
 		}
 	}
 }

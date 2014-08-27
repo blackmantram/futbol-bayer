@@ -10,6 +10,8 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.view.MatchSettingsViewMediator;
 	import com.pixo.futbolbayer.view.MatchView;
 	import com.pixo.futbolbayer.view.MatchViewMediator;
+	import com.pixo.futbolbayer.view.SoundView;
+	import com.pixo.futbolbayer.view.SoundViewMediator;
 	import com.pixo.futbolbayer.view.StartView;
 	import com.pixo.futbolbayer.view.StartViewMediator;
 	import com.pixo.futbolbayer.view.TeamSettingsView;
@@ -41,6 +43,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			mediatorMap.mapView(PitchView, PitchViewMediator);
 			mediatorMap.mapView(RefereeingView, RefereeingViewMediator);
 			mediatorMap.mapView(AnimationsView, AnimationViewMediator);
+			mediatorMap.mapView(SoundView, SoundViewMediator);
 		}
 	
 	}

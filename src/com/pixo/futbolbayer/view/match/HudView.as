@@ -4,6 +4,8 @@ package com.pixo.futbolbayer.view.match
 	import com.pixo.futbolbayer.model.datatransferobjects.HudDTO;
 	import com.pixo.futbolbayer.view.tweens.ShowTeam1Tween;
 	import com.pixo.futbolbayer.view.tweens.ShowTeam2Tween;
+	import com.pixo.futbolbayer.view.tweens.VerticalHideTween;
+	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
 	
 	import flash.display.Sprite;
 	import flash.text.TextField;
@@ -12,14 +14,17 @@ package com.pixo.futbolbayer.view.match
 	
 	public class HudView extends Sprite
 	{
-		private var team1Uniform:Sprite;
-		private var team2Uniform:Sprite;
+		public var team1Uniform:Sprite;
+		public var team2Uniform:Sprite;
 		private var time:TextField;
 		private var team1Name:TextField;
 		private var team2Name:TextField;
 		private var teamGoals:Array;
 		private var activeTeam:Sprite;
 		private var movementsLeft:TextField;
+		
+		private var showTween:VerticalShowTween = new VerticalShowTween();
+		private var hideTween:VerticalHideTween = new VerticalHideTween();
 		
 		public function HudView()
 		{
@@ -64,13 +69,13 @@ package com.pixo.futbolbayer.view.match
 		{
 			if (turn==1)
 			{
-				activeTeam.getChildByName("turn1").visible = true;
-				activeTeam.getChildByName("turn2").visible = false;
+				hideTween.tween(activeTeam.getChildByName("turn2"), 0);
+				showTween.tween(activeTeam.getChildByName("turn1"), 0.25);
 			}
 			else
 			{
-				activeTeam.getChildByName("turn1").visible = false;
-				activeTeam.getChildByName("turn2").visible = true;
+				hideTween.tween(activeTeam.getChildByName("turn1"), 0);
+				showTween.tween(activeTeam.getChildByName("turn2"), 0.25);
 			}
 		}
 		
@@ -89,5 +94,18 @@ package com.pixo.futbolbayer.view.match
 			(teamGoals[team-1] as TextField).text = goals.toString();
 		}
 		
+		public function hideContent():void
+		{
+			team1Uniform.alpha = 0;
+			team2Uniform.alpha = 0;
+			activeTeam.alpha = 0;
+		}
+		
+		public function showContent():void
+		{
+			showTween.tween(team1Uniform, 0);
+			showTween.tween(team2Uniform, 0.25);
+			showTween.tween(activeTeam, 1);
+		}
 	}
 }

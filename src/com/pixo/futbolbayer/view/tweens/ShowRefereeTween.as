@@ -1,30 +1,35 @@
 package com.pixo.futbolbayer.view.tweens
 {
+	import com.greensock.TweenLite;
+	import com.greensock.easing.Back;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	public class ShowRefereeTween extends BaseTween
 	{
-		private var _object:DisplayObject;
-		private var timer:Timer; //temporary timer
+		private var object:DisplayObject;
+		private var originalPosY:int;
 		
-		override public function tween(object:DisplayObject):void
-		{ 
-			//TODO: here lies the show referee tween 
-			timer = new Timer(1500);
-			timer.start();
-			timer.addEventListener(TimerEvent.TIMER, onComplete);
+		public function tween(object:DisplayObject):void
+		{
+			this.object = object;
+			originalPosY = object.y;
+			object.y = object.stage.stageWidth;
 			object.visible = true;
-			_object = object;
+			TweenLite.to(object, 0.5, {y:originalPosY, ease:Back.easeOut, onComplete:handleShowComplete})
 		}
 		
-		private function onComplete(e:TimerEvent):void //temporary timer event
+		private function handleShowComplete():void
 		{
-			timer.stop();
-			_object.visible = false;
-			fireTweenCompleteEvent();
+			TweenLite.to(object, 0.5, {delay:1.75, y:object.stage.stageWidth, ease:Back.easeOut, onComplete:handleComplete})
+		}
+		
+		private function handleComplete():void
+		{
+			object.visible = false;
+			object.y = originalPosY;
+			fireTweenCompleteEvent(object);
 		}
 	}
 }

@@ -4,6 +4,8 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.service.assets.AssetsServiceResponse;
 	import com.pixo.futbolbayer.service.assets.IAssetsLoadService;
 	import com.pixo.futbolbayer.service.assets.IAssetsServiceResponse;
+	import com.pixo.futbolbayer.service.assets.ISoundsService;
+	import com.pixo.futbolbayer.service.assets.SoundService;
 	import com.pixo.futbolbayer.service.trivia.IQuestionsLoadService;
 	import com.pixo.futbolbayer.service.trivia.IQuestionsParser;
 	import com.pixo.futbolbayer.service.trivia.QuestionsLoadService;
@@ -19,6 +21,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			injector.mapSingletonOf(IAssetsServiceResponse, AssetsServiceResponse);
 			injector.mapSingletonOf(IQuestionsLoadService, QuestionsLoadService);
 			injector.mapSingletonOf(IQuestionsParser, QuestionsParser);
+			injector.mapSingletonOf(ISoundsService, SoundService);
 		}
 	}
 }

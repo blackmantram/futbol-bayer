@@ -19,7 +19,7 @@ package com.pixo.futbolbayer.view
 		
 		override protected function mapListeners():void
 		{
-			this.eventMap.mapListener(matchSettingsView.teamSectionButton, MouseEvent.CLICK, handleGoToTeamSettings);
+			eventMap.mapListener(matchSettingsView.teamSectionButton, MouseEvent.CLICK, handleGoToTeamSettings);
 		}
 		
 		private function handleGoToTeamSettings(e:MouseEvent):void

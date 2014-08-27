@@ -2,8 +2,10 @@ package com.pixo.futbolbayer.view
 {
 	import com.pixo.futbolbayer.controller.events.GameEvent;
 	import com.pixo.futbolbayer.service.assets.IAssetsLoadService;
+	import com.pixo.futbolbayer.service.assets.ISoundsService;
 	import com.pixo.futbolbayer.service.events.AssetsLoadedEvent;
 	import com.pixo.futbolbayer.service.trivia.IQuestionsLoadService;
+	import com.pixo.futbolbayer.view.events.SoundEvent;
 	
 	import flash.events.MouseEvent;
 	
@@ -18,6 +20,9 @@ package com.pixo.futbolbayer.view
 		public var assetsService:IAssetsLoadService;
 		
 		[Inject]
+		public var soundsService:ISoundsService;
+		
+		[Inject]
 		public var questionsService:IQuestionsLoadService;
 		
 		public function StartViewMediator()
@@ -29,7 +34,9 @@ package com.pixo.futbolbayer.view
 		{
 			this.addContextListener(AssetsLoadedEvent.COMPLETE, handleAssetsLoaded);
 			assetsService.loadAssets();
+			soundsService.loadSounds();
 			questionsService.loadQuestions();
+			dispatch(new SoundEvent(SoundEvent.START, GameSoundIds.LOOP, int.MAX_VALUE, 0.8));
 		}
 		
 		private function handleAssetsLoaded(e:AssetsLoadedEvent):void

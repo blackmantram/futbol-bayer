@@ -4,6 +4,7 @@ package com.pixo.futbolbayer.view.events
 
 	public class RefereeingEvent extends Event
 	{
+		public static const SHOW_REFEREE:String = "RefereeingEvent.showReferee";
 		public static const REFEREE:String = "RefereeingEvent.Referee";
 		
 		public function RefereeingEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)

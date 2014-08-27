@@ -21,6 +21,7 @@ package com.pixo.futbolbayer.view
 			this.eventMap.mapListener(view, Event.DISPLAYING, handleViewShown);
 			this.eventMap.mapListener(view.backButton, MouseEvent.CLICK, handleGoToTeamSetting);
 			this.eventMap.mapListener(view.startButton, MouseEvent.CLICK, handleGoToMatch);
+			view.setPreviewData(settingsModel.createPreviewDTO());
 		}
 		
 		private function handleViewShown(e:Event):void

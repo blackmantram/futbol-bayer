@@ -43,6 +43,7 @@ package com.pixo.futbolbayer.view.trivia
 		{
 			isSelectingAnswer = true;
 			view.visible = true;
+			view.show();
 			view.showQuestion(questionsParser.getQuestion());
 		}
 		
@@ -73,13 +74,13 @@ package com.pixo.futbolbayer.view.trivia
 		private function handleDelayComplete(e:TimerEvent):void
 		{
 			TimerUtils.stopTimer(delayTimer, handleDelayComplete);
-			view.visible = false;
+			view.hide();
 			dispatch(new TriviaEvent(TriviaEvent.SELECTED_ANSWER, wasLastAnswerCorrect));
 		}
 		
 		private function handleEnd(e:MatchEvent):void
 		{
-			view.visible = false;
+			view.hide();
 			eventMap.unmapListeners();
 		}
 	}

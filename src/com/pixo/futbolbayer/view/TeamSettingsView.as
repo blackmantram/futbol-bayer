@@ -6,6 +6,7 @@ package com.pixo.futbolbayer.view
 	import com.pixo.futbolbayer.view.events.SelectorEvent;
 	import com.pixo.futbolbayer.view.events.SettingsEvent;
 	import com.pixo.futbolbayer.view.general.ImageSelector;
+	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
 	
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
@@ -20,7 +21,7 @@ package com.pixo.futbolbayer.view
 	
 	import skins.GameSkin;
 
-	public class TeamSettingsView extends Sprite
+	public class TeamSettingsView extends Slider
 	{
 		private var team1NameInputText:TextField;
 		private var team2NameInputText:TextField;
@@ -70,6 +71,19 @@ package com.pixo.futbolbayer.view
 			settings.team1Name = team1NameInputText.text;
 			settings.team2Name = team2NameInputText.text;
 			return settings;
+		}
+		
+		override protected function hideContent():void
+		{
+			team1Selector.skin.alpha = 0;
+			team2Selector.skin.alpha = 0;
+		}
+		
+		override public function showContent():void
+		{
+			var tween:VerticalShowTween = new VerticalShowTween();
+			tween.tween(team1Selector.skin, 0);
+			tween.tween(team2Selector.skin, .25);
 		}
 		
 		public function setUniforms(uniforms:Array):void

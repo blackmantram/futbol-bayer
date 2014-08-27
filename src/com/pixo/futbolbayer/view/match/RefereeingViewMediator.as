@@ -36,6 +36,7 @@ package com.pixo.futbolbayer.view.match
 		
 		private function handleDelayTimer(e:Event):void
 		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
 			TimerUtils.stopTimer(delayTimer, handleDelayTimer);
 			view.showStart();
 		}
@@ -47,16 +48,19 @@ package com.pixo.futbolbayer.view.match
 		
 		private function handlePenalty(e:MatchEvent):void
 		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
 			view.showPenalty();
 		}
 		
 		private function handleYellowCard(e:MatchEvent):void
 		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
 			view.showYellowCard(e.currentTurn);
 		}
 		
 		private function handleEnd(e:MatchEvent):void
 		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
 			view.showEnd();
 		}
 		

@@ -1,8 +1,10 @@
 package com.pixo.futbolbayer.view
 {
+	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
+	
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import com.pixo.futbolbayer.view.tweens.MoveDownwardsTween;
+	
 	import skins.GameSkin;
 	
 	public class StartView extends Sprite
@@ -27,11 +29,9 @@ package com.pixo.futbolbayer.view
 		}   
 		protected function anim():void
 		{
-			var startTween:MoveDownwardsTween = new MoveDownwardsTween();
-			startTween.tween(startButton);
-			var helpTween:MoveDownwardsTween = new MoveDownwardsTween();
-			helpTween.tween1(helpButton);
-						
+			var tween:VerticalShowTween = new VerticalShowTween();
+			tween.tween(startButton, .25);
+			tween.tween(helpButton, 1.25);
 		}  
 	}
 }

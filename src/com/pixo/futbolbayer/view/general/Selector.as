@@ -8,6 +8,8 @@ package com.pixo.futbolbayer.view.general
 
 	public class Selector extends EventDispatcher
 	{
+		public var skin:Sprite;
+		
 		private var nextButton:Sprite;
 		private var prevButton:Sprite;
 		
@@ -20,6 +22,7 @@ package com.pixo.futbolbayer.view.general
 		
 		public function Selector(skin:Sprite)
 		{
+			this.skin = skin;
 			nextButton = skin.getChildByName("next_button") as Sprite;
 			prevButton = skin.getChildByName("prev_button") as Sprite;
 			addListeners();

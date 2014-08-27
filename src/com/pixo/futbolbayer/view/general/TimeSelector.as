@@ -11,6 +11,7 @@ package com.pixo.futbolbayer.view.general
 
 	public class TimeSelector extends Sprite
 	{
+		public var skin:Sprite;
 		private var unitsSelector:NumeralSelector;
 		private var tensSelector:NumeralSelector;
 		
@@ -21,6 +22,7 @@ package com.pixo.futbolbayer.view.general
 		
 		public function TimeSelector(skin:Sprite)
 		{
+			this.skin = skin;
 			unitsSelector = new NumeralSelector(skin.getChildByName("units_selector") as Sprite, 1);
 			tensSelector = new NumeralSelector(skin.getChildByName("tens_selector") as Sprite, 0);
 			unitsSelector.addEventListener(SelectorEvent.SELECTED, handleTimeChanged);

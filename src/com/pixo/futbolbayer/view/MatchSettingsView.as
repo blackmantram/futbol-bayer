@@ -7,7 +7,7 @@ package com.pixo.futbolbayer.view
 	import com.pixo.futbolbayer.view.general.ImageSelector;
 	import com.pixo.futbolbayer.view.general.Selector;
 	import com.pixo.futbolbayer.view.general.TimeSelector;
-	import com.pixo.futbolbayer.view.tweens.MoveUpwardsTween;
+	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -17,14 +17,11 @@ package com.pixo.futbolbayer.view
 	
 	import skins.GameSkin;
 
-	public class MatchSettingsView extends Sprite
+	public class MatchSettingsView extends Slider
 	{
 		private var timeSelector:TimeSelector;
-		private var timeSelector1:Sprite;
 		public var stadiumSelector:ImageSelector;
-		private var stadiumSelector1:Sprite;
 		public var refereeSelector:ImageSelector;
-		private var refereeSelector1:Sprite;
 		public var teamSectionButton:Sprite;
 		
 		public function MatchSettingsView()
@@ -37,9 +34,6 @@ package com.pixo.futbolbayer.view
 		{
 			var skin:Sprite = new GameSkin.MatchConfigSkin() as Sprite;
 			addChild(skin);
-			timeSelector1=skin.getChildByName("time_selector") as Sprite;
-			stadiumSelector1=skin.getChildByName("stadium_selector") as Sprite;
-			refereeSelector1=skin.getChildByName("referee_selector") as Sprite;
 			timeSelector = new TimeSelector(skin.getChildByName("time_selector") as Sprite);
 			stadiumSelector = new ImageSelector(skin.getChildByName("stadium_selector") as Sprite);
 			refereeSelector = new ImageSelector(skin.getChildByName("referee_selector") as Sprite);
@@ -49,15 +43,24 @@ package com.pixo.futbolbayer.view
 		
 		private function addListeners():void
 		{
-			var selectorTween:MoveUpwardsTween = new MoveUpwardsTween();
-			var stadiumTween:MoveUpwardsTween = new MoveUpwardsTween();
-			var refereeTween:MoveUpwardsTween = new MoveUpwardsTween();
-			selectorTween.tween(timeSelector1);
-			stadiumTween.tween1(stadiumSelector1);
-			refereeTween.tween2(refereeSelector1);
 			stadiumSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
 			refereeSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
 			timeSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
+		}
+		
+		override protected function hideContent():void
+		{
+			timeSelector.skin.alpha = 0;
+			stadiumSelector.skin.alpha = 0;
+			refereeSelector.skin.alpha = 0;
+		}
+		
+		override public function showContent():void
+		{
+			var tween:VerticalShowTween = new VerticalShowTween();
+			tween.tween(timeSelector.skin, 0);
+			tween.tween(stadiumSelector.skin, .25);
+			tween.tween(refereeSelector.skin, .50);
 		}
 		
 		private function handleSettingChanged(e:SelectorEvent):void

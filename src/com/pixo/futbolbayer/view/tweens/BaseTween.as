@@ -8,14 +8,9 @@ package com.pixo.futbolbayer.view.tweens
 	
 	public class BaseTween extends EventDispatcher
 	{
-		public function tween(object:DisplayObject):void
+		protected function fireTweenCompleteEvent(object:DisplayObject):void
 		{
-			throw new Error("this class is abstract and should be implemented");
-		}
-		
-		protected function fireTweenCompleteEvent():void
-		{
-			dispatchEvent(new TweenEvent(TweenEvent.COMPLETED));
+			dispatchEvent(new TweenEvent(TweenEvent.COMPLETED, object));
 		}
 	}
 }
