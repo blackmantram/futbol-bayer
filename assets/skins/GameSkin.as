@@ -33,5 +33,8 @@ package skins {
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="sound")]
 		public static var SoundSkin:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="match_end")]
+		public static var MatchEndSkin:Class;
 	}
 }

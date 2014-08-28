@@ -1,5 +1,6 @@
 package com.pixo.futbolbayer
 {
+	import com.pixo.futbolbayer.view.MatchEnd;
 	import com.pixo.futbolbayer.view.MatchPreview;
 	import com.pixo.futbolbayer.view.MatchSettingsView;
 	import com.pixo.futbolbayer.view.MatchView;
@@ -24,6 +25,7 @@ package com.pixo.futbolbayer
 		private var _teamSettingsView:Slider;
 		private var _matchPreview:Slider;
 		private var _match:Slider;
+		private var _matchEnd:Slider;
 		
 		private var showTween:HorizontalSliderShowTween = new HorizontalSliderShowTween();
 		private var removeTween:HorizontalSliderRemoveTween = new HorizontalSliderRemoveTween();
@@ -55,6 +57,12 @@ package com.pixo.futbolbayer
 		{
 			if(_match == null)_match = new MatchView();
 			return _match;
+		}
+		
+		public function get matchEnd():Slider
+		{
+			if(_matchEnd == null)_matchEnd = new MatchEnd();
+			return _matchEnd;
 		}
 		
 		public function GameView(startInMatch:Boolean = false)
@@ -124,6 +132,15 @@ package com.pixo.futbolbayer
 			{
 				state = "Match";
 				toLeft(matchPreview, match);
+			}
+		}
+		
+		public function showMatchEnd():void
+		{
+			if (state == "Match")
+			{
+				state = "End";
+				toLeft(match, matchEnd);
 			}
 		}
 		

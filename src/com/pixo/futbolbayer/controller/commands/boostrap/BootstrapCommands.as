@@ -1,6 +1,7 @@
 package com.pixo.futbolbayer.controller.commands.boostrap
 {
 	import com.pixo.futbolbayer.controller.commands.CheckAnswerCommand;
+	import com.pixo.futbolbayer.controller.commands.EndMatchCommand;
 	import com.pixo.futbolbayer.controller.commands.ExecuteFaultCommand;
 	import com.pixo.futbolbayer.controller.commands.ExecuteFreeKickCommand;
 	import com.pixo.futbolbayer.controller.commands.ExecutePenaltyCommand;
@@ -44,6 +45,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			
 			commandMap.mapEvent(RefereeingEvent.REFEREE, StartMatchCommand);
 			commandMap.mapEvent(RefereeingEvent.REFEREE, ExecutePenaltyCommand);
+			commandMap.mapEvent(RefereeingEvent.REFEREE, EndMatchCommand);
 			commandMap.mapEvent(MatchEvent.OFF_SIDE, ExecutePenaltyCommand);
 			
 			commandMap.mapEvent(MatchEvent.START, ShowQuestionCommand);

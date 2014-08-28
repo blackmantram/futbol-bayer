@@ -43,6 +43,7 @@ package com.pixo.futbolbayer.model
 				this.dispatch(new MatchClockEvent(MatchClockEvent.TICK, currentTime));
 			else
 			{
+				this.state = MatchState.END;
 				clockTimer.stop();
 				this.dispatch(new MatchEvent(MatchEvent.END));
 			}
