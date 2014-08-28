@@ -14,11 +14,13 @@ package com.pixo.futbolbayer.view.events
 		public static const YELLOW_CARD:String = "MatchEvent.YellowCard";
 		public static const PENALTY:String = "MatchEvent.Penalty";
 		public static const EXECUTE_PENALTY:String = "MatchEvent.ExecutePenalty";
+		public static const EXECUTE_FREE_KICK:String = "MatchEvent.ExecuteFreeKick";
 		public static const SCORE:String = "MatchEvent.Score";
 		public static const OFF_SIDE:String = "MatchEvent.OffSide";
 		public static const FAULT:String = "MatchEvent.Fault";
 		public static const HAND_BALL:String = "MatchEvent.HandBall";
 		public static const FREE_KICK:String = "MatchEvent.FreeKick";
+		public static const RESUME:String = "MatchEvent.Resume";
 		public static const END:String = "MatchEvent.End";
 		
 		public var currentTurn:int;

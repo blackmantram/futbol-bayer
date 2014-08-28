@@ -9,5 +9,11 @@ package com.pixo.futbolbayer.view.match.grid.tiles
 			for each(var _tile:Tile in tiles)
 				addTile(_tile);
 		}
+		
+		public function on():void
+		{
+			for each(var _tile:Tile in this.tilesArray)
+				_tile.on();
+		}
 	}
 }

@@ -8,6 +8,7 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.SpecialActionEvent;
 	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
 	
+	import flash.events.Event;
 	import flash.sampler.NewObjectSample;
 	
 	import org.robotlegs.mvcs.Mediator;
@@ -23,12 +24,14 @@ package com.pixo.futbolbayer.view.match.pitch
 		private var isMoving:Boolean = false;
 		private var isReversing:Boolean = false;
 		private var isPenalty:Boolean = false;
+		private var isFreeKick:Boolean = false;
 		
 		override public function onRegister():void
 		{
 			view.setStadiumAsset(settingsModel.getStadiumAsset());	
 			eventMap.mapListener(eventDispatcher, MatchEvent.NEXT_STEP, handleNextStep);
 			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_PENALTY, handleExecutePenalty);
+			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_FREE_KICK, handleExecuteFreeKick);
 			eventMap.mapListener(eventDispatcher, MatchEvent.READY, handleReady);
 			
 			eventMap.mapListener(view, PitchEvent.GOAL, handleGoal);
@@ -47,10 +50,23 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function rollFinished(e:DiceEvent):void
 		{
-			if (!isPenalty)
-				startMove(e.movements);
+			if (isPenalty)
+				shoot(e.movements, handlePenaltyMiss);
+			else if (isFreeKick)
+				shoot(e.movements, handleFreeKickMiss);
 			else
-				shootPenalty(e.movements);
+				startMove(e.movements);
+		}
+		
+		private function handlePenaltyMiss():void
+		{
+			dispatch(new MatchEvent(MatchEvent.RESUME));
+		}
+		
+		private function handleFreeKickMiss():void
+		{
+			isFreeKick = false;
+			dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_FINISHED));
 		}
 		
 		private function startMove(movements:int):void
@@ -67,13 +83,14 @@ package com.pixo.futbolbayer.view.match.pitch
 			view.move(4, event.direction);	
 		}
 		
-		private function shootPenalty(movements:int):void
+		private function shoot(movements:int, callbackOnMiss:Function):void
 		{
 			if (movements > 3)
 				dispatch(new MatchEvent(MatchEvent.SCORE));
 			else
-				finishStep();
+				callbackOnMiss();
 			isPenalty = false;
+			isFreeKick = false;
 		}
 		
 		private function handleMovementComplete(e:PitchEvent):void
@@ -127,6 +144,12 @@ package com.pixo.futbolbayer.view.match.pitch
 		private function handleExecutePenalty(e:MatchEvent):void
 		{
 			isPenalty = true;
+			view.roll();
+		}
+		
+		private function handleExecuteFreeKick(e:MatchEvent):void
+		{
+			isFreeKick = true;
 			view.roll();
 		}
 		

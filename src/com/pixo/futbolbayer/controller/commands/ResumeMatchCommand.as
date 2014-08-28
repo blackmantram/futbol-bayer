@@ -13,7 +13,7 @@ package com.pixo.futbolbayer.controller.commands
 		
 		override public function execute():void
 		{
-			if(matchModel.state == MatchState.SCORED)
+			if(matchModel.state == MatchState.SCORED || matchModel.state == MatchState.PENALTY)
 			{
 				matchModel.reset();
 				dispatch(new MatchEvent(MatchEvent.READY));

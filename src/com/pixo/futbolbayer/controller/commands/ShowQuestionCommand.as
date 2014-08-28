@@ -13,11 +13,17 @@ package com.pixo.futbolbayer.controller.commands
 		
 		override public function execute():void
 		{
-			if (matchModel.state == MatchState.RUNNING)
+			if (canShowQuestion())
 			{
+				matchModel.state = MatchState.RUNNING;
 				var evt:MatchEvent = new MatchEvent(MatchEvent.SHOW_QUESTION);
 				dispatch(evt);	
 			}
+		}
+		
+		private function canShowQuestion():Boolean
+		{
+			return matchModel.state == MatchState.RUNNING || matchModel.state == MatchState.SHOWING_FREE_KICK;
 		}
 	}
 }

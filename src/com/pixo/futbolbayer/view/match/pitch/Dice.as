@@ -1,6 +1,8 @@
 package com.pixo.futbolbayer.view.match.pitch
 {
 	import com.pixo.futbolbayer.view.events.DiceEvent;
+	import com.pixo.futbolbayer.view.tweens.VerticalHideTween;
+	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
 	
 	import common.utils.MathUtils;
 	import common.utils.TimerUtils;
@@ -13,6 +15,7 @@ package com.pixo.futbolbayer.view.match.pitch
 	{
 		private var clip:MovieClip;
 		private var timer:Timer;
+		private var value:int;
 				
 		public function Dice(clip:MovieClip)
 		{
@@ -23,7 +26,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		public function roll():void
 		{
-			clip.visible = true;
+			showClip();
 			clip.gotoAndStop("animation");
 			timer = TimerUtils.startTimer(timer, 1500, handleRollFinished);
 		}
@@ -32,17 +35,28 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			TimerUtils.stopTimer(timer, handleRollFinished);
 			timer = TimerUtils.startTimer(timer, 1000, handleDiceDelay);
-			var _value:int = MathUtils.randomRange(1, 6);
-			clip.gotoAndStop(_value);
-			dispatchEvent(new DiceEvent(DiceEvent.ROLL_FINISHED, _value, true));
+			value = MathUtils.randomRange(1, 6);
+			clip.gotoAndStop(value);
 		}
 		
 		private function handleDiceDelay(e:TimerEvent):void
 		{
+			dispatchEvent(new DiceEvent(DiceEvent.ROLL_FINISHED, value, true));
 			TimerUtils.stopTimer(timer, handleDiceDelay);
-			clip.visible = false;
+			hideClip();
 		}
 		
+		private function showClip():void
+		{
+			var showTween:VerticalShowTween = new VerticalShowTween();
+			showTween.tween(clip, 0);
+			clip.visible = true;
+		}
 		
+		private function hideClip():void
+		{
+			var hideTween:VerticalHideTween = new VerticalHideTween();
+			hideTween.tween(clip, 0, false);
+		}
 	}
 }

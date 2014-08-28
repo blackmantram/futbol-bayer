@@ -15,7 +15,7 @@ package com.pixo.futbolbayer.view.tweens
 			this.object = object;
 			var originalXPos:int = object.x;
 			object.x = getInitialXPosition(direction);	
-			TweenLite.to(object, 1, {x:originalXPos, ease:Circ.easeOut, onComplete:handleTweenComplete});
+			TweenLite.to(object, 0.5, {x:originalXPos, ease:Circ.easeOut, onComplete:handleTweenComplete});
 		}
 		
 		private function handleTweenComplete():void

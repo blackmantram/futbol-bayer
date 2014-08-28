@@ -51,6 +51,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			commandMap.mapEvent(MatchEvent.SCORE, ScoreCommand);
 			commandMap.mapEvent(MatchEvent.SCORE, PauseCommand);
 			
+			commandMap.mapEvent(MatchEvent.RESUME, ResumeMatchCommand);
 			commandMap.mapEvent(AnimationEvent.ANIMATION_FINISHED, ResumeMatchCommand);
 			commandMap.mapEvent(AnimationEvent.ANIMATION_FINISHED, ExecuteSkipTurnCommand);
 			commandMap.mapEvent(AnimationEvent.ANIMATION_FINISHED, ExecuteFaultCommand);

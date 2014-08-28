@@ -11,5 +11,6 @@ package com.pixo.futbolbayer.model
 		public static const FAULT:String = "MatchState.fault";
 		public static const HAND_BALL:String = "MatchState.hand";
 		public static const FREE_KICK:String = "MatchState.freeKick";
+		public static const SHOWING_FREE_KICK:String = "MatchState.showingFreeKick";
 	}
 }

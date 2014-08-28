@@ -15,9 +15,8 @@ package com.pixo.futbolbayer.controller.commands
 		{
 			if(matchModel.state == MatchState.FREE_KICK)
 			{
-				trace("free kick");
-				matchModel.state = MatchState.SHOWING_PENALTY;
-				dispatch(new MatchEvent(MatchEvent.EXECUTE_PENALTY));
+				matchModel.state = MatchState.SHOWING_FREE_KICK;
+				dispatch(new MatchEvent(MatchEvent.EXECUTE_FREE_KICK));
 			}
 		}
 	}
