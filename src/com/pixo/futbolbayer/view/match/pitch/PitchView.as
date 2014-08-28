@@ -5,6 +5,7 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
 	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
+	import com.pixo.futbolbayer.view.tweens.MoveToPointTween;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -53,8 +54,8 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function handleSelectedPoint(e:GridEvent):void 
 		{
-			ball.x = e.point.x;
-			ball.y = e.point.y;
+			var tween:MoveToPointTween = new MoveToPointTween();
+			tween.tween(ball, e.point);
 			checkGoal();
 		}
 		
