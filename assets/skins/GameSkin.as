@@ -30,5 +30,8 @@ package skins {
 		
 		[Embed(source="FutbolBayer/GameSkins.swf", symbol="card")]
 		public static var Card:Class;
+		
+		[Embed(source="FutbolBayer/GameSkins.swf", symbol="sound")]
+		public static var SoundSkin:Class;
 	}
 }

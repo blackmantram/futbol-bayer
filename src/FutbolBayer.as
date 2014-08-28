@@ -10,13 +10,15 @@ package
 	{
 		private var _context:GameContext;
 		private var _contextView:Sprite;
+		private var _gameView:GameView = new GameView();
 		
 		public function FutbolBayer()
 		{
 			_contextView = new Sprite();
 			addChild(_contextView);
 			_context = new GameContext(_contextView);
-			_contextView.addChild(new GameView());
+			_contextView.addChild(_gameView);
+			_gameView.showStart();
 		}
 	}
 }

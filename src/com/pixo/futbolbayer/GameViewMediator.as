@@ -1,6 +1,8 @@
 package com.pixo.futbolbayer
 {
 	import com.pixo.futbolbayer.controller.events.GameEvent;
+	import com.pixo.futbolbayer.view.GameSoundIds;
+	import com.pixo.futbolbayer.view.events.SoundEvent;
 	
 	import org.robotlegs.mvcs.Mediator;
 

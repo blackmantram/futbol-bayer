@@ -15,6 +15,7 @@ package com.pixo.futbolbayer
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.events.Event;
 
 	public class GameView extends Sprite
 	{
@@ -28,6 +29,9 @@ package com.pixo.futbolbayer
 		private var removeTween:HorizontalSliderRemoveTween = new HorizontalSliderRemoveTween();
 		
 		private var state:String = "";
+		
+		private var topLayer:Sprite = new Sprite();
+		private var regularLayer:Sprite = new Sprite();
 		
 		public function get matchSettingsView():Slider
 		{
@@ -55,16 +59,22 @@ package com.pixo.futbolbayer
 		
 		public function GameView(startInMatch:Boolean = false)
 		{
-			removeTween.addEventListener(TweenEvent.COMPLETED, handleRemoveComplete);1
+			addChild(regularLayer);
+			addChild(topLayer);
+			removeTween.addEventListener(TweenEvent.COMPLETED, handleRemoveComplete);
 			showTween.addEventListener(TweenEvent.COMPLETED, handleShowComplete);
-			addChild(new SoundView());
-			showStart();
+			addSoundView();
+		}
+		
+		private function addSoundView():void
+		{
+			topLayer.addChild(new SoundView());
 		}
 		
 		public function showStart():void
 		{
 			startView = new StartView();
-			addChild(startView);
+			regularLayer.addChild(startView);
 			state = "Start";
 		}
 		
@@ -77,8 +87,8 @@ package com.pixo.futbolbayer
 			} 
 			else if (state == "Settings")
 			{
-				removeChild(teamSettingsView);
-				addChild(matchSettingsView);
+				regularLayer.removeChild(teamSettingsView);
+				regularLayer.addChild(matchSettingsView);
 				matchSettingsView.showContent();
 			}
 				
@@ -88,8 +98,8 @@ package com.pixo.futbolbayer
 		{
 			if (state == "Settings")
 			{
-				removeChild(matchSettingsView);
-				addChild(teamSettingsView);
+				regularLayer.removeChild(matchSettingsView);
+				regularLayer.addChild(teamSettingsView);
 				teamSettingsView.showContent();
 			}
 			else if (state == "Preview")
@@ -120,7 +130,7 @@ package com.pixo.futbolbayer
 		private function toLeft(hidding:DisplayObject, showing:DisplayObject):void
 		{
 			showing.x=0;
-			addChild(showing);
+			regularLayer.addChild(showing);
 			showTween.tween(showing, -1);
 			removeTween.tween(hidding, 1);
 		}
@@ -128,7 +138,7 @@ package com.pixo.futbolbayer
 		private function toRight(hidding:DisplayObject, showing:DisplayObject):void
 		{
 			showing.x=0;
-			addChild(showing);
+			regularLayer.addChild(showing);
 			showTween.tween(showing, 1);
 			removeTween.tween(hidding, -1);
 		}
@@ -140,7 +150,7 @@ package com.pixo.futbolbayer
 		
 		private function handleRemoveComplete(e:TweenEvent):void
 		{
-			removeChild(e.object);
+			regularLayer.removeChild(e.object);
 		}
 	}
 }
