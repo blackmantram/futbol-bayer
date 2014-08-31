@@ -51,22 +51,47 @@ package com.pixo.futbolbayer.view.match.pitch
 		private function rollFinished(e:DiceEvent):void
 		{
 			if (isPenalty)
-				shoot(e.movements, handlePenaltyMiss);
+				shoot(e.movements, handlePenaltyScore, handlePenaltyMiss);
 			else if (isFreeKick)
-				shoot(e.movements, handleFreeKickMiss);
+				shoot(e.movements, handleFreeKickScore, handleFreeKickMiss);
 			else
 				startMove(e.movements);
 		}
 		
+		private function handlePenaltyScore():void
+		{
+			isPenalty = false;
+			view.penaltyKickHolder.score(function():void{
+				view.penaltyKickHolder.stop();
+				dispatch(new MatchEvent(MatchEvent.SCORE));
+			});
+		}
+		
 		private function handlePenaltyMiss():void
 		{
-			dispatch(new MatchEvent(MatchEvent.RESUME));
+			isPenalty = false;
+			view.penaltyKickHolder.fail(function():void{
+				view.penaltyKickHolder.stop();
+				dispatch(new MatchEvent(MatchEvent.RESUME));
+			});
+		}
+		
+		private function handleFreeKickScore():void
+		{
+			isFreeKick = false;
+			view.freeKickHolder.score(function():void{
+				view.freeKickHolder.stop();
+				dispatch(new MatchEvent(MatchEvent.SCORE));
+			});
 		}
 		
 		private function handleFreeKickMiss():void
 		{
 			isFreeKick = false;
-			dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_FINISHED));
+			view.freeKickHolder.fail(function():void{
+				view.freeKickHolder.stop();
+				dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_FINISHED));
+			});
 		}
 		
 		private function startMove(movements:int):void
@@ -83,14 +108,12 @@ package com.pixo.futbolbayer.view.match.pitch
 			view.move(4, event.direction);	
 		}
 		
-		private function shoot(movements:int, callbackOnMiss:Function):void
+		private function shoot(movements:int, callBackOnScore:Function, callbackOnMiss:Function):void
 		{
 			if (movements > 3)
-				dispatch(new MatchEvent(MatchEvent.SCORE));
+				callBackOnScore();
 			else
 				callbackOnMiss();
-			isPenalty = false;
-			isFreeKick = false;
 		}
 		
 		private function handleMovementComplete(e:PitchEvent):void
@@ -144,12 +167,14 @@ package com.pixo.futbolbayer.view.match.pitch
 		private function handleExecutePenalty(e:MatchEvent):void
 		{
 			isPenalty = true;
+			view.penaltyKickHolder.start();
 			view.roll();
 		}
 		
 		private function handleExecuteFreeKick(e:MatchEvent):void
 		{
 			isFreeKick = true;
+			view.freeKickHolder.start();
 			view.roll();
 		}
 		

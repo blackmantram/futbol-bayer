@@ -1,5 +1,8 @@
 package com.pixo.futbolbayer.view.match.pitch 
 {
+	import animations.FreeKickAnimations;
+	import animations.PenaltyKickAnimations;
+	
 	import com.pixo.futbolbayer.view.events.DiceEvent;
 	import com.pixo.futbolbayer.view.events.GridEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
@@ -26,6 +29,9 @@ package com.pixo.futbolbayer.view.match.pitch
 		private var ball:Sprite;
 		private var stadium:Sprite;
 		
+		public var penaltyKickHolder:KickHolder;
+		public var freeKickHolder:KickHolder;
+		
 		public function get movementsLeft():int
 		{
 			return movements;
@@ -45,6 +51,13 @@ package com.pixo.futbolbayer.view.match.pitch
 			grid = new HexagonalGrid(skin.getChildByName("grid") as Sprite);
 			dice = new Dice(skin.getChildByName("dice") as MovieClip);
 			ball = skin.getChildByName("ball") as Sprite;
+			initializeKickHolders(skin);
+		}
+		
+		private function initializeKickHolders(skin:Sprite):void
+		{
+			penaltyKickHolder = new KickHolder(skin.getChildByName("penalty_kick") as Sprite, new PenaltyKickAnimations());
+			freeKickHolder = new KickHolder(skin.getChildByName("free_kick") as Sprite, new FreeKickAnimations());
 		}
 		
 		private function addListeners():void
