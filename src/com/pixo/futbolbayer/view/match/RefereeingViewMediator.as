@@ -27,6 +27,11 @@ package com.pixo.futbolbayer.view.match
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.PENALTY, handlePenalty);
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.READY, handleReady);
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
+			
+			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_PENALTY, hide);
+			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_FREE_KICK, hide);
+			eventMap.mapListener(eventDispatcher, MatchEvent.RESUME, show);
+			eventMap.mapListener(eventDispatcher, MatchEvent.SCORE, show);
 		}
 		
 		private function delay():void
@@ -68,6 +73,16 @@ package com.pixo.futbolbayer.view.match
 		{
 			view.reset();
 			delay();
+		}
+		
+		private function hide(e:Event):void
+		{
+			view.visible = false;
+		}
+		
+		private function show(e:Event):void
+		{
+			view.visible = true;
 		}
 	}
 }
