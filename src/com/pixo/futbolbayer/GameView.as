@@ -17,6 +17,8 @@ package com.pixo.futbolbayer
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	
+	import skins.GameSkin;
 
 	public class GameView extends Sprite
 	{
@@ -72,11 +74,17 @@ package com.pixo.futbolbayer
 			removeTween.addEventListener(TweenEvent.COMPLETED, handleRemoveComplete);
 			showTween.addEventListener(TweenEvent.COMPLETED, handleShowComplete);
 			addSoundView();
+			addLogo();
 		}
 		
 		private function addSoundView():void
 		{
 			topLayer.addChild(new SoundView());
+		}
+		
+		private function addLogo():void
+		{
+			topLayer.addChild(new GameSkin.Logo() as Sprite);
 		}
 		
 		public function showStart():void
