@@ -32,6 +32,8 @@ package com.pixo.futbolbayer.view.match.pitch
 		public var penaltyKickHolder:KickHolder;
 		public var freeKickHolder:KickHolder;
 		
+		public var banner:Sprite;
+		
 		public function get movementsLeft():int
 		{
 			return movements;
@@ -51,6 +53,7 @@ package com.pixo.futbolbayer.view.match.pitch
 			grid = new HexagonalGrid(skin.getChildByName("grid") as Sprite);
 			dice = new Dice(skin.getChildByName("dice") as MovieClip);
 			ball = skin.getChildByName("ball") as Sprite;
+			banner = skin.getChildByName("banner") as Sprite;
 			initializeKickHolders(skin);
 		}
 		
@@ -117,6 +120,11 @@ package com.pixo.futbolbayer.view.match.pitch
 		public function setStadiumAsset(asset:DisplayObject):void 
 		{
 			stadium.addChild(asset);
+		}
+		
+		public function setBannerAsset(asset:DisplayObject):void 
+		{
+			banner.addChild(asset);
 		}
 	}
 }

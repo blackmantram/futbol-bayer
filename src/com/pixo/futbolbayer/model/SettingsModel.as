@@ -47,11 +47,16 @@ package com.pixo.futbolbayer.model
 			return getAsset(matchSettings.stadiumId, AssetType.STADIUMS);
 		}
 		
+		public function getBannerAsset():DisplayObject
+		{
+			return getAsset(0, AssetType.BANNERS);
+		}
+		
 		private function getAsset(uniformIndex:int, assetType:String):DisplayObject
 		{
-			var uniforms:Array = assetsServiceResponse.getAssetsByCategory(assetType);
-			var uniform:Loader = uniforms[uniformIndex];
-			return new Bitmap(Bitmap(uniform.content).bitmapData);
+			var assets:Array = assetsServiceResponse.getAssetsByCategory(assetType);
+			var asset:Loader = assets[uniformIndex];
+			return asset.content is Bitmap ? new Bitmap(Bitmap(asset.content).bitmapData) : asset;
 		}
 	}
 }

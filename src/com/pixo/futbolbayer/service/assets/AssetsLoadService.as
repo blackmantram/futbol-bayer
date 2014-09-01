@@ -19,7 +19,8 @@ package com.pixo.futbolbayer.service.assets
 				{category:AssetType.REFEREES,folder:"referees/"},
 				{category:AssetType.STADIUMS_THUMBS,folder:"stadiums/thumbs"},
 				{category:AssetType.UNIFORMS,folder:"uniforms/"},
-				{category:AssetType.STADIUMS,folder:"stadiums/fields"}
+				{category:AssetType.STADIUMS,folder:"stadiums/fields"},
+				{category:AssetType.BANNERS,folder:"banner"}
 			];
 		
 		[Inject]

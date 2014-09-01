@@ -6,5 +6,6 @@ package common
 		public static const STADIUMS_THUMBS:String = "AssetType.stadiumsThumbs";
 		public static const STADIUMS:String = "AssetType.stadiums";
 		public static const UNIFORMS:String = "AssetType.uniforms";
+		public static const BANNERS:String = "AssetType.banners";
 	}
 }
