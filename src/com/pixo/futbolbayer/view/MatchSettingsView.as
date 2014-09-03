@@ -23,6 +23,7 @@ package com.pixo.futbolbayer.view
 		public var stadiumSelector:ImageSelector;
 		public var refereeSelector:ImageSelector;
 		public var teamSectionButton:Sprite;
+		public var teamatras:Sprite;
 		
 		public function MatchSettingsView()
 		{
@@ -38,6 +39,7 @@ package com.pixo.futbolbayer.view
 			stadiumSelector = new ImageSelector(skin.getChildByName("stadium_selector") as Sprite);
 			refereeSelector = new ImageSelector(skin.getChildByName("referee_selector") as Sprite);
 			teamSectionButton = skin.getChildByName("team_section_button") as Sprite;
+			teamatras = skin.getChildByName("back_button") as Sprite;
 			
 		}
 		
@@ -46,6 +48,7 @@ package com.pixo.futbolbayer.view
 			stadiumSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
 			refereeSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
 			timeSelector.addEventListener(SelectorEvent.SELECTED, handleSettingChanged);
+			
 		}
 		
 		override protected function hideContent():void

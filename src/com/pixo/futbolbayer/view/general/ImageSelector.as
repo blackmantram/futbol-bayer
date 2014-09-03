@@ -29,6 +29,15 @@ package com.pixo.futbolbayer.view.general
 				selectIndex(0);
 			}
 		}
+		public function setItems2(items:Array):void
+		{
+			if (!_isDirty)
+			{
+				_isDirty = true;
+				_items = items;
+				selectIndex(11);
+			}
+		}
 		
 		override protected function get maxIndex():int
 		{

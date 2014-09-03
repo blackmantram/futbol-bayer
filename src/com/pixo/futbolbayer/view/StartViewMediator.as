@@ -52,7 +52,7 @@ package com.pixo.futbolbayer.view
 		
 		private function handleShowHelp(e:MouseEvent):void
 		{
-			trace("show help");
+			dispatch(new GameEvent(GameEvent.HELP));
 		}
 	}
 }

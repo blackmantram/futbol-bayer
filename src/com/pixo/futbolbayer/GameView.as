@@ -41,6 +41,7 @@ package com.pixo.futbolbayer
 		{
 			if(_matchSettingsView == null)_matchSettingsView = new MatchSettingsView();
 			return _matchSettingsView;
+			trace("aca")
 		}
 
 		public function get teamSettingsView():Slider
@@ -108,6 +109,16 @@ package com.pixo.futbolbayer
 				matchSettingsView.showContent();
 			}
 				
+		}
+		public function showMatchhelp():void
+		{
+			if (state == "Start")
+			{
+				state = "Settings";
+				toLeft(startView, matchSettingsView);
+			} 
+			
+			
 		}
 		
 		public function showTeamSettings():void

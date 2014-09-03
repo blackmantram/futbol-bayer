@@ -23,13 +23,18 @@ package com.pixo.futbolbayer
 			eventMap.mapListener(eventDispatcher, GameEvent.PREVIEW, handlePreview);
 			eventMap.mapListener(eventDispatcher, GameEvent.GOTO_MATCH, handleGoToMatch);
 			eventMap.mapListener(eventDispatcher, GameEvent.END, handleMatchEnd);
+			eventMap.mapListener(eventDispatcher, GameEvent.start, handleMatchstart);
+			eventMap.mapListener(eventDispatcher, GameEvent.HELP, handleMatchhelp);
 		}
 		
 		private function handleMatchSettings(e:GameEvent):void
 		{
 			view.showMatchSettings();
 		}
-		
+		private function  handleMatchhelp(e:GameEvent):void
+		{
+			view.showMatchhelp();
+		}
 		private function handleTeamSettings(e:GameEvent):void
 		{
 			view.showTeamSettings();
@@ -48,6 +53,10 @@ package com.pixo.futbolbayer
 		private function handleMatchEnd(e:GameEvent):void
 		{
 			view.showMatchEnd();
+		}
+		private function handleMatchstart(e:GameEvent):void
+		{
+			view.showStart();
 		}
 	}
 }

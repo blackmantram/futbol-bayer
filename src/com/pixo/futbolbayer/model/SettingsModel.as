@@ -58,5 +58,13 @@ package com.pixo.futbolbayer.model
 			var asset:Loader = assets[uniformIndex];
 			return asset.content is Bitmap ? new Bitmap(Bitmap(asset.content).bitmapData) : asset;
 		}
+		private function getAsset1(uniformIndex:int, assetType:String):DisplayObject
+		{
+			var assets1:Array = assetsServiceResponse.getAssetsByCategory(assetType);
+			assets1.reverse();
+			var asset:Loader = assets1[uniformIndex];
+			
+			return asset.content is Bitmap ? new Bitmap(Bitmap(asset.content).bitmapData) : asset;
+		}
 	}
 }

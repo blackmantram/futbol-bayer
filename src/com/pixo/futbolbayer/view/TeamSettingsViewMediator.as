@@ -22,6 +22,7 @@ package com.pixo.futbolbayer.view
 		{
 			eventMap.mapListener(teamSettingsView.matchSectionButton,  MouseEvent.CLICK, handleGoToMatchSettings);
 			eventMap.mapListener(teamSettingsView.previewButton, MouseEvent.CLICK, handleGoToPreview);
+			eventMap.mapListener(teamSettingsView.teamatras, MouseEvent.CLICK, handleGoToPreview1);
 			eventMap.mapListener(eventDispatcher, GameEvent.TEAM_SETTINGS, handleTeamSettings);
 		}
 		
@@ -43,6 +44,10 @@ package com.pixo.futbolbayer.view
 		private function handleGoToPreview(e:MouseEvent):void
 		{
 			dispatch(new GameEvent(GameEvent.PREVIEW));
+		}
+		private function handleGoToPreview1(e:MouseEvent):void
+		{
+			dispatch(new GameEvent(GameEvent.start));
 		}
 	}
 }
