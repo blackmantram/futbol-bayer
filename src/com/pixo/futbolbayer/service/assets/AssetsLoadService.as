@@ -16,7 +16,8 @@ package com.pixo.futbolbayer.service.assets
 	public class AssetsLoadService extends Actor implements IAssetsLoadService
 	{
 		private const assetsFolders:Array = [
-				{category:AssetType.REFEREES,folder:"referees/"},
+				{category:AssetType.REFEREES_THUMBS,folder:"referees/thumbs/"},
+				{category:AssetType.REFEREES,folder:"referees/characters/"},
 				{category:AssetType.STADIUMS_THUMBS,folder:"stadiums/thumbs"},
 				{category:AssetType.UNIFORMS,folder:"uniforms/"},
 				{category:AssetType.STADIUMS,folder:"stadiums/fields"},

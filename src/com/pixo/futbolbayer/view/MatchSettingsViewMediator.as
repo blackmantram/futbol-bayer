@@ -35,7 +35,7 @@ package com.pixo.futbolbayer.view
 		override protected function initSelectors():void
 		{
 			matchSettingsView.stadiumSelector.setItems(loadedAssets.getAssetsByCategory(AssetType.STADIUMS_THUMBS));
-			matchSettingsView.refereeSelector.setItems(loadedAssets.getAssetsByCategory(AssetType.REFEREES));
+			matchSettingsView.refereeSelector.setItems(loadedAssets.getAssetsByCategory(AssetType.REFEREES_THUMBS));
 		}
 	}
 }

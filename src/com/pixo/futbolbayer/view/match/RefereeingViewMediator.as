@@ -1,5 +1,6 @@
 package com.pixo.futbolbayer.view.match
 {
+	import com.pixo.futbolbayer.model.SettingsModel;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.events.RefereeingEvent;
 	import com.pixo.futbolbayer.view.events.RefereeingViewEvent;
@@ -19,8 +20,12 @@ package com.pixo.futbolbayer.view.match
 		[Inject]
 		public var view:RefereeingView;
 		
+		[Inject]
+		public var settingsModel:SettingsModel;
+		
 		override public function onRegister():void
 		{
+			view.setCharacter(settingsModel.getRefereeAsset());
 			delay();
 			this.eventMap.mapListener(view, RefereeingViewEvent.POPUP_COMPLETED, handlePopUpComplete);
 			this.eventMap.mapListener(eventDispatcher, MatchEvent.YELLOW_CARD, handleYellowCard);

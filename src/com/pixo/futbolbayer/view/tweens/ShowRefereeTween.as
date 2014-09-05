@@ -16,7 +16,6 @@ package com.pixo.futbolbayer.view.tweens
 			this.object = object;
 			originalPosY = object.y;
 			object.y = object.stage.stageWidth;
-			object.visible = true;
 			TweenLite.to(object, 0.5, {y:originalPosY, ease:Back.easeOut, onComplete:handleShowComplete})
 		}
 		
@@ -27,7 +26,6 @@ package com.pixo.futbolbayer.view.tweens
 		
 		private function handleComplete():void
 		{
-			object.visible = false;
 			object.y = originalPosY;
 			fireTweenCompleteEvent(object);
 		}

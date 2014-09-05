@@ -7,6 +7,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.controller.commands.ExecutePenaltyCommand;
 	import com.pixo.futbolbayer.controller.commands.ExecuteSkipTurnCommand;
 	import com.pixo.futbolbayer.controller.commands.FinishSpecialActionCommand;
+	import com.pixo.futbolbayer.controller.commands.FinishStepCommand;
 	import com.pixo.futbolbayer.controller.commands.MovementCommand;
 	import com.pixo.futbolbayer.controller.commands.NextStepCommand;
 	import com.pixo.futbolbayer.controller.commands.PauseCommand;
@@ -46,6 +47,8 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			commandMap.mapEvent(RefereeingEvent.REFEREE, StartMatchCommand);
 			commandMap.mapEvent(RefereeingEvent.REFEREE, ExecutePenaltyCommand);
 			commandMap.mapEvent(RefereeingEvent.REFEREE, EndMatchCommand);
+			commandMap.mapEvent(RefereeingEvent.REFEREE, FinishStepCommand);
+			
 			commandMap.mapEvent(MatchEvent.OFF_SIDE, ExecutePenaltyCommand);
 			
 			commandMap.mapEvent(MatchEvent.START, ShowQuestionCommand);

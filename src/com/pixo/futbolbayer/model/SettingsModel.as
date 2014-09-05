@@ -52,18 +52,15 @@ package com.pixo.futbolbayer.model
 			return getAsset(0, AssetType.BANNERS);
 		}
 		
-		private function getAsset(uniformIndex:int, assetType:String):DisplayObject
+		public function getRefereeAsset():DisplayObject
+		{
+			return getAsset(matchSettings.refereeId, AssetType.REFEREES);
+		}
+		
+		private function getAsset(assetIndex:int, assetType:String):DisplayObject
 		{
 			var assets:Array = assetsServiceResponse.getAssetsByCategory(assetType);
-			var asset:Loader = assets[uniformIndex];
-			return asset.content is Bitmap ? new Bitmap(Bitmap(asset.content).bitmapData) : asset;
-		}
-		private function getAsset1(uniformIndex:int, assetType:String):DisplayObject
-		{
-			var assets1:Array = assetsServiceResponse.getAssetsByCategory(assetType);
-			assets1.reverse();
-			var asset:Loader = assets1[uniformIndex];
-			
+			var asset:Loader = assets[assetIndex];
 			return asset.content is Bitmap ? new Bitmap(Bitmap(asset.content).bitmapData) : asset;
 		}
 	}

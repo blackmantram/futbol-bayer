@@ -6,6 +6,7 @@ package com.pixo.futbolbayer.view.match
 	import com.pixo.futbolbayer.view.tweens.ShowRefereeTween;
 	import com.pixo.futbolbayer.view.tweens.events.TweenEvent;
 	
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
@@ -38,6 +39,11 @@ package com.pixo.futbolbayer.view.match
 			teamCards = [new CardDeck(team1_cards, card), new CardDeck(team2_cards, card)];
 		}
 		
+		public function setCharacter(character:DisplayObject):void
+		{
+			popup.setCharacter(character);
+		}
+		
 		public function showStart():void
 		{
 			popup.show(PopUp.START, handlePopUpShown);
@@ -66,6 +72,7 @@ package com.pixo.futbolbayer.view.match
 		
 		public function showYellowCard(turn:int):void
 		{
+			popup.show(PopUp.YELLOW_CARD, handlePopUpShown);
 			(teamCards[turn-1] as CardDeck).addCard();
 		}
 	}
