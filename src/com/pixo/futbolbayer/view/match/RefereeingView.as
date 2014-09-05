@@ -59,6 +59,26 @@ package com.pixo.futbolbayer.view.match
 			popup.show(PopUp.END, handlePopUpShown);
 		}
 		
+		public function showHandBall():void
+		{
+			popup.show(PopUp.HAND_BALL, handlePopUpShown);
+		}
+		
+		public function showOffSide():void
+		{
+			popup.show(PopUp.OFF_SIDE, handlePopUpShown);
+		}
+		
+		public function showFault():void
+		{
+			popup.show(PopUp.FAULT, handlePopUpShown);
+		}
+		
+		public function showFreeKick():void
+		{
+			popup.show(PopUp.FREE_KICK, handlePopUpShown);
+		}
+		
 		private function handlePopUpShown():void
 		{
 			dispatchEvent(new RefereeingViewEvent(RefereeingViewEvent.POPUP_COMPLETED));

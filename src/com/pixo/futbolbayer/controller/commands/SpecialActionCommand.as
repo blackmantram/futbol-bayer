@@ -19,8 +19,6 @@ package com.pixo.futbolbayer.controller.commands
 			if(matchModel.currentTurn == event.playerIndex)
 			{
 				dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_STARTED));
-				//matchModel.changeTurn();
-				//dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_COMPLETED));
 			}
 			else
 			{

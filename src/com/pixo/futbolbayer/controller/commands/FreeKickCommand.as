@@ -6,7 +6,7 @@ package com.pixo.futbolbayer.controller.commands
 	
 	import org.robotlegs.mvcs.Command;
 	
-	public class ExecuteFreeKickCommand extends Command
+	public class FreeKickCommand extends Command
 	{
 		[Inject]
 		public var matchModel:MatchModel;
@@ -15,7 +15,8 @@ package com.pixo.futbolbayer.controller.commands
 		{
 			if(matchModel.state == MatchState.FREE_KICK)
 			{
-				dispatch(new MatchEvent(MatchEvent.SHOWING_FREE_KICK));
+				matchModel.state = MatchState.SHOWING_FREE_KICK;
+				dispatch(new MatchEvent(MatchEvent.EXECUTE_FREE_KICK));
 			}
 		}
 	}

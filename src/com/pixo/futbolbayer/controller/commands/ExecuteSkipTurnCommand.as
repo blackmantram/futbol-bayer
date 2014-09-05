@@ -13,11 +13,13 @@ package com.pixo.futbolbayer.controller.commands
 		
 		override public function execute():void
 		{
-			if(matchModel.state == MatchState.OFF_SIDE || matchModel.state == MatchState.HAND_BALL)
+			if(matchModel.state == MatchState.OFF_SIDE)
 			{
-				matchModel.changeTurn();
-				matchModel.state = MatchState.RUNNING;
-				dispatch(new MatchEvent(MatchEvent.STEP_FINISHED));
+				dispatch(new MatchEvent(MatchEvent.SHOWING_OFF_SIDE));
+			}
+			if (matchModel.state == MatchState.HAND_BALL)
+			{
+				dispatch(new MatchEvent(MatchEvent.SHOWING_HAND_BALL));
 			}
 		}
 	}

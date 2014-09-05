@@ -27,11 +27,15 @@ package com.pixo.futbolbayer.view.match
 		{
 			view.setCharacter(settingsModel.getRefereeAsset());
 			delay();
-			this.eventMap.mapListener(view, RefereeingViewEvent.POPUP_COMPLETED, handlePopUpComplete);
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.YELLOW_CARD, handleYellowCard);
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.PENALTY, handlePenalty);
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.READY, handleReady);
-			this.eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
+			eventMap.mapListener(view, RefereeingViewEvent.POPUP_COMPLETED, handlePopUpComplete);
+			eventMap.mapListener(eventDispatcher, MatchEvent.YELLOW_CARD, handleYellowCard);
+			eventMap.mapListener(eventDispatcher, MatchEvent.PENALTY, handlePenalty);
+			eventMap.mapListener(eventDispatcher, MatchEvent.READY, handleReady);
+			eventMap.mapListener(eventDispatcher, MatchEvent.END, handleEnd);
+			eventMap.mapListener(eventDispatcher, MatchEvent.SHOWING_HAND_BALL, handleHandBall);
+			eventMap.mapListener(eventDispatcher, MatchEvent.SHOWING_OFF_SIDE, handleOffSide);
+			eventMap.mapListener(eventDispatcher, MatchEvent.SHOWING_FAULT, handleFault);
+			eventMap.mapListener(eventDispatcher, MatchEvent.SHOWING_FREE_KICK, handleFreeKick);
 			
 			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_PENALTY, hide);
 			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_FREE_KICK, hide);
@@ -72,6 +76,30 @@ package com.pixo.futbolbayer.view.match
 		{
 			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
 			view.showEnd();
+		}
+		
+		private function handleHandBall(e:MatchEvent):void
+		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
+			view.showHandBall();
+		}
+		
+		private function handleOffSide(e:MatchEvent):void
+		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
+			view.showOffSide();
+		}
+		
+		private function handleFault(e:MatchEvent):void
+		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
+			view.showFault();
+		}
+		
+		private function handleFreeKick(e:MatchEvent):void
+		{
+			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
+			view.showFreeKick();
 		}
 		
 		private function handleReady(e:Event):void

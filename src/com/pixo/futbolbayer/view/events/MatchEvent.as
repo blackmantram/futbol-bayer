@@ -17,9 +17,13 @@ package com.pixo.futbolbayer.view.events
 		public static const EXECUTE_FREE_KICK:String = "MatchEvent.ExecuteFreeKick";
 		public static const SCORE:String = "MatchEvent.Score";
 		public static const OFF_SIDE:String = "MatchEvent.OffSide";
+		public static const SHOWING_OFF_SIDE:String = "MatchEvent.ShowingOffSide";
 		public static const FAULT:String = "MatchEvent.Fault";
+		public static const SHOWING_FAULT:String = "MatchEvent.ShowingFault";
 		public static const HAND_BALL:String = "MatchEvent.HandBall";
+		public static const SHOWING_HAND_BALL:String = "MatchEvent.ShowingHandBall";
 		public static const FREE_KICK:String = "MatchEvent.FreeKick";
+		public static const SHOWING_FREE_KICK:String = "MatchEvent.ShowingFreeKick";
 		public static const RESUME:String = "MatchEvent.Resume";
 		public static const END:String = "MatchEvent.End";
 		

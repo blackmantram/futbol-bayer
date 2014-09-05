@@ -6,16 +6,18 @@ package com.pixo.futbolbayer.controller.commands
 	
 	import org.robotlegs.mvcs.Command;
 	
-	public class ExecuteFreeKickCommand extends Command
+	public class SkipTurnCommand extends Command
 	{
 		[Inject]
 		public var matchModel:MatchModel;
 		
 		override public function execute():void
 		{
-			if(matchModel.state == MatchState.FREE_KICK)
+			if (matchModel.state == MatchState.HAND_BALL || matchModel.state == MatchState.OFF_SIDE)
 			{
-				dispatch(new MatchEvent(MatchEvent.SHOWING_FREE_KICK));
+				matchModel.state = MatchState.RUNNING;
+				matchModel.changeTurn();
+				dispatch(new MatchEvent(MatchEvent.STEP_FINISHED));
 			}
 		}
 	}
