@@ -29,7 +29,7 @@ package com.pixo.futbolbayer.view
 		}
 		private function handleGoToTeamSettings1(e:MouseEvent):void
 		{
-			dispatch(new GameEvent(GameEvent.start));
+			dispatch(new GameEvent(GameEvent.START));
 		}
 		
 		override protected function initSelectors():void

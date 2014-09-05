@@ -20,22 +20,13 @@ package com.pixo.futbolbayer.view.general
 			itemContainer.addChild(_items[index]);
 		}
 		
-		public function setItems(items:Array):void
+		public function setItems(items:Array, defaultSelectedIndex:int=0):void
 		{
 			if (!_isDirty)
 			{
 				_isDirty = true;
 				_items = items;
-				selectIndex(0);
-			}
-		}
-		public function setItems2(items:Array):void
-		{
-			if (!_isDirty)
-			{
-				_isDirty = true;
-				_items = items;
-				selectIndex(11);
+				selectIndex(defaultSelectedIndex);
 			}
 		}
 		

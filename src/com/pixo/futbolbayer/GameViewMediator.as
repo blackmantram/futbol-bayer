@@ -23,7 +23,7 @@ package com.pixo.futbolbayer
 			eventMap.mapListener(eventDispatcher, GameEvent.PREVIEW, handlePreview);
 			eventMap.mapListener(eventDispatcher, GameEvent.GOTO_MATCH, handleGoToMatch);
 			eventMap.mapListener(eventDispatcher, GameEvent.END, handleMatchEnd);
-			eventMap.mapListener(eventDispatcher, GameEvent.start, handleMatchstart);
+			eventMap.mapListener(eventDispatcher, GameEvent.START, handleMatchstart);
 			eventMap.mapListener(eventDispatcher, GameEvent.HELP, handleMatchhelp);
 		}
 		
@@ -54,6 +54,7 @@ package com.pixo.futbolbayer
 		{
 			view.showMatchEnd();
 		}
+		
 		private function handleMatchstart(e:GameEvent):void
 		{
 			view.showStart();

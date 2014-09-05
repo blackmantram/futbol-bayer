@@ -11,7 +11,7 @@ package com.pixo.futbolbayer.controller.events
 		public static const PREVIEW:String = "GameEvent.preview";
 		public static const GOTO_MATCH:String = "GameEvent.gotoMatch";
 		public static const END:String = "GameEvent.end";
-		public static const start:String = "GameEvent.start";
+		public static const START:String = "GameEvent.start";
 		public static const HELP:String = "GameEvent.help";
 				
 		/**

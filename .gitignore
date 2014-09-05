@@ -2,3 +2,4 @@
 .project
 .settings/org.eclipse.core.resources.prefs
 bin-debug/
+bin-release-temp/

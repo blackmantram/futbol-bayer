@@ -31,7 +31,7 @@ package com.pixo.futbolbayer.view
 		
 		public var matchSectionButton:Sprite;
 		public var previewButton:Sprite;
-		public var teamatras:Sprite;
+		public var backButton:Sprite;
 		
 		public function TeamSettingsView()
 		{
@@ -49,7 +49,7 @@ package com.pixo.futbolbayer.view
 			team2NameInputText = skin.getChildByName("team2_name") as TextField;
 			matchSectionButton = skin.getChildByName("match_section_button") as Sprite;
 			previewButton = skin.getChildByName("preview_button") as Sprite;
-			teamatras = skin.getChildByName("back_button") as Sprite;
+			backButton = skin.getChildByName("back_button") as Sprite;
 		}
 		
 		private function addListeners():void
@@ -91,7 +91,7 @@ package com.pixo.futbolbayer.view
 		public function setUniforms(uniforms:Array):void
 		{
 			team1Selector.setItems(uniforms);
-			team2Selector.setItems2(createUniformsArrayCopy(uniforms));
+			team2Selector.setItems(createUniformsArrayCopy(uniforms), 11);
 		}
 		
 		private function createUniformsArrayCopy(uniforms:Array):Array

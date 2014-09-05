@@ -22,7 +22,7 @@ package com.pixo.futbolbayer
 
 	public class GameView extends Sprite
 	{
-		private var startView:Sprite;
+		private var startView:Slider;
 		private var _matchSettingsView:Slider;
 		private var _teamSettingsView:Slider;
 		private var _matchPreview:Slider;
@@ -32,7 +32,7 @@ package com.pixo.futbolbayer
 		private var showTween:HorizontalSliderShowTween = new HorizontalSliderShowTween();
 		private var removeTween:HorizontalSliderRemoveTween = new HorizontalSliderRemoveTween();
 		
-		private var state:String = "";
+		private var state:String = "Start";
 		
 		private var topLayer:Sprite = new Sprite();
 		private var regularLayer:Sprite = new Sprite();
@@ -41,7 +41,6 @@ package com.pixo.futbolbayer
 		{
 			if(_matchSettingsView == null)_matchSettingsView = new MatchSettingsView();
 			return _matchSettingsView;
-			trace("aca")
 		}
 
 		public function get teamSettingsView():Slider
@@ -90,8 +89,19 @@ package com.pixo.futbolbayer
 		
 		public function showStart():void
 		{
-			startView = new StartView();
-			regularLayer.addChild(startView);
+			if (state == "Settings")
+			{
+				if (this.contains(matchSettingsView))
+					toRight(matchSettingsView, startView);
+				else
+					toRight(teamSettingsView, startView);
+			}
+			else
+			{
+				startView = new StartView();
+				regularLayer.addChild(startView);	
+				startView.showContent();
+			}
 			state = "Start";
 		}
 		
@@ -116,9 +126,7 @@ package com.pixo.futbolbayer
 			{
 				state = "Settings";
 				toLeft(startView, matchSettingsView);
-			} 
-			
-			
+			}
 		}
 		
 		public function showTeamSettings():void
