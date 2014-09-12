@@ -16,6 +16,7 @@ package com.pixo.futbolbayer.view.match.refereeing
 		public static const HAND_BALL:String = "PopUp.HandBall";
 		public static const FREE_KICK:String = "PopUp.FreeKick";
 		public static const OFF_SIDE:String = "PopUp.OffSide";
+		public static const RESTART:String = "PopUp.Restart";
 		
 		private var popUpArray:Array;
 		
@@ -37,7 +38,8 @@ package com.pixo.futbolbayer.view.match.refereeing
 				new PopUpState(skin.getChildByName("fault") as Sprite, PopUp.FAULT),
 				new PopUpState(skin.getChildByName("hand_ball") as Sprite, PopUp.HAND_BALL),
 				new PopUpState(skin.getChildByName("free_kick") as Sprite, PopUp.FREE_KICK),
-				new PopUpState(skin.getChildByName("off_side") as Sprite, PopUp.OFF_SIDE)
+				new PopUpState(skin.getChildByName("off_side") as Sprite, PopUp.OFF_SIDE),
+				new PopUpState(skin.getChildByName("restart") as Sprite, PopUp.RESTART)
 			];
 			character = skin.getChildByName("character") as Sprite;
 			this.skin = skin;

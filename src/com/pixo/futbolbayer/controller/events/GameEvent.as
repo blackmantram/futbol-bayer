@@ -13,6 +13,7 @@ package com.pixo.futbolbayer.controller.events
 		public static const END:String = "GameEvent.end";
 		public static const START:String = "GameEvent.start";
 		public static const HELP:String = "GameEvent.help";
+		public static const RESTART:String = "GameEvent.restart";
 				
 		/**
 		 *	@constructor

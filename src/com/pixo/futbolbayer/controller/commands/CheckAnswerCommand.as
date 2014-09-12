@@ -19,6 +19,7 @@ package com.pixo.futbolbayer.controller.commands
 		{
 			if(!event.isCorrect)
 			{
+				matchModel.state = MatchState.SHOWING_YELLOW_CARD;
 				matchModel.tellPlayerOff()
 				matchModel.changeTurn();
 			}

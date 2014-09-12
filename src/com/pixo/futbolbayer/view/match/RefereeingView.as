@@ -16,6 +16,7 @@ package com.pixo.futbolbayer.view.match
 	{
 		private var teamCards:Array;
 		private var popup:PopUp;
+		private var hasStarted:Boolean = false;
 		
 		public function RefereeingView()
 		{
@@ -46,12 +47,13 @@ package com.pixo.futbolbayer.view.match
 		
 		public function showStart():void
 		{
-			popup.show(PopUp.START, handlePopUpShown);
-		}
-		
-		public function showPenalty():void
-		{
-			popup.show(PopUp.PENALTY, handlePopUpShown);
+			if (!hasStarted)
+			{
+				hasStarted = true;
+				popup.show(PopUp.START, handlePopUpShown);
+			}
+			else
+				popup.show(PopUp.RESTART, handlePopUpShown);
 		}
 		
 		public function showEnd():void
@@ -90,9 +92,20 @@ package com.pixo.futbolbayer.view.match
 			(teamCards[1] as CardDeck).clear();
 		}
 		
+		public function showPenalty(turn:int):void
+		{
+			popup.show(PopUp.PENALTY, handlePopUpShown);
+			showCard(turn);
+		}
+		
 		public function showYellowCard(turn:int):void
 		{
 			popup.show(PopUp.YELLOW_CARD, handlePopUpShown);
+			showCard(turn);
+		}
+		
+		private function showCard(turn:int):void
+		{
 			(teamCards[turn-1] as CardDeck).addCard();
 		}
 	}

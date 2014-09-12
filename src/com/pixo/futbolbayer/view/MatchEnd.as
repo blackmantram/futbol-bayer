@@ -15,6 +15,7 @@ package com.pixo.futbolbayer.view
 		private var team2Name:TextField;
 		private var score1:TextField;
 		private var score2:TextField;
+		public var startButton:Sprite;
 		
 		public function MatchEnd()
 		{
@@ -31,6 +32,7 @@ package com.pixo.futbolbayer.view
 			team2Name = skin.getChildByName("team2name_preview") as TextField;
 			score1 = skin.getChildByName("score1") as TextField;
 			score2 = skin.getChildByName("score2") as TextField;
+			startButton = skin.getChildByName("start_button") as Sprite;
 		}
 		
 		public function setData(previewMatchDTO:PreviewMatchDTO, score1:Number, score2:Number):void

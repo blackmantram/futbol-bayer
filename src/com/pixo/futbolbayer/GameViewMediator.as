@@ -25,6 +25,7 @@ package com.pixo.futbolbayer
 			eventMap.mapListener(eventDispatcher, GameEvent.END, handleMatchEnd);
 			eventMap.mapListener(eventDispatcher, GameEvent.START, handleMatchstart);
 			eventMap.mapListener(eventDispatcher, GameEvent.HELP, handleMatchhelp);
+			eventMap.mapListener(eventDispatcher, GameEvent.RESTART, handleMatchstart);
 		}
 		
 		private function handleMatchSettings(e:GameEvent):void

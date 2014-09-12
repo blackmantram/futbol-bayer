@@ -69,7 +69,6 @@ package com.pixo.futbolbayer.model
 		public function tellPlayerOff():void
 		{
 			teamsCards[currentTurn-1]++;
-			dispatchEvent(MatchEvent.YELLOW_CARD);
 			checkCards();
 		}
 		
@@ -86,6 +85,10 @@ package com.pixo.futbolbayer.model
 			{
 				state = MatchState.SHOWING_PENALTY;
 				dispatchEvent(MatchEvent.PENALTY);
+			}
+			else
+			{
+				dispatchEvent(MatchEvent.YELLOW_CARD);
 			}
 		}
 		

@@ -63,7 +63,7 @@ package com.pixo.futbolbayer.view.match
 		private function handlePenalty(e:MatchEvent):void
 		{
 			dispatch(new RefereeingEvent(RefereeingEvent.SHOW_REFEREE));
-			view.showPenalty();
+			view.showPenalty(e.currentTurn);
 		}
 		
 		private function handleYellowCard(e:MatchEvent):void
