@@ -32,7 +32,7 @@ package com.pixo.futbolbayer.view
 		
 		override public function onRegister():void 
 		{
-			this.addContextListener(AssetsLoadedEvent.COMPLETE, handleAssetsLoaded);
+			addContextListener(AssetsLoadedEvent.COMPLETE, handleAssetsLoaded);
 			assetsService.loadAssets();
 			soundsService.loadSounds();
 			questionsService.loadQuestions();
@@ -43,6 +43,7 @@ package com.pixo.futbolbayer.view
 		{
 			eventMap.mapListener(view.startButton, MouseEvent.CLICK, handleStartGame);
 			eventMap.mapListener(view.helpButton, MouseEvent.CLICK, handleShowHelp);
+			eventMap.mapListener(view.backButton, MouseEvent.CLICK, handleHideHelp);
 		}
 		
 		private function handleStartGame(e:MouseEvent):void
@@ -52,7 +53,12 @@ package com.pixo.futbolbayer.view
 		
 		private function handleShowHelp(e:MouseEvent):void
 		{
-			dispatch(new GameEvent(GameEvent.HELP));
+			view.showHelp();
+		}
+		
+		private function handleHideHelp(e:MouseEvent):void
+		{
+			view.hideHelp();
 		}
 	}
 }
