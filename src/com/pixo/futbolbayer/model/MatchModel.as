@@ -24,6 +24,11 @@ package com.pixo.futbolbayer.model
 		{
 			super();
 			this.clockTimer.addEventListener(TimerEvent.TIMER, handleTimer);
+			setReady();
+		}
+		
+		public function setReady():void
+		{
 			currentTurn = 1;
 			teamsGoals = [0, 0];
 			teamsCards = [0, 0];
@@ -51,7 +56,7 @@ package com.pixo.futbolbayer.model
 		
 		public function start(setTime:int):void
 		{
-			currentTime = setTime;
+			currentTime = 5;// setTime;
 			this.clockTimer.start();
 		}
 		

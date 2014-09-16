@@ -16,5 +16,12 @@ package com.pixo.futbolbayer.model
 			stadiumId = settings.selectedStadium;
 			refereeId = settings.selectedReferee;
 		}
+		
+		public function reset():void
+		{
+			time = 1;
+			stadiumId = 0;
+			refereeId = 0;
+		}
 	}
 }

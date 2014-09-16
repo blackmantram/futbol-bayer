@@ -28,6 +28,8 @@ package com.pixo.futbolbayer.view
 		
 		private function handleRestartGame(e:Event):void
 		{
+			matchModel.setReady();
+			settingsModel.reset();
 			dispatch(new GameEvent(GameEvent.RESTART));
 		}
 	}

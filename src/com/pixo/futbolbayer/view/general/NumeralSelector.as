@@ -12,7 +12,7 @@ package com.pixo.futbolbayer.view.general
 		{
 			super(skin);
 			numberTextfield = skin.getChildByName("number_text") as TextField;
-			_startIndex = startIndex;
+			_defaultIndex = _startIndex = startIndex;
 			selectIndex(startIndex);
 		}
 		

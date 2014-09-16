@@ -8,6 +8,8 @@ package com.pixo.futbolbayer.view
 	import com.pixo.futbolbayer.view.general.ImageSelector;
 	import com.pixo.futbolbayer.view.tweens.VerticalShowTween;
 	
+	import common.utils.GlobalConstants;
+	
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -36,6 +38,7 @@ package com.pixo.futbolbayer.view
 		public function TeamSettingsView()
 		{
 			init();
+			setDefaultText();
 			addListeners();
 		}
 		
@@ -50,6 +53,12 @@ package com.pixo.futbolbayer.view
 			matchSectionButton = skin.getChildByName("match_section_button") as Sprite;
 			previewButton = skin.getChildByName("preview_button") as Sprite;
 			backButton = skin.getChildByName("back_button") as Sprite;
+		}
+		
+		private function setDefaultText():void
+		{
+			team1NameInputText.text = GlobalConstants.TEAM1_DEFAULT_NAME;
+			team2NameInputText.text = GlobalConstants.TEAM2_DEFAULT_NAME;
 		}
 		
 		private function addListeners():void
@@ -83,6 +92,7 @@ package com.pixo.futbolbayer.view
 		
 		override public function showContent():void
 		{
+			x = 0;
 			var tween:VerticalShowTween = new VerticalShowTween();
 			tween.tween(team1Selector.skin, 0);
 			tween.tween(team2Selector.skin, .25);
@@ -102,6 +112,13 @@ package com.pixo.futbolbayer.view
 				
 				
 			return copy;
+		}
+		
+		public function reset():void
+		{
+			setDefaultText();
+			team1Selector.reset();
+			team2Selector.reset();
 		}
 	}
 }

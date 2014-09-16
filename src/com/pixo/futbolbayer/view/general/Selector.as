@@ -14,6 +14,7 @@ package com.pixo.futbolbayer.view.general
 		private var prevButton:Sprite;
 		
 		private var _selectedIndex:int;
+		protected var _defaultIndex:int = 0;
 		
 		public function get selectedId():int
 		{
@@ -26,6 +27,11 @@ package com.pixo.futbolbayer.view.general
 			nextButton = skin.getChildByName("next_button") as Sprite;
 			prevButton = skin.getChildByName("prev_button") as Sprite;
 			addListeners();
+		}
+		
+		public function reset():void
+		{
+			selectIndex(_defaultIndex);
 		}
 		
 		private function addListeners():void

@@ -15,6 +15,12 @@ package com.pixo.futbolbayer.view.general
 		private var unitsSelector:NumeralSelector;
 		private var tensSelector:NumeralSelector;
 		
+		public function reset():void
+		{
+			unitsSelector.reset();
+			tensSelector.reset();
+		}
+		
 		public function get selectedTime():int
 		{
 			return unitsSelector.selectedId + (tensSelector.selectedId * 10);

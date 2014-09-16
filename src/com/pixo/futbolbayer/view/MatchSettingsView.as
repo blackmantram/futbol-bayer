@@ -60,6 +60,7 @@ package com.pixo.futbolbayer.view
 		
 		override public function showContent():void
 		{
+			x = 0;
 			var tween:VerticalShowTween = new VerticalShowTween();
 			tween.tween(timeSelector.skin, 0);
 			tween.tween(stadiumSelector.skin, .25);
@@ -78,6 +79,13 @@ package com.pixo.futbolbayer.view
 			settings.selectedReferee = refereeSelector.selectedId;
 			settings.selectedStadium = stadiumSelector.selectedId;
 			return settings;
+		}
+		
+		public function reset():void
+		{
+			timeSelector.reset();
+			refereeSelector.reset();
+			stadiumSelector.reset();
 		}
 	}
 }

@@ -87,6 +87,16 @@ package com.pixo.futbolbayer
 			topLayer.addChild(new GameSkin.Logo() as Sprite);
 		}
 		
+		private function reset():void
+		{
+			if (state == "End")
+			{
+				regularLayer.removeChild(matchEnd);
+				(matchSettingsView as MatchSettingsView).reset();
+				(teamSettingsView as TeamSettingsView).reset();
+			}
+		}
+		
 		public function showStart():void
 		{
 			if (state == "Settings")
@@ -98,6 +108,7 @@ package com.pixo.futbolbayer
 			}
 			else
 			{
+				reset();
 				startView = new StartView();
 				regularLayer.addChild(startView);	
 				startView.showContent();
@@ -119,14 +130,6 @@ package com.pixo.futbolbayer
 				matchSettingsView.showContent();
 			}
 				
-		}
-		public function showMatchhelp():void
-		{
-			if (state == "Start")
-			{
-				state = "Settings";
-				toLeft(startView, matchSettingsView);
-			}
 		}
 		
 		public function showTeamSettings():void

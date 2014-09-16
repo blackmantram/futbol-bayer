@@ -20,8 +20,8 @@ package com.pixo.futbolbayer.view
 		
 		override public function onRegister():void
 		{
-			this.eventMap.mapListener(view, SettingsEvent.MATCH_SETTINGS_CHANGED, handleSettingsChanged);
-			this.eventMap.mapListener(view, SettingsEvent.TEAM_SETTINGS_CHANGED, handleSettingsChanged);
+			eventMap.mapListener(view, SettingsEvent.MATCH_SETTINGS_CHANGED, handleSettingsChanged);
+			eventMap.mapListener(view, SettingsEvent.TEAM_SETTINGS_CHANGED, handleSettingsChanged);
 			mapListeners();
 			initSelectors();
 		}

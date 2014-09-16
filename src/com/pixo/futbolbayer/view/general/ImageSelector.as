@@ -26,6 +26,7 @@ package com.pixo.futbolbayer.view.general
 			{
 				_isDirty = true;
 				_items = items;
+				_defaultIndex = defaultSelectedIndex;
 				selectIndex(defaultSelectedIndex);
 			}
 		}

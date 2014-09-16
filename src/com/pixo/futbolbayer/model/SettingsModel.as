@@ -22,6 +22,12 @@ package com.pixo.futbolbayer.model
 		[Inject]
 		public var assetsServiceResponse:IAssetsServiceResponse;
 		
+		public function reset():void
+		{
+			matchSettings.reset();
+			teamSettings.reset();
+		}
+		
 		public function createPreviewDTO():PreviewMatchDTO
 		{
 			var dto:PreviewMatchDTO = new PreviewMatchDTO();

@@ -24,17 +24,12 @@ package com.pixo.futbolbayer
 			eventMap.mapListener(eventDispatcher, GameEvent.GOTO_MATCH, handleGoToMatch);
 			eventMap.mapListener(eventDispatcher, GameEvent.END, handleMatchEnd);
 			eventMap.mapListener(eventDispatcher, GameEvent.START, handleMatchstart);
-			eventMap.mapListener(eventDispatcher, GameEvent.HELP, handleMatchhelp);
 			eventMap.mapListener(eventDispatcher, GameEvent.RESTART, handleMatchstart);
 		}
 		
 		private function handleMatchSettings(e:GameEvent):void
 		{
 			view.showMatchSettings();
-		}
-		private function  handleMatchhelp(e:GameEvent):void
-		{
-			view.showMatchhelp();
 		}
 		private function handleTeamSettings(e:GameEvent):void
 		{
