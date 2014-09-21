@@ -8,7 +8,7 @@ package com.pixo.futbolbayer.view.trivia
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 
 	public class TriviaView extends Sprite
 	{

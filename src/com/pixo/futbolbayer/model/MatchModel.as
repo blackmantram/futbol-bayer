@@ -56,7 +56,7 @@ package com.pixo.futbolbayer.model
 		
 		public function start(setTime:int):void
 		{
-			currentTime = 5;// setTime;
+			currentTime = setTime;
 			this.clockTimer.start();
 		}
 		

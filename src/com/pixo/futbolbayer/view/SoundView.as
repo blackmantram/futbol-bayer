@@ -4,7 +4,7 @@ package com.pixo.futbolbayer.view
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class SoundView extends Sprite
 	{

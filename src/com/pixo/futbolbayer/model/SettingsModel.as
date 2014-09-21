@@ -53,9 +53,9 @@ package com.pixo.futbolbayer.model
 			return getAsset(matchSettings.stadiumId, AssetType.STADIUMS);
 		}
 		
-		public function getBannerAsset():DisplayObject
+		public function getBannerAssets():Array
 		{
-			return getAsset(0, AssetType.BANNERS);
+			return assetsServiceResponse.getAssetsByCategory(AssetType.BANNERS);
 		}
 		
 		public function getRefereeAsset():DisplayObject

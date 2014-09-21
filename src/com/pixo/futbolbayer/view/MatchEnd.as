@@ -5,7 +5,7 @@ package com.pixo.futbolbayer.view
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 
 	public class MatchEnd extends Slider
 	{

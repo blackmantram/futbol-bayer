@@ -14,7 +14,7 @@ package com.pixo.futbolbayer.service.trivia
 	
 	public class QuestionsLoadService extends Actor implements IQuestionsLoadService
 	{
-		private const jsonFile:String = "trivia.json";
+		private const jsonFile:String = "assets/trivia.json";
 		
 		private var loader:URLLoader;
 		

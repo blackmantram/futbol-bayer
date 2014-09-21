@@ -6,7 +6,7 @@ package com.pixo.futbolbayer.view
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class StartView extends Slider
 	{

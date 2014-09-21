@@ -16,12 +16,12 @@ package com.pixo.futbolbayer.service.assets
 	public class AssetsLoadService extends Actor implements IAssetsLoadService
 	{
 		private const assetsFolders:Array = [
-				{category:AssetType.REFEREES_THUMBS,folder:"referees/thumbs/"},
-				{category:AssetType.REFEREES,folder:"referees/characters/"},
-				{category:AssetType.STADIUMS_THUMBS,folder:"stadiums/thumbs"},
-				{category:AssetType.UNIFORMS,folder:"uniforms/"},
-				{category:AssetType.STADIUMS,folder:"stadiums/fields"},
-				{category:AssetType.BANNERS,folder:"banner"}
+				{category:AssetType.REFEREES_THUMBS,folder:"assets/referees/thumbs/"},
+				{category:AssetType.REFEREES,folder:"assets/referees/characters/"},
+				{category:AssetType.STADIUMS_THUMBS,folder:"assets/stadiums/thumbs"},
+				{category:AssetType.UNIFORMS,folder:"assets/uniforms/"},
+				{category:AssetType.STADIUMS,folder:"assets/stadiums/fields"},
+				{category:AssetType.BANNERS,folder:"assets/banners"}
 			];
 		
 		[Inject]

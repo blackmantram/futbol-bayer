@@ -7,7 +7,7 @@ package com.pixo.futbolbayer.controller.commands
 	
 	import org.robotlegs.mvcs.Command;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class StartViewCommand extends Command
 	{

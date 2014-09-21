@@ -18,7 +18,7 @@ package com.pixo.futbolbayer
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 
 	public class GameView extends Sprite
 	{

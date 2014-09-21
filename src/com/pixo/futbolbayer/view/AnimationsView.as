@@ -1,59 +1,44 @@
 package com.pixo.futbolbayer.view
 {
-	import animations.GameAnimations;
+	import assets.animations.GameAnimations;
 	
-	import common.utils.TimerUtils;
+	import common.utils.AnimationPlayer;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	public class AnimationsView extends Sprite
 	{
-		private var activeAnimation:MovieClip;
+		private var animationPlayer:AnimationPlayer;
 		
-		private var animationTimer:Timer;
+		public function AnimationsView()
+		{
+			animationPlayer = new AnimationPlayer(this);
+		}
 		
 		public function playGoal():void
 		{
-			playAnimation(new GameAnimations.Goal() as MovieClip, 10000);
+			animationPlayer.loadAnimation(GameAnimations.Goal);
 		}
 		
 		public function playOffSide():void
 		{
-			playAnimation(new GameAnimations.OffSide() as MovieClip, 3000);
+			animationPlayer.loadAnimation(GameAnimations.OffSide);
 		}
 		
 		public function playFault():void
 		{
-			playAnimation(new GameAnimations.Fault() as MovieClip, 5000);
+			animationPlayer.loadAnimation(GameAnimations.Fault);
 		}
 		
 		public function playHandBall():void
 		{
-			playAnimation(new GameAnimations.HandBall() as MovieClip, 3000);
+			animationPlayer.loadAnimation(GameAnimations.HandBall);
 		}
 		
 		public function playFreeKick():void
 		{
-			playAnimation(new GameAnimations.FreeKick() as MovieClip, 3000);
-		}
-		
-		private function playAnimation(clip:MovieClip, duration:int):void
-		{
-			addChild(clip);
-			activeAnimation = clip;
-			animationTimer = TimerUtils.startTimer(animationTimer, duration, removeAnimation); 
-		}
-		
-		private function removeAnimation(e:TimerEvent):void
-		{
-			TimerUtils.stopTimer(animationTimer, removeAnimation);
-			removeChild(activeAnimation);
-			activeAnimation = null;
-			dispatchEvent(new Event(Event.COMPLETE));
+			animationPlayer.loadAnimation(GameAnimations.FreeKick);
 		}
 	}
 }

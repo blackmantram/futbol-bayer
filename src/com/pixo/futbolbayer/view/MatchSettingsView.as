@@ -15,7 +15,7 @@ package com.pixo.futbolbayer.view
 	
 	import flashx.textLayout.events.SelectionEvent;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 
 	public class MatchSettingsView extends Slider
 	{

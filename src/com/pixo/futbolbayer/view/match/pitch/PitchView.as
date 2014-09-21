@@ -1,7 +1,8 @@
 package com.pixo.futbolbayer.view.match.pitch 
 {
-	import animations.FreeKickAnimations;
-	import animations.PenaltyKickAnimations;
+	import assets.animations.FreeKickAnimations;
+	import assets.animations.PenaltyKickAnimations;
+	import assets.skins.GameSkin;
 	
 	import com.pixo.futbolbayer.view.events.DiceEvent;
 	import com.pixo.futbolbayer.view.events.GridEvent;
@@ -15,8 +16,6 @@ package com.pixo.futbolbayer.view.match.pitch
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
-	
-	import skins.GameSkin;
 	
 	public class PitchView extends Sprite
 	{
@@ -32,7 +31,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		public var penaltyKickHolder:KickHolder;
 		public var freeKickHolder:KickHolder;
 		
-		public var banner:Sprite;
+		public var banner:Banner;
 		
 		public function get movementsLeft():int
 		{
@@ -52,8 +51,8 @@ package com.pixo.futbolbayer.view.match.pitch
 			stadium = skin.getChildByName("stadium_container") as Sprite;
 			grid = new HexagonalGrid(skin.getChildByName("grid") as Sprite);
 			dice = new Dice(skin.getChildByName("dice") as MovieClip);
+			banner = new Banner(skin.getChildByName("banner") as Sprite);
 			ball = skin.getChildByName("ball") as Sprite;
-			banner = skin.getChildByName("banner") as Sprite;
 			initializeKickHolders(skin);
 		}
 		
@@ -122,9 +121,9 @@ package com.pixo.futbolbayer.view.match.pitch
 			stadium.addChild(asset);
 		}
 		
-		public function setBannerAsset(asset:DisplayObject):void 
+		public function setBannerAssets(assets:Array):void 
 		{
-			banner.addChild(asset);
+			banner.setAssets(assets);
 		}
 	}
 }

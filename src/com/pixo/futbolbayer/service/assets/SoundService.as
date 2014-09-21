@@ -9,7 +9,7 @@ package com.pixo.futbolbayer.service.assets
 	
 	import org.robotlegs.mvcs.Actor;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class SoundService extends Actor implements ISoundsService
 	{
@@ -18,9 +18,9 @@ package com.pixo.futbolbayer.service.assets
 		public function loadSounds():void
 		{
 			soundsObject = new Object();
-			soundsObject[GameSoundIds.LOOP] = new Sound(new URLRequest("sounds/loop.mp3"));
-			soundsObject[GameSoundIds.WHISTLE] = new Sound(new URLRequest("sounds/pito.mp3"));
-			soundsObject[GameSoundIds.AMBIENCE] = new Sound(new URLRequest("sounds/previo_partido.mp3"));
+			soundsObject[GameSoundIds.LOOP] = new Sound(new URLRequest("assets/sounds/loop.mp3"));
+			soundsObject[GameSoundIds.WHISTLE] = new Sound(new URLRequest("assets/sounds/pito.mp3"));
+			soundsObject[GameSoundIds.AMBIENCE] = new Sound(new URLRequest("assets/sounds/previo_partido.mp3"));
 		}
 		
 		public function getSound(sound:String):Sound

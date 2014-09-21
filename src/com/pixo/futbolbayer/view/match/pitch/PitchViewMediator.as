@@ -29,7 +29,7 @@ package com.pixo.futbolbayer.view.match.pitch
 		override public function onRegister():void
 		{
 			view.setStadiumAsset(settingsModel.getStadiumAsset());
-			view.setBannerAsset(settingsModel.getBannerAsset());
+			view.setBannerAssets(settingsModel.getBannerAssets());
 			eventMap.mapListener(eventDispatcher, MatchEvent.NEXT_STEP, handleNextStep);
 			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_PENALTY, handleExecutePenalty);
 			eventMap.mapListener(eventDispatcher, MatchEvent.EXECUTE_FREE_KICK, handleExecuteFreeKick);

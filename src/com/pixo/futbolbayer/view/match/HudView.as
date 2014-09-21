@@ -10,7 +10,7 @@ package com.pixo.futbolbayer.view.match
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class HudView extends Sprite
 	{

@@ -8,7 +8,7 @@ package com.pixo.futbolbayer.view
 	import flash.events.Event;
 	import flash.text.TextField;
 	
-	import skins.GameSkin;
+	import assets.skins.GameSkin;
 	
 	public class MatchPreview extends Slider
 	{
