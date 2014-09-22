@@ -63,7 +63,6 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			isPenalty = false;
 			view.penaltyKickHolder.score(function():void{
-				view.penaltyKickHolder.stop();
 				dispatch(new MatchEvent(MatchEvent.SCORE));
 			});
 		}
@@ -72,7 +71,6 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			isPenalty = false;
 			view.penaltyKickHolder.fail(function():void{
-				view.penaltyKickHolder.stop();
 				dispatch(new MatchEvent(MatchEvent.RESUME));
 			});
 		}
@@ -81,7 +79,6 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			isFreeKick = false;
 			view.freeKickHolder.score(function():void{
-				view.freeKickHolder.stop();
 				dispatch(new MatchEvent(MatchEvent.SCORE));
 			});
 		}
@@ -90,7 +87,6 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			isFreeKick = false;
 			view.freeKickHolder.fail(function():void{
-				view.freeKickHolder.stop();
 				dispatch(new SpecialActionEvent(SpecialActionEvent.SPECIAL_ACTION_FINISHED));
 			});
 		}

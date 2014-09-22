@@ -16,7 +16,7 @@ package com.pixo.futbolbayer.controller.commands
 		
 		override public function execute():void
 		{
-			var specialAction:int = 4;//MathUtils.randomRange(1, 4);
+			var specialAction:int = MathUtils.randomRange(1, 4);
 			executeSpecialAction(specialAction);
 		}
 		

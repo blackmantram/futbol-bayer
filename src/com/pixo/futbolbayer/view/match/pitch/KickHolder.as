@@ -3,20 +3,17 @@ package com.pixo.futbolbayer.view.match.pitch
 	import assets.animations.KickHolderAnimations;
 	
 	import common.utils.AnimationPlayer;
-	import common.utils.TimerUtils;
+	import common.utils.StreamedContentLoader;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	public class KickHolder
 	{
 		private var kickAnimations:KickHolderAnimations;
 		private var clipContainer:Sprite;
-		private var currentAnimation:MovieClip;
-		private var timer:Timer;
+		private var iddleAnimationLoader:StreamedContentLoader;
 		private var currentCallBack:Function;
 		
 		private var animationPlayer:AnimationPlayer;
@@ -32,45 +29,39 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		public function start():void
 		{
+			iddleAnimationLoader = new StreamedContentLoader();
+			iddleAnimationLoader.addEventListener(Event.COMPLETE, handleIddleAnimationLoaded);
+			iddleAnimationLoader.load(kickAnimations.Iddle);	
+		}
+		
+		private function handleIddleAnimationLoaded(e:Event):void
+		{
 			clipContainer.visible = true;
-			animationPlayer.loadAnimation(kickAnimations.Iddle);
-			//addAnimation(new kickAnimations.Iddle() as MovieClip);	
+			clipContainer.addChild(iddleAnimationLoader.content as MovieClip);
 		}
 		
 		public function score(callBack:Function):void
 		{
 			currentCallBack = callBack;
-			animationPlayer.loadAnimation(kickAnimations.Score);
-			//addAnimation(new kickAnimations.Score as MovieClip);
-			//timer = TimerUtils.startTimer(timer, 1000, handleTimerStopped);
+			playAnimation(kickAnimations.Score);
 		}
 		
 		public function fail(callBack:Function):void
 		{
-			animationPlayer.loadAnimation(kickAnimations.Fail);
-			//addAnimation(new kickAnimations.Fail as MovieClip);
 			currentCallBack = callBack;
-			//timer = TimerUtils.startTimer(timer, 1000, handleTimerStopped);
+			playAnimation(kickAnimations.Fail);
 		}
 		
-		/*private function addAnimation(animation:MovieClip):void
+		private function playAnimation(animationClass:Class):void
 		{
-			clipContainer.addChild(animation);
-			if (currentAnimation != null && clipContainer.contains(currentAnimation))
-				clipContainer.removeChild(currentAnimation);
-			currentAnimation = animation;
-		}*/
-		
-		public function stop():void
-		{
-			//clipContainer.visible = false;
-			//clipContainer.removeChildren();
+			clipContainer.removeChildren();
+			animationPlayer.loadAnimation(animationClass);
 		}
 		
-		private function handleAnimationComplete(e:TimerEvent):void
+		private function handleAnimationComplete(e:Event):void
 		{
-			//TimerUtils.stopTimer(timer, currentCallBack);
-			currentCallBack();
+			if (currentCallBack != null)
+				currentCallBack();
 		}
 	}
 }

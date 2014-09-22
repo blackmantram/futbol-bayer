@@ -1,39 +1,31 @@
 package common.utils
 {
 	import flash.display.DisplayObject;
-	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.system.LoaderContext;
-	
-	import mx.core.ByteArrayAsset;
 	
 	public class AnimationPlayer
 	{
 		private var activeAnimation:MovieClip;
 		private var animationHolder:Sprite;
-		private var animationLoader:Loader;
+		private var loader:StreamedContentLoader;
 		
 		public function AnimationPlayer(holder:Sprite)
 		{
 			animationHolder = holder;
+			loader = new StreamedContentLoader();
+			loader.addEventListener(Event.COMPLETE, handleAnimationLoaded);
 		}
 		
 		public function loadAnimation(animationClass:Class):void
 		{
-			var animationInstance:ByteArrayAsset = new animationClass();
-			animationLoader = new Loader();
-			animationLoader.contentLoaderInfo.addEventListener(Event.INIT, handleAnimationLoaded);
-			var context:LoaderContext = new LoaderContext();
-			context.allowCodeImport = true;
-			animationLoader.loadBytes(animationInstance, context);
+			loader.load(animationClass);
 		}
 		
 		private function handleAnimationLoaded(e:Event):void
 		{
-			animationLoader.contentLoaderInfo.removeEventListener(Event.INIT, handleAnimationLoaded);
-			playAnimation(MovieClip(animationLoader.content));
+			playAnimation(loader.content as MovieClip);
 		}
 		
 		private function playAnimation(clip:MovieClip):void
