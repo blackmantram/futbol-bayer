@@ -23,7 +23,7 @@ package com.pixo.futbolbayer.view.match.grid
 			_bmp = new Bitmap (_bmpdOff, PixelSnapping.AUTO, true);
 			_bmp.x -= _bmp.width/2;
 			_bmp.y -= _bmp.height/2;
-			_bmp.alpha = 0.5;
+			_bmp.alpha = 0.2;
 			addChild (_bmp);
 		}
 		

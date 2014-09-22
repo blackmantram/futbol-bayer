@@ -5,9 +5,9 @@ package common.utils
 
 	public class TimerUtils
 	{
-		public static function startTimer(timer:Timer, delay:int, callBack:Function):Timer
+		public static function startTimer(delay:int, callBack:Function):Timer
 		{
-			timer = new Timer(delay);
+			var timer:Timer = new Timer(delay);
 			timer.addEventListener(TimerEvent.TIMER, callBack);
 			timer.start();
 			return timer;

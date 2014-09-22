@@ -57,6 +57,9 @@ package com.pixo.futbolbayer.view.match
 		
 		public function setData(hudDTO:HudDTO):void
 		{
+			(teamGoals[0] as TextField).text = "0";
+			(teamGoals[1] as TextField).text = "0";
+			movementsLeft.text = "0";
 			team1Uniform.addChild(hudDTO.team1Uniform);
 			team2Uniform.addChild(hudDTO.team2Uniform);
 			time.text = hudDTO.matchTime;

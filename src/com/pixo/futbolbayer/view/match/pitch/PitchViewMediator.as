@@ -8,9 +8,14 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.SpecialActionEvent;
 	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
 	
-	import flash.events.Event;
-	import flash.sampler.NewObjectSample;
+	import common.utils.TimerUtils;
 	
+	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.sampler.NewObjectSample;
+	import flash.utils.Timer;
+	
+	import org.osmf.events.TimeEvent;
 	import org.robotlegs.mvcs.Mediator;
 
 	public class PitchViewMediator extends Mediator
@@ -25,6 +30,8 @@ package com.pixo.futbolbayer.view.match.pitch
 		private var isReversing:Boolean = false;
 		private var isPenalty:Boolean = false;
 		private var isFreeKick:Boolean = false;
+		
+		private var delayTimer:Timer;
 		
 		override public function onRegister():void
 		{
@@ -124,12 +131,16 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			dispatch(new MovementEvent(MovementEvent.MOVEMENT, view.movements));
 			if (isMoving && view.movements == 0)
-			{
-				if (isReversing)
-					finishReverse();
-				else
-					finishStep();
-			}
+				delayTimer = TimerUtils.startTimer(1500, finishMovement);
+		}
+		
+		private function finishMovement(e:TimerEvent):void
+		{
+			TimerUtils.stopTimer(delayTimer, finishMovement);
+			if (isReversing)
+				finishReverse();
+			else
+				finishStep();
 		}
 		
 		private function finishReverse():void

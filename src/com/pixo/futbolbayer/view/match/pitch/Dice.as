@@ -28,13 +28,13 @@ package com.pixo.futbolbayer.view.match.pitch
 		{
 			showClip();
 			clip.gotoAndStop("animation");
-			timer = TimerUtils.startTimer(timer, 1500, handleRollFinished);
+			timer = TimerUtils.startTimer(1500, handleRollFinished);
 		}
 		
 		private function handleRollFinished(e:TimerEvent):void
 		{
 			TimerUtils.stopTimer(timer, handleRollFinished);
-			timer = TimerUtils.startTimer(timer, 1000, handleDiceDelay);
+			timer = TimerUtils.startTimer(1000, handleDiceDelay);
 			value = MathUtils.randomRange(1, 6);
 			clip.gotoAndStop(value);
 		}

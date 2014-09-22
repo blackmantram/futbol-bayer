@@ -48,6 +48,7 @@ package com.pixo.futbolbayer.view.match.refereeing
 		
 		public function setCharacter(character:DisplayObject):void
 		{
+			this.character.removeChildren();
 			this.character.addChild(character);
 		}
 		

@@ -68,7 +68,7 @@ package com.pixo.futbolbayer.view.trivia
 		
 		private function startDelayTime():void
 		{
-			delayTimer = TimerUtils.startTimer(delayTimer, 2000, handleDelayComplete);
+			delayTimer = TimerUtils.startTimer(2000, handleDelayComplete);
 		}
 		
 		private function handleDelayComplete(e:TimerEvent):void

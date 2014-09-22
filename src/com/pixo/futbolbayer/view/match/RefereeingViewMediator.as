@@ -45,7 +45,7 @@ package com.pixo.futbolbayer.view.match
 		
 		private function delay():void
 		{
-			delayTimer = TimerUtils.startTimer(delayTimer, 2000, handleDelayTimer);
+			delayTimer = TimerUtils.startTimer(2000, handleDelayTimer);
 		}
 		
 		private function handleDelayTimer(e:Event):void

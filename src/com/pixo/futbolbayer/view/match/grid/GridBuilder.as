@@ -46,11 +46,14 @@ package com.pixo.futbolbayer.view.match.grid
 				lX = i % _gridWidth;
 				lY = i / _gridWidth;
 				
-				lHex = new Tile(_hexWidth);
-				lHex.x = _xCenterOffset + (lX * _columnOffset);
-				lHex.y = + _yCenterOffset + (lY * _hexHeight) + ((lX%2)*_rowOffset);
-				hexagons.push (lHex);
-				_canvas.addChild (lHex);			
+				if (!(lY == _gridHeight-1 && lX%2==1))
+				{
+					lHex = new Tile(_hexWidth);
+					lHex.x = _xCenterOffset + (lX * _columnOffset);
+					lHex.y = + _yCenterOffset + (lY * _hexHeight) + ((lX%2)*_rowOffset);
+					hexagons.push (lHex);
+					_canvas.addChild (lHex);
+				}
 			}
 			return hexagons;
 		}
