@@ -21,6 +21,7 @@ package com.pixo.futbolbayer.service.assets
 			soundsObject[GameSoundIds.LOOP] = new Sound(new URLRequest("assets/sounds/loop.mp3"));
 			soundsObject[GameSoundIds.WHISTLE] = new Sound(new URLRequest("assets/sounds/pito.mp3"));
 			soundsObject[GameSoundIds.AMBIENCE] = new Sound(new URLRequest("assets/sounds/previo_partido.mp3"));
+			soundsObject[GameSoundIds.BALL_MOVEMENT] = new Sound(new URLRequest("assets/sounds/toque_balon.mp3"));
 		}
 		
 		public function getSound(sound:String):Sound

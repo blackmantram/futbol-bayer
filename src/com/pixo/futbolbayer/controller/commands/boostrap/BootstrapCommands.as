@@ -13,6 +13,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 	import com.pixo.futbolbayer.controller.commands.NextStepCommand;
 	import com.pixo.futbolbayer.controller.commands.PauseCommand;
 	import com.pixo.futbolbayer.controller.commands.PlayAmbienceSoundCommand;
+	import com.pixo.futbolbayer.controller.commands.PlayBallMovementSoundCommand;
 	import com.pixo.futbolbayer.controller.commands.PlayLowAmbienceSoundCommand;
 	import com.pixo.futbolbayer.controller.commands.PlayNormalAmbienceSoundCommand;
 	import com.pixo.futbolbayer.controller.commands.PlayWhistleCommand;
@@ -80,6 +81,7 @@ package com.pixo.futbolbayer.controller.commands.boostrap
 			commandMap.mapEvent(GameEvent.MATCH_SETTINGS, PlayAmbienceSoundCommand);
 			commandMap.mapEvent(GameEvent.TEAM_SETTINGS, PlayLowAmbienceSoundCommand);
 			commandMap.mapEvent(GameEvent.PREVIEW, PlayNormalAmbienceSoundCommand);
+			commandMap.mapEvent(MatchEvent.MOVEMENT, PlayBallMovementSoundCommand);
 			commandMap.mapEvent(GameEvent.GOTO_MATCH, StopLoopCommand);
 			commandMap.mapEvent(GameEvent.RESTART, StopAllSoundsCommand);
 			commandMap.mapEvent(RefereeingEvent.SHOW_REFEREE, PlayWhistleCommand);

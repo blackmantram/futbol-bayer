@@ -93,9 +93,9 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function startMove(movements:int):void
 		{
-			isMoving = true;
 			dispatch(new MovementEvent(MovementEvent.MOVEMENT, movements));
 			view.move(movements);
+			isMoving = true;
 		}
 		
 		private function handleReverse(event:ReverseEvent):void
@@ -115,6 +115,8 @@ package com.pixo.futbolbayer.view.match.pitch
 		
 		private function handleMovementComplete(e:PitchEvent):void
 		{
+			if (isMoving)
+				dispatch(new MatchEvent(MatchEvent.MOVEMENT));
 			completeMovement();
 		}
 		
