@@ -5,7 +5,7 @@ package com.pixo.futbolbayer.service.trivia
 	{
 		public var wording:String;
 		private var answersArray:Array = new Array();
-		private var answerCursor:int = 0;
+		private var answerCursor:int = -1;
 		
 		public function Question(questionObject:Object):void
 		{
@@ -17,8 +17,10 @@ package com.pixo.futbolbayer.service.trivia
 		
 		public function getAnswer():Answer
 		{
+			if (answerCursor >= answersArray.length-1)
+				answerCursor = -1;
 			answerCursor++;
-			return answersArray[answerCursor-1];
+			return answersArray[answerCursor];
 		}
 		
 		private function randomSort(a:*, b:*):Number
