@@ -8,6 +8,9 @@ package com.pixo.futbolbayer.view.match.pitch
 	import com.pixo.futbolbayer.view.events.GridEvent;
 	import com.pixo.futbolbayer.view.events.MatchEvent;
 	import com.pixo.futbolbayer.view.match.grid.HexagonalGrid;
+	import com.pixo.futbolbayer.view.match.pitch.dice.Dice;
+	import com.pixo.futbolbayer.view.match.pitch.dice.RollableDice;
+	import com.pixo.futbolbayer.view.match.pitch.dice.SelectableDice;
 	import com.pixo.futbolbayer.view.match.pitch.events.PitchEvent;
 	import com.pixo.futbolbayer.view.tweens.MoveToPointTween;
 	
@@ -50,7 +53,7 @@ package com.pixo.futbolbayer.view.match.pitch
 			addChild(skin);
 			stadium = skin.getChildByName("stadium_container") as Sprite;
 			grid = new HexagonalGrid(skin.getChildByName("grid") as Sprite);
-			dice = new Dice(skin.getChildByName("dice") as MovieClip);
+			dice = getDice(skin);
 			banner = new Banner(skin.getChildByName("banner") as Sprite);
 			ball = skin.getChildByName("ball") as Sprite;
 			initializeKickHolders(skin);
@@ -124,6 +127,13 @@ package com.pixo.futbolbayer.view.match.pitch
 		public function setBannerAssets(assets:Array):void 
 		{
 			banner.setAssets(assets);
+		}
+		
+		private function getDice(skin:Sprite):Dice
+		{
+			var rollableDice:RollableDice = new RollableDice(skin.getChildByName("rollable_dice") as MovieClip);
+			var selectableDice:SelectableDice = new SelectableDice(skin.getChildByName("selectable_dice") as MovieClip);
+			return selectableDice;
 		}
 	}
 }
